@@ -56,7 +56,7 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
       email: inputs.email,
       password: inputs.password,
       passwordrep: inputs.passwordrep,
-      roles: ['user'],
+      roles: ['user','admin'],
       activo: true
     };
 

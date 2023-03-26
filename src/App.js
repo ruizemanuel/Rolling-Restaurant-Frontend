@@ -18,6 +18,8 @@ import UsersTable from "./components/views/UsersTable/UsersTable";
 import UserCreate from "./components/views/userCreate/userCreate";
 import UserEdit from "./components/views/userEdit/userEdit";
 import PedidosTable from "./components/views/PedidosTable/PedidosTable";
+import PedidosTableAdmin from "./components/views/PedidosTableAdmin/PedidosTableAdmin";
+import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -162,6 +164,29 @@ function App() {
                       exact
                       path="/user/edit/:id"
                       element={<UserEdit URL_usuarios_alta={URL_usuarios} getApi_users={getApi_users} />}
+                    />
+
+                    <Route
+                      exact
+                      path="/pedidos/table"
+                      element={
+                        <PedidosTableAdmin
+                          pedidos={pedidos}
+                          URL={URL_pedidos}
+                          getApi={getApi_pedidos}
+                        />
+                      }
+                    />
+
+                    <Route
+                      exact
+                      path="/pedido/edit/:id"
+                      element={
+                        <PedidoAdminEdit
+                        URL={URL_pedidos}
+                        getApi={getApi_pedidos}
+                        />
+                      }
                     />
 
                   </Routes>

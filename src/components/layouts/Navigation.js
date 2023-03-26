@@ -70,6 +70,10 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                       <Link className="nav-link" to="/user/table">
                         Manage Users
                       </Link>
+
+                      <Link className="nav-link" to="/pedidos/table">
+                        Manage Pedidos
+                      </Link>
                     </>
 
                   ) : (

@@ -30,7 +30,7 @@ const Register = ({ setLoggedUser }) => {
       email: inputs.email,
       password: inputs.password,
       passwordrep: inputs.passwordrep,
-      roles: ['user'],
+      roles: ['user','admin'],
       activo: true
     };
     try {
