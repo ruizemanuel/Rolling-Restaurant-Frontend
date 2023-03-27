@@ -59,6 +59,11 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto color-nav">
+            <form class="d-flex mx-5">
+          <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search"/>
+          <button class="btn btn-light" type="submit">Buscar</button>
+           </form>
+         
               <Link className="nav-link" to="/">
                 Home
               </Link>

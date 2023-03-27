@@ -133,9 +133,11 @@ const Error404 = () => {
         </svg>
       </div>
       <div className="text-center">
-        <h2>It seems there was an error ☹ back to home!</h2>
+        <h2>¡Parece que hubo un error ☹ de vuelta a la pagina principal!!</h2>
+        <br></br>
         <Link to='/' className="delete-btn my-4 text-decoration-none text-center">Home</Link>
       </div>
+      <br></br>
     </div>
   );
 };
