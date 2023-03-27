@@ -1,0 +1,57 @@
+#about-us {
+    background-color: #F8F9FA;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  #rowAbout{
+    height: 17rem;
+  }
+  .imageRestaurant{
+    height: 14rem;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  #about-us h2 {
+    color: #6c757d;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  #about-us h3 {
+    color: #6c757d;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  #about-us p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  
+  #about-us .list-group-item {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: none;
+  }
+  
+@media screen and (max-width:767px){
+  #about-us{
+    display: block !important;
+  }
+  #rowAbout{
+    display: block;
+    margin-top: 1rem;
+    height: auto;
+  }
+  #about-us h2{
+    display: none;
+
+  }
+  #about-us p{
+    margin-top: 2rem;
+  }
+}

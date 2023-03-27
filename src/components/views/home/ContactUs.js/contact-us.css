@@ -1,0 +1,77 @@
+
+.boxInfo {
+    display: flex;
+    height: 5.5rem;
+}
+h1{
+    font-family: "Satisfy", sans-serif;
+    font-weight: 700;
+}
+.boxInfo .icono {
+color: #ff6347;
+}
+
+span {
+    color: #ff6347;
+}
+
+
+.boxInfo .info p {
+    margin-bottom: 0px !important;
+    padding: 0 !important;
+}
+
+.contactUsbox {
+    padding-top: 1.1rem;
+    padding-bottom: 1.3rem;
+    box-shadow: -1px -1px 13px 6px rgba(171, 171, 171, 0.48);
+    -webkit-box-shadow: -1px -1px 13px 6px rgba(171, 171, 171, 0.48);
+    -moz-box-shadow: -1px -1px 13px 6px rgba(171, 171, 171, 0.48);
+}
+
+#contact-form h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    height: 50px;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+.btn-primary {
+    background-color: #ff6347;
+    border-color: #ff6347;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin-top: 20px;
+    border-radius: 50px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #d13924;
+    border-color: #d13924;
+    box-shadow: none;
+}
+.mapa{
+    width: 100%;
+    box-shadow: -1px -1px 13px 6px rgba(171, 171, 171, 0.48);
+    -webkit-box-shadow: -1px -1px 13px 6px rgba(171, 171, 171, 0.48);
+    -moz-box-shadow: -1px -1px 13px 6px rgba(171, 171, 171, 0.48);
+    padding: 0;
+    margin: 0;
+}

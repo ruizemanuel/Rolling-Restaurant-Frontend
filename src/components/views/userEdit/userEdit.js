@@ -185,7 +185,7 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
 
 
           <div className="text-end">
-            <button className="btn-orange">Update</button>
+            <button className="update-btn">Update</button>
           </div>
         </Form>
       </Container>

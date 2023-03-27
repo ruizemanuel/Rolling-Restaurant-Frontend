@@ -61,7 +61,7 @@ const User = ({ user, URL_usuarios, getApi_users }) => {
         <div className="d-flex justify-content-center">
           <Link
             to={`/user/edit/${user._id}`}
-            className="btn-orange mx-1 text-decoration-none text-center"
+            className="update-btn mx-1 text-decoration-none text-center"
           >
             Update
           </Link>

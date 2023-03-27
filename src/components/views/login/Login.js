@@ -89,12 +89,12 @@ const Login = ({ setLoggedUser }) => {
           </Form.Group>
           <Link
             to="/auth/register"
-            className="btn-primary text-decoration-none"
+            className="btn btn-warning text-decoration-none"
           >
             Register new user
           </Link>
           <div className="text-center">
-            <button className="btn-yellow">Send</button>
+            <button className="btn-primary">Ingresar</button>
           </div>
         </Form>
         {error ? (

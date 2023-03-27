@@ -40,9 +40,9 @@ export const validateCategory = (field) => {
   if (
     regExpCategory.test(field) &&
     field.trim() !== "" &&
-    (field === "de-carne" ||
-      field === "de-cerdo" ||
-      field === "de-pollo" ||
+    (field === "pizza" ||
+      field === "hamburguesa" ||
+      field === "taco" ||
       field === "veganas" ||
       field === "bebidas" ||
       field === "postre")

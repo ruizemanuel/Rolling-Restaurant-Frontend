@@ -1,0 +1,39 @@
+.icon-link {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.social-icon {
+  font-size: 1.5rem;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.twitter:hover {
+  color: #1DA1F2;
+}
+
+.facebook:hover {
+  color: #3B5998;
+}
+
+.google:hover {
+  color: #DB4437;
+}
+
+.instagram:hover {
+  color: #C13584;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+}
+

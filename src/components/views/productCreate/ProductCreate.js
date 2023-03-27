@@ -137,7 +137,7 @@ const ProductCreate = ({ URL, getApi }) => {
               name="productName"
               value={inputs.productName || ""}
               onChange={(e) => handleChange(e)}
-              // onChange={({ target }) => setProductName(target.value)}
+            // onChange={({ target }) => setProductName(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -148,7 +148,7 @@ const ProductCreate = ({ URL, getApi }) => {
               name="price"
               value={inputs.price || ""}
               onChange={(e) => handleChange(e)}
-              // onChange={({ target }) => setPrice(target.value)}
+            // onChange={({ target }) => setPrice(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -159,7 +159,7 @@ const ProductCreate = ({ URL, getApi }) => {
               value={inputs.urlImg || ""}
               placeholder="Ej: https://media.istockphoto.com/photos/two-freshly-baked-french-id1277579771?k=20"
               onChange={(e) => handleChange(e)}
-              //  onChange={({ target }) => setUrlImg(target.value)}
+            //  onChange={({ target }) => setUrlImg(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -168,30 +168,30 @@ const ProductCreate = ({ URL, getApi }) => {
               name="category"
               value={inputs.category || ""}
               onChange={(e) => handleChange(e)}
-              //  onChange={({ target }) => setCategory(target.value)}
+            //  onChange={({ target }) => setCategory(target.value)}
             >
               <option value="">Select an option</option>
-              <option value="de-carne">de Carne</option>
-              <option value="de-cerdo">de Cerdo</option>
-              <option value="de-pollo">de Pollo</option>
+              <option value="pizza">Pizza</option>
+              <option value="hamburguesa">Hamburguesa</option>
+              <option value="taco">Tacos</option>
               <option value="veganas">Veganas</option>
               <option value="bebidas">Bebidas</option>
               <option value="postre">Postre</option>
             </Form.Select>
           </Form.Group>
           <div className="text-end">
-            <button className="btn-yellow">Save</button>
+            <button className="btn-primary text-light">Save</button>
           </div>
         </Form>
         {show && (
-        <Alert
-          key={errorMessage}
-          variant="danger"
-          onClose={() => setShow(false)}
-          dismissible
-        >
-          {errorMessage}
-        </Alert>
+          <Alert
+            key={errorMessage}
+            variant="danger"
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            {errorMessage}
+          </Alert>
         )}
       </Container>
     </div>

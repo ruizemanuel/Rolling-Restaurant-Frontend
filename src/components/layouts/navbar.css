@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+.navbar{
+    background-color: #FF6347;
+    display: flex;
+    justify-content: space-between !important;
+    
+}
+.logo{
+    width: 7rem;
+}
+.nav-link{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
