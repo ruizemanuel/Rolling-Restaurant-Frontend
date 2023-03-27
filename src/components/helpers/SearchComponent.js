@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 
 
+
 function SearchComponent() {
     //setear los hooks useState
-    const [productName, setUsers] = useState([])
+    const [Product, setProducts] = useState([])
     const [search, setSearch] = useState("")
 
     //función para traer los datos de la API
@@ -13,7 +14,7 @@ function SearchComponent() {
         const response = await fetch(URL)
         const data = await response.json()
         //console.log(data)
-        setUsers(data)
+        setProducts(data)
     }
     //función de búsqueda
     const searcher = (e) => {
@@ -30,7 +31,7 @@ function SearchComponent() {
      )
     } */
     //metodo de filtrado 2   
-    const results = !search ? productName : productName.filter((dato) => dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
+    const results = !search ? Product : Product.filter((dato) => dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
 
     useEffect(() => {
         showData()
@@ -43,15 +44,16 @@ function SearchComponent() {
             <table className='table table-striped table-hover mt-5 shadow-lg'>
                 <thead>
                     <tr className='bg-curso text-white'>
-                        <th>NAME</th>
-                        <th>TIPO DE MENU</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {results.map((productName) => (
-                        <tr key={productName.productName}>
-                            <td>{productName.price}</td>
-                            <td>{productName.category}</td>
+                    {results.map((Product) => (
+                        <tr key={Product.productName}>
+                            <td>{Product.price}</td>
+                            <td>{Product.category}</td>
                         </tr>
                     ))}
                 </tbody>

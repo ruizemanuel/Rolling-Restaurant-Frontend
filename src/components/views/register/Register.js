@@ -3,6 +3,8 @@ import { Alert, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../config/axiosInit";
+import enviarmail from "./helpers/emailjs"
+
 
 const Register = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
@@ -23,7 +25,7 @@ const Register = ({ setLoggedUser }) => {
     e.preventDefault();
     console.log(inputs);
     //Valido los campos
-
+ // emailjs
     //Envio los datos para guardarlos
     const newUser = {
       name: inputs.name,
@@ -112,7 +114,7 @@ const Register = ({ setLoggedUser }) => {
             Back to login
           </Link>
           <div className="text-center">
-            <button className="btn-primary">Send</button>
+            <button className="btn-primary"  onClick={enviarmail()}>Send</button>
           </div>
         </Form>
         {error ? (
