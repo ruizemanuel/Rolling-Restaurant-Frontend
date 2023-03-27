@@ -81,7 +81,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
 
   return (
     <div>
-      <Container className="py-5">
+      <Container className="py-5 pedidosContainer">
         <div className="d-flex align-items-center justify-content-between">
           <h1>Pedidos Table</h1>
 
