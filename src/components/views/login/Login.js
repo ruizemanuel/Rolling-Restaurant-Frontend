@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import "./login.css";
 import { Alert, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../config/axiosInit";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const Login = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO;
 
@@ -19,8 +21,6 @@ const Login = ({ setLoggedUser }) => {
   };
   //useNavigate
   const navigate = useNavigate();
-
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,47 +62,56 @@ const Login = ({ setLoggedUser }) => {
   };
 
   return (
-    <div>
-      <Container className="py-5">
-        <h1>Login</h1>
-        <hr />
-        <Form className="my-5" onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email*</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="johndoe@gmail.com"
-              name="email"
-              value={inputs.email || ""}
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password*</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Ej: Ingrese su password"
-              name="password"
-              value={inputs.password || ""}
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
-          <Link
-            to="/auth/register"
-            className="btn-primary text-decoration-none"
-          >
-            Register new user
-          </Link>
-          <div className="text-center">
-            <button className="btn-yellow">Send</button>
-          </div>
-        </Form>
-        {error ? (
-          <Alert variant="danger" onClick={() => setError(false)} dismissible>
-            {errorMessage}
-          </Alert>
-        ) : null}
-      </Container>
+    <div className="cont">
+      <div className="wrapper">
+        <Container className="py-5 form-box">
+          <h2>Iniciar Sesión</h2>
+          <Form className="my-5" onSubmit={handleSubmit}>
+            <Form.Group className="mb-3 inputBox" controlId="formBasicEmail">
+              <Form.Label className="label">
+                <MdEmail />
+                Email*
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="johndoe@gmail.com"
+                name="email"
+                value={inputs.email || ""}
+                onChange={(e) => handleChange(e)}
+                className="formInput"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 inputBox" controlId="formBasicPassword">
+              <Form.Label className="label">
+                <RiLockPasswordLine />
+                Contraseña*
+              </Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Ej: Ingrese su contraseña"
+                name="password"
+                value={inputs.password || ""}
+                onChange={(e) => handleChange(e)}
+                className="formInput"
+              />
+            </Form.Group>
+            <Link
+              to="/auth/register"
+              className="btn-primary text-decoration-none regNewUser"
+            >
+              Registrar usuario nuevo
+            </Link>
+            <div className="text-center btnSend">
+              <button className="btn-yellow btnClass">Ingresar</button>
+            </div>
+          </Form>
+          {error ? (
+            <Alert variant="danger" onClick={() => setError(false)} dismissible>
+              {errorMessage}
+            </Alert>
+          ) : null}
+        </Container>
+      </div>
     </div>
   );
 };

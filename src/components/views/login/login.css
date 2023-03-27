@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.hola.com/imagenes/cocina/recetas/20220208204252/pizza-pepperoni-mozzarella/1-48-890/pepperoni-pizza-abob-t.jpg') no-repeat;
+    background-size: cover;
+    height: 79vh;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: rgba(164, 158, 158, 0.393);
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+} 
+
+.form-box h2 {
+font-size: 2em;
+font-family: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;800;900&display=swap');
+text-align: center;
+text-decoration: underline;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.inputBox {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+
+.label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50px);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.formInput {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.formInput:focus {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.btnSend {
+    margin-top: 18px;
+}
+
+.btnClass {
+    background: rgb(0, 0, 0);
+    color: white;
+    border: 1px solid #fff;
+}
+
+
