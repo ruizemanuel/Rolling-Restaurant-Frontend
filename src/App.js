@@ -20,7 +20,7 @@ import UserEdit from "./components/views/userEdit/userEdit";
 import PedidosTable from "./components/views/PedidosTable/PedidosTable";
 import PedidosTableAdmin from "./components/views/PedidosTableAdmin/PedidosTableAdmin";
 import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit";
-import { enviarmail } from "./components/helpers/enviarMail";
+// import { enviarmail } from "./components/helpers/enviarMail";
 
 
 function App() {
@@ -219,7 +219,7 @@ function App() {
             <Route exact path="*" element={<Error404 />} />
           </Routes>
         </main>
-        <enviarmail/>
+        {/* <enviarmail/> */}
         <Footer />
       </BrowserRouter>
     </div>

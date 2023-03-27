@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/axiosInit";
 import logo from "./LogoRolling.png"
 import "./navbar.css"
-import SearchComponent from "../helpers/SearchComponent";
+// import SearchComponent from "../helpers/SearchComponent";
 
 
 const Navigation = ({ loggedUser, setLoggedUser }) => {
@@ -63,7 +63,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
             <form class="d-flex mx-5">
           <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search"/>
           <button class="btn btn-light" type="submit">Buscar</button>
-          <SearchComponent /> 
+          {/* <SearchComponent />  */}
            </form>
          
               <Link className="nav-link" to="/">
