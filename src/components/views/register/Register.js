@@ -83,7 +83,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="text"
               placeholder="Ej: John Doe"
+              minLength= '5'
+              maxLength='20'
               name="name"
+              required
               value={inputs.name || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -93,7 +96,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="text"
               placeholder="johndoe@gmail.com"
+              minLength= '5'
+              maxLength='30'
               name="email"
+              required
               value={inputs.email || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -103,7 +109,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="password"
               placeholder="Ej: Ingrese su password"
+              minLength= '5'
+              maxLength='18'
               name="password"
+              required
               value={inputs.password || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -114,7 +123,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="password"
               placeholder="Ej: Repeat your password"
+              minLength= '5'
+              maxLength='18'
               name="passwordrep"
+              required
               value={inputs.passwordrep || ""}
               onChange={(e) => handleChange(e)}
             />
