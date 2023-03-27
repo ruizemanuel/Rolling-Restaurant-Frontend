@@ -16,8 +16,7 @@ const CardProduct = ({ product }) => {
             <span className="badge bg-yellow">New</span>
           </div>
           <Card.Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id,
-            voluptate necessitatibus ex eius sunt!
+            {product.description}
           </Card.Text>
           <div className="d-flex align-items-center justify-content-between">
             <p className="mb-0 ms-4 fs-4 ">${product.price}</p>

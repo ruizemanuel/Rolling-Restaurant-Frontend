@@ -61,6 +61,8 @@ const ProductCreate = ({ URL, getApi }) => {
       price: inputs.price,
       urlImg: inputs.urlImg,
       category: inputs.category,
+      description:inputs.description,
+      
     };
 
     Swal.fire({

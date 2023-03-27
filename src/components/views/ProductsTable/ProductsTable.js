@@ -27,6 +27,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
               <th>Price</th>
               <th>Image url</th>
               <th>Category</th>
+              <th>Description</th>
               <th>Actions</th>
             </tr>
           </thead>

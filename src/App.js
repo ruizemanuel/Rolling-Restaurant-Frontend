@@ -20,6 +20,8 @@ import UserEdit from "./components/views/userEdit/userEdit";
 import PedidosTable from "./components/views/PedidosTable/PedidosTable";
 import PedidosTableAdmin from "./components/views/PedidosTableAdmin/PedidosTableAdmin";
 import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit";
+import { enviarmail } from "./components/helpers/enviarMail";
+
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -32,7 +34,7 @@ function App() {
   const URL_usuarios = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
   const URL_usuarios_alta = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
   const URL_pedidos = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
-
+  
 
   //const URL_USUARIOS = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
 
@@ -113,6 +115,7 @@ function App() {
         <Navigation loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
         <main>
           <Routes>
+            <Route exact path="*" element={<Error404 />} />
             <Route exact path="/" element={<Home products={products} />} />
             <Route
               exact
@@ -216,6 +219,7 @@ function App() {
             <Route exact path="*" element={<Error404 />} />
           </Routes>
         </main>
+        <enviarmail/>
         <Footer />
       </BrowserRouter>
     </div>
