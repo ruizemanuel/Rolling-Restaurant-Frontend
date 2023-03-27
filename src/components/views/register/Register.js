@@ -108,11 +108,11 @@ const Register = ({ setLoggedUser }) => {
           </Form.Group>
 
 
-          <Link to="/auth/login" className="btn-primary text-decoration-none">
+          <Link to="/auth/login" className="btn btn-info text-decoration-none">
             Back to login
           </Link>
           <div className="text-center">
-            <button className="btn-yellow">Send</button>
+            <button className="btn-primary">Send</button>
           </div>
         </Form>
         {error ? (

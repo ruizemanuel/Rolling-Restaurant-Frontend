@@ -34,7 +34,7 @@ function ContactUs() {
             </div>
             <Container className="contactUsbox">
                 <Row className="mb-5">
-                    <Col xs={12} md={6} lg={5} xl={3} className="">
+                    <Col xs={12} md={6} lg={5} xl={3} className="colInfo">
                         <div className="boxInfo py-2">
                             <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" className=" px-4 icono" />
                             <div className="info ms-4">
@@ -44,7 +44,7 @@ function ContactUs() {
                             </div>
                         </div>
                     </Col>
-                    <Col xs={12} md={6} lg={5} xl={3} className="">
+                    <Col xs={12} md={6} lg={5} xl={3} className="colInfo">
                         <div className="boxInfo py-2">
                             <FontAwesomeIcon icon={faEnvelope} size="2x" className=" px-4 icono" />
                             <div className="info ms-4">
@@ -53,7 +53,7 @@ function ContactUs() {
                             </div>
                         </div>
                     </Col>
-                    <Col xs={12} md={6} lg={5} xl={3} className="">
+                    <Col xs={12} md={6} lg={5} xl={3} className="colInfo">
                         <div className="boxInfo py-2">
                             <FontAwesomeIcon icon={faPhone} size="2x" className=" px-4 icono" />
                             <div className="info ms-4">
@@ -62,7 +62,7 @@ function ContactUs() {
                             </div>
                         </div>
                     </Col>
-                    <Col xs={12} md={6} lg={5} xl={3} className="">
+                    <Col xs={12} md={6} lg={5} xl={3} className="colInfo">
                         <div className="boxInfo py-2">
                             <FontAwesomeIcon icon={faClock} size="2x" className=" px-4  icono" />
                             <div className="info ms-4">
