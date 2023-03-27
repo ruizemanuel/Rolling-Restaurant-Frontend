@@ -1,6 +1,6 @@
-# CRUD Hamburguesería
+# Rolling Restaurant
 
-En página web realizada con ReactJS de temática Hamburguesería, podremos mostrar productos en una tabla, darles de alta, editarlos y borraros. En la misma se utilizan herramientas como React Router para manejar las rutas que nos permitan navegar entre las distintas páginas y JSON Server para simular una API externa.
+Página web realizada con ReactJS de temática Restaurante, podremos mostrar productos en una tabla, darles de alta, editarlos y borraros. En la misma se utilizan herramientas como React Router para manejar las rutas que nos permitan navegar entre las distintas páginas y JSON Server para simular una API externa.
 
 ---
 

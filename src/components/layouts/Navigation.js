@@ -51,7 +51,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
       <Navbar className="bg-red" expand="lg">
         <Container>
           <Navbar.Brand className="logo" href="/">
-            Crud Hamburguesería
+            Rolling Restaurant
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

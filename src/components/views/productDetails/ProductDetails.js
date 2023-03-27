@@ -57,9 +57,8 @@ const ProductDetails = ({ URL, pedidos }) => {
         Swal.fire("Created!", "Your pedido has been created.", "success");
         // const data = await res.json(); // si es con fetch
         const data = res.data 
-        console.log(data);
+        console.log('DESDE PRODUCT DETAIL',data);
         //localStorage.setItem("user-token", JSON.stringify(data));
-        //setLoggedUser(data);
         navigate("/");
       }
     } catch (error) {
