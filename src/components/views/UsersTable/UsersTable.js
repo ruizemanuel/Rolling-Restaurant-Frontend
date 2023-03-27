@@ -11,7 +11,7 @@ const UsersTable = ({ users, URL_usuarios, getApi_users }) => {
           <h1>Users Table</h1>
           <Link
             to="/user/create"
-            className="btn-red text-decoration-none text-center"
+            className="delete-btn text-decoration-none text-center"
           >
             Add User
           </Link>

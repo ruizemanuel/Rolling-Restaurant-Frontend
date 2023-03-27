@@ -1,0 +1,24 @@
+.buy-btn {
+    background: var(--clr-white);
+    border: #FF5757 solid 1px;
+    font-size: 1rem;
+    text-transform: capitalize;
+    margin: 0 0.5rem;
+    letter-spacing: 1px;
+    padding: 0.375rem 0.75rem;
+    color: var(--clr-gold);
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: var(--radius);
+}
+
+.buy-btn:hover,
+.buy-btn.active {
+    background: var(--clr-gold);
+    color: var(--clr-white);
+    border: #FF5757 1px solid;
+}
+
+.productTitle{
+    color: rgb(22, 21, 21);
+}

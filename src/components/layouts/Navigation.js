@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/axiosInit";
+import logo from "./LogoRolling.png"
+import "./navbar.css"
+
 
 const Navigation = ({ loggedUser, setLoggedUser }) => {
 
@@ -51,7 +54,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
       <Navbar className="bg-red" expand="lg">
         <Container>
           <Navbar.Brand className="logo" href="/">
-            Rolling Restaurant
+          <img src={logo} alt="logo" className="logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

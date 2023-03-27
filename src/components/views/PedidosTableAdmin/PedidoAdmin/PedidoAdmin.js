@@ -61,7 +61,7 @@ const PedidoAdmin = ({ pedido, URL, getApi }) => {
         <div className="d-flex justify-content-center">
           <Link
             to={`/pedido/edit/${pedido._id}`}
-            className="btn-orange mx-1 text-decoration-none text-center"
+            className="update-btn mx-1 text-decoration-none text-center"
           >
             Update
           </Link>

@@ -153,16 +153,16 @@ const ProductEdit = ({ URL, getApi }) => {
              onChange={({ target })=> setProduct({...product, category: target.value })}
             >
               <option value="">Select an option</option>
-              <option value="de-carne">de Carne</option>
-              <option value="de-cerdo">de Cerdo</option>
-              <option value="de-pollo">de Pollo</option>
+              <option value="pizza">Pizza</option>
+              <option value="hamburguesa">Hamburguesa</option>
+              <option value="taco">Tacos</option>
               <option value="veganas">Veganas</option>
               <option value="bebidas">Bebidas</option>
               <option value="postre">Postre</option>
             </Form.Select>
           </Form.Group>
           <div className="text-end">
-            <button className="btn-orange">Update</button>
+            <button className="update-btn">Update</button>
           </div>
         </Form>
       </Container>

@@ -109,7 +109,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
 
           {pedidoBuscado !== undefined ?
             <button
-              className="btn-red mx-1" disabled={habilitadoDel}
+              className="delete-btn mx-1" disabled={habilitadoDel}
               onClick={() => handleDelete()}
             >
               Vaciar Carrito
@@ -151,7 +151,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
               <h5>Estado: {pedidoBuscado.estado}</h5>
 
               <button
-                className="btn-red mx-1" disabled={habilitado}
+                className="btn-primary mx-1" disabled={habilitado}
                 onClick={() => handleOrder()}
               >
                 Enviar

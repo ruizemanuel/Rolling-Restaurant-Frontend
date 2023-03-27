@@ -11,7 +11,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
           <h1>Products Table</h1>
           <Link
             to="/product/create"
-            className="btn-red text-decoration-none text-center"
+            className="btn-primary text-decoration-none text-center text-light"
           >
             Add Product
           </Link>

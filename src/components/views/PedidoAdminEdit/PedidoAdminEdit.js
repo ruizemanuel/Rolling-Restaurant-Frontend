@@ -135,7 +135,7 @@ const PedidoAdminEdit = ({ URL, getApi }) => {
 
 
           <div className="text-end">
-            <button className="btn-orange">Update</button>
+            <button className="update-btn">Update</button>
           </div>
         </Form>
       </Container>

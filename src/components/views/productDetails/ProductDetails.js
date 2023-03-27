@@ -3,6 +3,7 @@ import { Card, Row, Col, Container, Button } from "react-bootstrap";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 import Swal from "sweetalert2";
+import "./productDetail.css"
 
 const ProductDetails = ({ URL, pedidos }) => {
   const [product, setProduct] = useState({});
@@ -54,7 +55,7 @@ const ProductDetails = ({ URL, pedidos }) => {
       const res = await axios.post(URL_PEDIDOS, newPedido);
       console.log(res);
       if (res.status === 201) {
-        Swal.fire("Created!", "Your pedido has been created.", "success");
+        Swal.fire("Listo!", "Estamos preparando tu pedido.", "success");
         // const data = await res.json(); // si es con fetch
         const data = res.data 
         console.log('DESDE PRODUCT DETAIL',data);
@@ -116,17 +117,18 @@ const ProductDetails = ({ URL, pedidos }) => {
   return (
     <Container>
       <Row>
-        <Col>
-          <Card className="my-4">
+        <Col className="card-img">
+          <Card className="my-4 ">
             <Card.Img
               className="img-fluid"
               variant="top"
               src={product.urlImg}
+              id='img-pedido'
             />
           </Card>
         </Col>
         <Col>
-          <Card className="my-4">
+          <Card className="my-4 card-desc">
             <Card.Body>
               <div className="d-flex align-items-center justify-content-between mb-2">
                 <Card.Title className="m-0 text-truncate">

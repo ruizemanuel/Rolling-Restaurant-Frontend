@@ -1,14 +1,30 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div>
-      <div className="bg-red py-4">
-        <p className="m-0 fs-5 text-center">
-          Rolling Restaurant. All rights reserved &copy;
-        </p>
+    <footer id="footer" className="bg-dark text-light py-3">
+      <div className="container text-center">
+        <h2 className="mb-3">RollingFood</h2>
+        <div className="social-icons">
+          <a href="#" className="icon-link">
+            <FontAwesomeIcon icon={faTwitter} className="social-icon twitter" />
+          </a>
+          <a href="#" className="icon-link">
+            <FontAwesomeIcon icon={faFacebook} className="social-icon facebook" />
+          </a>
+          <a href="#" className="icon-link">
+            <FontAwesomeIcon icon={faGoogle} className="social-icon google" />
+          </a>
+          <a href="#" className="icon-link">
+            <FontAwesomeIcon icon={faInstagram} className="social-icon instagram" />
+          </a>
+        </div>
+        <p className="mt-3">&copy; 2023 RollingFood. Todos los derechos reservados.</p>
       </div>
-    </div>
+    </footer>
   );
 };
 
