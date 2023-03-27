@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Alert, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../config/axiosInit";
+import emailjs from '@emailjs/browser';
+
 
 const Register = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
@@ -17,6 +19,9 @@ const Register = ({ setLoggedUser }) => {
   };
   //useNavigate
   const navigate = useNavigate();
+
+  
+  const form = useRef();
 
   //Funcion para crear el producto
   const handleSubmit = async (e) => {
@@ -57,6 +62,14 @@ const Register = ({ setLoggedUser }) => {
       setError(true);
       error.response.data?.message && setErrorMessage(error.response.data?.message)
     }
+    
+    emailjs.sendForm('service_470nr1h', 'template_q5eze0c', form.current, 'SFzC0PALs3luZR9uq')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+
   };
 
   return (
@@ -64,7 +77,7 @@ const Register = ({ setLoggedUser }) => {
       <Container className="py-5">
         <h1>Register</h1>
         <hr />
-        <Form className="my-5" onSubmit={handleSubmit}>
+        <Form className="my-5" onSubmit={handleSubmit} ref={form}>
           <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>User name*</Form.Label>
             <Form.Control

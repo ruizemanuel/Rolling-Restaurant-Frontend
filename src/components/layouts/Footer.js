@@ -1,7 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter, faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import {
+  faTwitter,
+  faFacebook,
+  faGoogle,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,16 +19,24 @@ const Footer = () => {
             <FontAwesomeIcon icon={faTwitter} className="social-icon twitter" />
           </a>
           <a href="#" className="icon-link">
-            <FontAwesomeIcon icon={faFacebook} className="social-icon facebook" />
+            <FontAwesomeIcon
+              icon={faFacebook}
+              className="social-icon facebook"
+            />
           </a>
           <a href="#" className="icon-link">
             <FontAwesomeIcon icon={faGoogle} className="social-icon google" />
           </a>
           <a href="#" className="icon-link">
-            <FontAwesomeIcon icon={faInstagram} className="social-icon instagram" />
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className="social-icon instagram"
+            />
           </a>
         </div>
-        <p className="mt-3">&copy; 2023 RollingFood. Todos los derechos reservados.</p>
+        <p className="mt-3">
+          &copy; 2023 RollingFood. Todos los derechos reservados.
+        </p>
       </div>
     </footer>
   );
