@@ -31,16 +31,6 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
     };
 
     try {
-      /* const res = await fetch(`${URL}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(productUpdated),
-      }); */
-
-      //const res = await axios.put(`${URL}/${id}`,productUpdated);
-
       const res = await axios.put(`${URL}/${pedidoBuscado._id}`, pedidoUpdated)
 
       console.log(res.data);
@@ -54,8 +44,6 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
     } catch (error) {
       console.log(error);
     }
-
-    //////////////////////////////////////////////////////
 
   }
 
@@ -71,15 +59,6 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //consulta delete con fetch
-          /* const res = await fetch(`${URL}/${id}`,{
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          });
-           */
-          //consulta delete con axios
 
           const res = await axios.delete(`${URL}/${pedidoBuscado._id}`);
 
@@ -95,7 +74,6 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
           }
         } catch (error) {
           console.log(error);
-          //agregar cartel alert o modal al usuario con el error
         }
       }
     })
@@ -161,7 +139,6 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
           </>
           :
           <div className="no-products-found d-flex align-items-center justify-content-center">
-            {/* No products found message */}
             <h1>🍕 No se encontraron pedidos 🍕</h1>
           </div>
         }

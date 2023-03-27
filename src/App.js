@@ -28,15 +28,12 @@ function App() {
   const [users, setUsers] = useState([]);
   const [pedidos, setPedidos] = useState([]);
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem("user-token")) : {});
-  //const [roles, setRoles] = useState([]);
-  //uso de variable de entorno
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
   const URL_usuarios = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
   const URL_usuarios_alta = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
   const URL_pedidos = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
   
 
-  //const URL_USUARIOS = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
 
   console.log('LOGGED DESDE APP', loggedUser)
 
@@ -49,12 +46,8 @@ function App() {
 
   const getApi = async () => {
     try {
-      /* const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi); */
-
-      const res = await axios.get(URL);
-      // console.log(res?.data);
+  
+     const res = await axios.get(URL);
       const productApi = res?.data;
 
       setProducts(productApi);
@@ -65,12 +58,7 @@ function App() {
 
   const getApi_users = async () => {
     try {
-      /* const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi); */
-
       const res = await axios.get(URL_usuarios);
-      // console.log(res?.data);
       const userApi = res?.data;
 
       setUsers(userApi);
@@ -81,12 +69,8 @@ function App() {
 
   const getApi_pedidos = async () => {
     try {
-      /* const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi); */
 
       const res = await axios.get(URL_pedidos);
-      // console.log(res?.data);
       const pedidoApi = res?.data;
 
       setPedidos(pedidoApi);
@@ -94,28 +78,12 @@ function App() {
       console.log(error);
     }
   };
-
-  // const getUsers = async () => {
-  //   try {
-
-  //     const response = await axios.get(URL_USUARIOS);
-  //     // console.log(res?.data);
-  //     const usersApi = response?.data; 
-  //     let elementoEncontrado = usersApi?.find(elemento => elemento._id === loggedUser.uid);
-  //     setRoles(elementoEncontrado.roles)
-
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <div>
       <BrowserRouter>
         <Navigation loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
         <main>
           <Routes>
-            <Route exact path="*" element={<Error404 />} />
             <Route exact path="/" element={<Home products={products} />} />
             <Route
               exact

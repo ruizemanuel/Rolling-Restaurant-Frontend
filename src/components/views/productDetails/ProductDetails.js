@@ -45,13 +45,6 @@ const ProductDetails = ({ URL, pedidos }) => {
       console.log("DESDE PEDIDO", newPedido)
 
     try {
-      /* const res = await fetch(`${URL}/register`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newUser),
-          }); */
       const res = await axios.post(URL_PEDIDOS, newPedido);
       console.log(res);
       if (res.status === 201) {
@@ -69,9 +62,6 @@ const ProductDetails = ({ URL, pedidos }) => {
     }
   
     } else{
-      /////////////////////////////////////////////////
-
-      //const pedidoBuscado = pedidos.find((pedido) => pedido.uid === uid);
 
       console.log('PEDIDO BUSCADO'. pedidoBuscado)
 
@@ -80,15 +70,6 @@ const ProductDetails = ({ URL, pedidos }) => {
       };
 
     try {
-      /* const res = await fetch(`${URL}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(productUpdated),
-      }); */
-
-      //const res = await axios.put(`${URL}/${id}`,productUpdated);
 
       const res = await axios.put(`${URL_PEDIDOS}/${pedidoBuscado._id}`, pedidoUpdated)
         
@@ -103,19 +84,12 @@ const ProductDetails = ({ URL, pedidos }) => {
       console.log(error);
     }
 
-    //////////////////////////////////////////////////////
     }
-
-    
-    
-
-
-    
 
   };
 
   return (
-    <Container>
+    <Container className="productDetailContainer">
       <Row>
         <Col className="card-img">
           <Card className="my-4 ">

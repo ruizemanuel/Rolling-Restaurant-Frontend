@@ -17,7 +17,6 @@ const UsersTable = ({ users, URL_usuarios, getApi_users }) => {
           </Link>
         </div>
         <hr />
-        {/* Table of products */}
         {users?.length !== 0 ?
         <Table bordered hover responsive className="align-middle mt-3">
           <thead>
@@ -41,7 +40,6 @@ const UsersTable = ({ users, URL_usuarios, getApi_users }) => {
         </Table>
         :
         <div className="no-products-found d-flex align-items-center justify-content-center">
-        {/* No products found message */}
           <h1>🍕 No se encontraron usuarios 🍕</h1>
           </div>
         }

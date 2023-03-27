@@ -28,10 +28,7 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
   }, []);
 
   const getOne = async () => {
-    try {
-      //la peticion con fetch
-      //  const res = await fetch(`${URL}/${id}`);
-      // const userApi = await res.json(); 
+    try { 
 
       //la peticion con Axios
       const res = await axios.get(`${URL_usuarios_alta}/${id}`);
@@ -49,10 +46,6 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
   
   console.log('CHECKED', isChecked)
   
-  // if(user.roles.includes('admin')){
-  //   rolesRef.current = true
-  // }
-
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
     
@@ -69,7 +62,6 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //console.log(productNameRef.current.value);
 
     if(userAdmin){
       rolesRef = ["user", "admin"]
@@ -94,14 +86,7 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          /* const res = await fetch(`${URL}/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productUpdated),
-          }); */
-
+       
           const res = await axios.put(`${URL_usuarios_alta}/${id}`, userUpdated, {
             headers: {
               "Content-Type": "application/json",
@@ -194,23 +179,3 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
 };
 
 export default UserEdit;
-
-
-
-
-
-{/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Label>Category*</Form.Label>
-            <Form.Select
-             value={product.category}
-             onChange={({ target })=> setProduct({...product, category: target.value })}
-            >
-              <option value="">Select an option</option>
-              <option value="de-carne">de Carne</option>
-              <option value="de-cerdo">de Cerdo</option>
-              <option value="de-pollo">de Pollo</option>
-              <option value="veganas">Veganas</option>
-              <option value="bebidas">Bebidas</option>
-              <option value="postre">Postre</option>
-            </Form.Select>
-          </Form.Group> */}

@@ -10,11 +10,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 
 const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
-  //States
-  /*  const [productName, setProductName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [urlImg, setUrlImg] = useState("");
-  const [category, setCategory] = useState(""); */
 
   //One general state
   const [inputs, setInputs] = useState({});
@@ -35,11 +30,6 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
 
     //validar los campos
     if (
-      /* !validateProductName(productName) ||
-      !validatePrice(price) ||
-      !validateUrl(urlImg) ||
-      !validateCategory(category)
-       */
 
       !validateProductName(inputs.name) ||
       !validateEmail(inputs.email) ||
@@ -71,16 +61,6 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //la petición post con fetch
-          /* const res = await fetch(URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-access-token": JSON.parse(localStorage.getItem(("user-token"))).token
-            },
-            body: JSON.stringify(newProduct),
-          });
- */
           //la petición con Axios
           const res = await axios.post(`${URL_usuarios_alta}/register`, newUser);
           console.log(res);

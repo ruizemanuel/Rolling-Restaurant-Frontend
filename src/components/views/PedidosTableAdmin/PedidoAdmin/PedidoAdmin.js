@@ -22,16 +22,6 @@ const PedidoAdmin = ({ pedido, URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //consulta delete con fetch
-          /* const res = await fetch(`${URL}/${id}`,{
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          });
-           */
-          //consulta delete con axios
-
           const res = await axios.delete(`${URL}/${id}`);
 
           if (res.status === 200) {
@@ -73,18 +63,3 @@ const PedidoAdmin = ({ pedido, URL, getApi }) => {
 };
 
 export default PedidoAdmin;
-
-
-{/* <div className="form-check">
-            <input className="form-check-input" type="checkbox" checked={activo}
-              onChange={(e) => handleChange(e)} id="defaultCheck1" />
-            {activo ? (
-              <label className="form-check-label" htmlFor="defaultCheck1">
-                Activo
-              </label>)
-              : (
-                <label className="form-check-label" htmlFor="defaultCheck1">
-                  Inactivo
-                </label>
-              )}
-          </div> */}

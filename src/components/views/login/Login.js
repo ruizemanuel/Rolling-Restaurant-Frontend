@@ -29,16 +29,6 @@ const Login = ({ setLoggedUser }) => {
 
     //Envio los datos
     try {
-      /* const res = await fetch(`${URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: inputs.email,
-          password: inputs.password,
-        }),
-      }); */
       const res = await axios.post(`${URL}/login`, {
         email: inputs.email,
         password: inputs.password,
@@ -63,7 +53,7 @@ const Login = ({ setLoggedUser }) => {
 
   return (
     <div>
-      <Container className="py-5">
+      <Container className="py-5 loginContainer">
         <h1>Login</h1>
         <hr />
         <Form className="my-5" onSubmit={handleSubmit}>
