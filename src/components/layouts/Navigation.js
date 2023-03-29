@@ -10,9 +10,7 @@ import "./navbar.css"
 
 const Navigation = ({ loggedUser, setLoggedUser }) => {
 
-  const [roles, setRoles] = useState([]);
-
-  const URL_USUARIOS = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
+  const [roles, setRoles] = useState(loggedUser.roles);
 
   const navigate = useNavigate()
   console.log('LOGGED', loggedUser)
@@ -22,23 +20,12 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
   }, [loggedUser]);
 
   const getUsers = async () => {
-    try {
-
-      const response = await axios.get(URL_USUARIOS);
-      // console.log(res?.data);
-      const usersApi = response?.data;
-      let elementoEncontrado = usersApi.find(elemento => elemento._id === loggedUser.uid);
-      console.log('ROLES', elementoEncontrado.roles)
-      setRoles(elementoEncontrado.roles)
-
-
-
-    } catch (error) {
-      console.log(error);
-    }
+  
+      setRoles(loggedUser.roles)
+    
   };
 
-  roles.includes('admin') && localStorage.setItem("is-authorized", JSON.stringify('true'));
+  roles?.includes('admin') && localStorage.setItem("is-authorized", JSON.stringify('true'));
 
 
 
@@ -71,7 +58,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
               </Link>
               {loggedUser.token ? (
                 <>
-                  {roles.includes('admin') ? (
+                  {roles?.includes('admin') ? (
                     <>
                       <Link className="nav-link" to="/product/table">
                         Manage Products
