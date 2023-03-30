@@ -44,18 +44,29 @@ const PedidoAdmin = ({ pedido, URL, getApi }) => {
   return (
     <tr>
       <td>{pedido._id}</td>
-      <td>{pedido.uid}</td>
+      <td>{pedido.email}</td>
       <td>{pedido.estado}</td>
 
       <td className="w-25">
         <div className="d-flex justify-content-center">
-          <Link
-            to={`/pedido/edit/${pedido._id}`}
-            className="update-btn mx-1 text-decoration-none text-center"
-          >
-            Update
-          </Link>
-          
+
+          {pedido.estado === 'Pendiente' ||  pedido.estado === 'Realizado'?
+            (
+              <Link
+                to={`/pedido/edit/${pedido._id}`}
+                className="update-btn mx-1 text-decoration-none text-center"
+              >
+                Update
+              </Link>
+            ) : (
+              <div className="update-btn mx-1 text-decoration-none text-center">
+                Esperando al usuario
+              </div>
+            )
+          }
+
+
+
         </div>
       </td>
     </tr>

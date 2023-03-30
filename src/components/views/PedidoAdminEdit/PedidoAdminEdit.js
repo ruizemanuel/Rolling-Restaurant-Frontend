@@ -5,10 +5,13 @@ import Swal from "sweetalert2";
 
 import axios from "../../../config/axiosInit"
 
-const PedidoAdminEdit = ({ URL, getApi }) => {
+const PedidoAdminEdit = ({ }) => {
   //State
-  //const [user, setUser] = useState(false);
+  
   const [isChecked, setIsChecked] = useState(false);
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+
+
 
   //Param
   const { id } = useParams();
@@ -90,7 +93,7 @@ const PedidoAdminEdit = ({ URL, getApi }) => {
 
           if (res.status === 200) {
             Swal.fire("Updated!", "Your pedido has been updated.", "success");
-            getApi();
+            //getApi();
             navigate("/pedidos/table");
           }
         } catch (error) {

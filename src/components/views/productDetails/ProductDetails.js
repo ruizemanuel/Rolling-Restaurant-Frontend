@@ -5,12 +5,14 @@ import axios from "../../../config/axiosInit";
 import Swal from "sweetalert2";
 import "./productDetail.css"
 
-const ProductDetails = ({ URL, pedidos }) => {
+const ProductDetails = ({ URL }) => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   const URL_PEDIDOS = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
-  const uid = JSON.parse(localStorage.getItem("user-token")).uid
-  const pedidoBuscado = pedidos.find((pedido) => pedido.uid === uid);
+  const email = JSON.parse(localStorage.getItem("user-token")).email
+  
+
+  //console.log('DESDE PEDIDOSSS 2222', pedidos)
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -31,15 +33,36 @@ const ProductDetails = ({ URL, pedidos }) => {
     }
   };
 
+  const getApi_pedidos = async () => {
+    try {
+
+      const res = await axios.post(`${URL_PEDIDOS}/pedido`,{
+        email
+      });
+      const pedidoApi = res?.data;
+
+      return pedidoApi
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handlePedido = async (e) => {
     e.preventDefault();
+
+    
+    const pedidoBuscado = await getApi_pedidos()
+
+
+    //const pedidoBuscado = pedidos?.find((pedido) => pedido.uid === uid);
     console.log('HOLA DESDE DETALLE',pedidoBuscado);
 
-    if(pedidoBuscado === undefined){
+    if(pedidoBuscado === null){
       const newPedido = {
         pedido: {"productName": `${product.productName}`, "price": `${product.price}`},
-        uid: uid,
-        estado: "-"
+        email: email,
+        estado: "-",
+        total: product.price
       };
 
       console.log("DESDE PEDIDO", newPedido)
@@ -52,7 +75,7 @@ const ProductDetails = ({ URL, pedidos }) => {
         // const data = await res.json(); // si es con fetch
         const data = res.data 
         console.log('DESDE PRODUCT DETAIL',data);
-        //localStorage.setItem("user-token", JSON.stringify(data));
+        localStorage.setItem("pedido", JSON.stringify(newPedido));
         navigate("/");
       }
     } catch (error) {
@@ -66,7 +89,10 @@ const ProductDetails = ({ URL, pedidos }) => {
       console.log('PEDIDO BUSCADO'. pedidoBuscado)
 
       const pedidoUpdated = {
-        pedido: [ ...pedidoBuscado.pedido, {"productName": `${product.productName}`, "price": `${product.price}`} ]
+        pedido: [ ...pedidoBuscado.pedido, {"productName": `${product.productName}`, "price": `${product.price}`} ],
+        email: email,
+        estado: "-",
+        total: pedidoBuscado.total + product.price
       };
 
     try {
@@ -78,6 +104,7 @@ const ProductDetails = ({ URL, pedidos }) => {
       if (res.status === 200) {
         Swal.fire("Updated!", "Your pedido has been updated.", "success");
         //getApi();
+        localStorage.setItem("pedido", JSON.stringify(pedidoUpdated));
         navigate("/");
       }
     } catch (error) {

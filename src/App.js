@@ -26,12 +26,11 @@ import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit"
 function App() {
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [pedidos, setPedidos] = useState([]);
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem("user-token")) : {});
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
   const URL_usuarios = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
   const URL_usuarios_alta = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
-  const URL_pedidos = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+  
   
 
 
@@ -41,7 +40,6 @@ function App() {
   useEffect(() => {
     getApi();
     getApi_users()
-    getApi_pedidos()
   }, []);
 
   const getApi = async () => {
@@ -67,17 +65,11 @@ function App() {
     }
   };
 
-  const getApi_pedidos = async () => {
-    try {
 
-      const res = await axios.get(URL_pedidos);
-      const pedidoApi = res?.data;
 
-      setPedidos(pedidoApi);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
+
+
   return (
     <div>
       <BrowserRouter>
@@ -141,11 +133,7 @@ function App() {
                       exact
                       path="/pedidos/table"
                       element={
-                        <PedidosTableAdmin
-                          pedidos={pedidos}
-                          URL={URL_pedidos}
-                          getApi={getApi_pedidos}
-                        />
+                        <PedidosTableAdmin/>
                       }
                     />
 
@@ -153,10 +141,7 @@ function App() {
                       exact
                       path="/pedido/edit/:id"
                       element={
-                        <PedidoAdminEdit
-                        URL={URL_pedidos}
-                        getApi={getApi_pedidos}
-                        />
+                        <PedidoAdminEdit/>
                       }
                     />
 
@@ -167,16 +152,12 @@ function App() {
             <Route
               exact
               path="/product/buy/:id"
-              element={<ProductDetails URL={URL} pedidos={pedidos} />}
+              element={<ProductDetails URL={URL} />}
             />
             <Route
               exact
               path="/pedidos"
-              element={<PedidosTable
-                pedidos={pedidos}
-                URL={URL_pedidos}
-                getApi={getApi_pedidos}
-              />}
+              element={<PedidosTable/>}
             />
             <Route
               exact

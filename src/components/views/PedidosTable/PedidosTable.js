@@ -1,23 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Pedido from "./Pedido/Pedido";
 import axios from "../../../config/axiosInit"
 import Swal from "sweetalert2";
 
-const PedidosTable = ({ pedidos, URL, getApi }) => {
+const PedidosTable = ({ }) => {
 
   const [habilitado, setHabilitado] = useState(false);
   const [habilitadoDel, setHabilitadoDel] = useState(false);
+  const [pedidoBuscado, setPedidoBuscado] = useState({});
+  
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+  const email = JSON.parse(localStorage.getItem("user-token")).email
 
-  const uid = JSON.parse(localStorage.getItem("user-token")).uid
 
-  const pedidoBuscado = pedidos.find((pedido) => pedido.uid === uid);
+  useEffect(() => {
+    getApi_pedidos()
+    
+  }, []);
 
-  const total = pedidoBuscado?.pedido.reduce((acumulador, pedido) => acumulador + pedido.price, 0);
+  const getApi_pedidos = async () => {
+    ////////////////////////////////////////////////////////////////////////
+
+  try {
+    //la peticion con fetch
+    /* const res = await fetch(`${URL}/${id}`);
+    const productApi = await res.json(); */
+
+    //la peticion con Axios
+    const res = await axios.post(`${URL}/pedido`,{
+      email
+    });
+    const pedidoApi = res.data;
+    console.log('PROBANDO UN PEDIDO', pedidoApi)
+    //setProduct(productApi);
+    setPedidoBuscado(pedidoApi)
+
+  } catch (error) {
+    console.log(error);
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  };
+
 
   const navigate = useNavigate()
 
+  //////////////////////////////////////
+  // const [pedidos, setPedidos] = useState([]);
+  // const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+
+  // useEffect(() => {
+  //   console.log('HOLA DESDE PEDIDOSSSSSS')
+  //   getApi_pedidos()
+  // }, []);
+
+  // const getApi_pedidos = async () => {
+  //   try {
+
+  //     const res = await axios.get(URL);
+  //     const pedidoApi = res?.data;
+
+  //     setPedidos(pedidoApi);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  //const pedidoBuscado = JSON.parse(localStorage.getItem("pedido"))
+
+  /////////////////////////////////////
+
+  //const pedidoBuscado = pedidos.find((pedido) => pedido.uid === uid);
+
+ // const total = pedidoBuscado?.pedido.reduce((acumulador, pedido) => acumulador + pedido.price, 0);
+ //const total = "0"
 
 
   const handleOrder = async () => {
@@ -37,7 +94,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
 
       if (res.status === 200) {
         Swal.fire("Updated!", "Your pedido has been delivered.", "success");
-        getApi();
+        getApi_pedidos();
         setHabilitado(true)
         navigate("/pedidos");
       }
@@ -69,7 +126,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
               'success'
             )
             //volvemos a recargar la tabla
-            getApi();
+            getApi_pedidos()
             setHabilitadoDel(true)
           }
         } catch (error) {
@@ -85,7 +142,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
         <div className="d-flex align-items-center justify-content-between">
           <h1>Pedidos Table</h1>
 
-          {pedidoBuscado !== undefined ?
+          {pedidoBuscado !== null ?
             <button
               className="delete-btn mx-1" disabled={habilitadoDel}
               onClick={() => handleDelete()}
@@ -101,7 +158,7 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
         </div>
         <hr />
         {/* Table of products */}
-        {pedidoBuscado !== undefined ?
+        {pedidoBuscado !== null ?
           <>
 
             <Table bordered hover responsive className="align-middle mt-3">
@@ -118,14 +175,14 @@ const PedidosTable = ({ pedidos, URL, getApi }) => {
                     key={pedido._id}
                     pedido={pedido}
                     URL={URL}
-                    getApi={getApi}
+                    getApi={getApi_pedidos}
                   />
                 ))}
               </tbody>
             </Table>
 
             <div className="d-flex justify-content-between">
-              <h5>TOTAL: ${total}</h5>
+              <h5>TOTAL: ${pedidoBuscado.total}</h5>
               <h5>Estado: {pedidoBuscado.estado}</h5>
 
               <button

@@ -8,9 +8,10 @@ const Login = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  
+
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO;
+  
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -20,7 +21,7 @@ const Login = ({ setLoggedUser }) => {
   //useNavigate
   const navigate = useNavigate();
 
- 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,10 +35,17 @@ const Login = ({ setLoggedUser }) => {
         password: inputs.password,
       });
       if (res.status === 200) {
+
+
+
         Swal.fire("Logged!", "Your user has been logged.", "success");
         //const data = await res.json(); //si es con fetch
         const data = res.data;
         console.log(data);
+
+        
+
+
         //guardar en localStorage el token
         localStorage.setItem("user-token", JSON.stringify(data));
         setLoggedUser(data);
