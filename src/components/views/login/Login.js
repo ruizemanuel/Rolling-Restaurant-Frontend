@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Alert, Container, Form } from "react-bootstrap";
+import { Alert, Container, Form, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../config/axiosInit";
+import "./login.css"
+import logo from "./Logo.png"
 
 const Login = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  
+
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO;
 
@@ -20,7 +22,7 @@ const Login = ({ setLoggedUser }) => {
   //useNavigate
   const navigate = useNavigate();
 
- 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,45 +55,55 @@ const Login = ({ setLoggedUser }) => {
 
   return (
     <div>
-      <Container className="py-5 loginContainer">
-        <h1>Login</h1>
-        <hr />
-        <Form className="my-5" onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email*</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="johndoe@gmail.com"
-              name="email"
-              value={inputs.email || ""}
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password*</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Ej: Ingrese su password"
-              name="password"
-              value={inputs.password || ""}
-              onChange={(e) => handleChange(e)}
-            />
-          </Form.Group>
-          <Link
-            to="/auth/register"
-            className="btn btn-warning text-decoration-none"
-          >
-            Register new user
-          </Link>
-          <div className="text-center">
-            <button className="btn-primary">Ingresar</button>
-          </div>
-        </Form>
-        {error ? (
-          <Alert variant="danger" onClick={() => setError(false)} dismissible>
-            {errorMessage}
-          </Alert>
-        ) : null}
+      <Container className="loginContainer">
+        <Row>
+          <Col className="imgLogin">
+          </Col>
+          <Col className="formLogin py-5">
+            <div ><img src={logo} className="logoLogin pt-3"></img></div>
+            <h1 className="text-center">Login</h1>
+            <hr />
+            <Form className="my-5" onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email*</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="ejemplo@mail.com"
+                  name="email"
+                  value={inputs.email || ""}
+                  onChange={(e) => handleChange(e)}
+                  required
+                  maxLength={48}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password*</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="*****"
+                  name="password"
+                  value={inputs.password || ""}
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+              <div className="text-center py-3">
+                <button className="btn-login">Ingresar</button>
+              </div>
+              <div className="text-center"> <p>No tienes cuenta? <Link
+                to="/auth/register"
+                className="btn-register">
+                <span className="registerLink">Registrate</span>
+
+              </Link> </p></div>
+
+            </Form>
+            {error ? (
+              <Alert variant="danger" onClick={() => setError(false)} dismissible>
+                {errorMessage}
+              </Alert>
+            ) : null}
+          </Col>
+        </Row>
       </Container>
     </div>
   );
