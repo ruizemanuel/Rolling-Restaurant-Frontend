@@ -6,12 +6,13 @@ import axios from "../../../config/axiosInit";
 
 const Login = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO;
-  
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -34,6 +35,9 @@ const Login = ({ setLoggedUser }) => {
         email: inputs.email,
         password: inputs.password,
       });
+
+      setSpinnner(true)
+
       if (res.status === 200) {
 
 
@@ -43,7 +47,7 @@ const Login = ({ setLoggedUser }) => {
         const data = res.data;
         console.log(data);
 
-        
+
 
 
         //guardar en localStorage el token
@@ -56,6 +60,10 @@ const Login = ({ setLoggedUser }) => {
       setError(true);
       error.response.data?.message &&
         setErrorMessage(error.response.data.message);
+    }
+
+    finally {
+      setSpinnner(false)
     }
   };
 
@@ -91,9 +99,24 @@ const Login = ({ setLoggedUser }) => {
           >
             Register new user
           </Link>
-          <div className="text-center">
-            <button className="btn-primary">Ingresar</button>
-          </div>
+          {spinner ? (
+
+            <div className="text-center">
+              <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-center">
+              <button className="btn-primary">Ingresar</button>
+            </div>
+
+          )}
+
+
         </Form>
         {error ? (
           <Alert variant="danger" onClick={() => setError(false)} dismissible>
