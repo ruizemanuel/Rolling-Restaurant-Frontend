@@ -31,12 +31,13 @@ const Login = ({ setLoggedUser }) => {
 
     //Envio los datos
     try {
+      setSpinnner(true)
       const res = await axios.post(`${URL}/login`, {
         email: inputs.email,
         password: inputs.password,
       });
 
-      setSpinnner(true)
+      
 
       if (res.status === 200) {
 
