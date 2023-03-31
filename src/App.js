@@ -25,11 +25,9 @@ import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit"
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem("user-token")) : {});
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
-  const URL_usuarios = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
-  const URL_usuarios_alta = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
+  
   
   
 
@@ -39,7 +37,6 @@ function App() {
 
   useEffect(() => {
     getApi();
-    getApi_users()
   }, []);
 
   const getApi = async () => {
@@ -54,16 +51,7 @@ function App() {
     }
   };
 
-  const getApi_users = async () => {
-    try {
-      const res = await axios.get(URL_usuarios);
-      const userApi = res?.data;
-
-      setUsers(userApi);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ 
 
 
 
@@ -109,24 +97,20 @@ function App() {
                       exact
                       path="/user/table"
                       element={
-                        <UsersTable
-                          users={users}
-                          URL_usuarios={URL_usuarios}
-                          getApi_users={getApi_users}
-                        />
+                        <UsersTable/>
                       }
                     />
 
                     <Route
                       exact
                       path="/user/create"
-                      element={<UserCreate URL_usuarios_alta={URL_usuarios_alta} getApi_users={getApi_users} />}
+                      element={<UserCreate/>}
                     />
 
                     <Route
                       exact
                       path="/user/edit/:id"
-                      element={<UserEdit URL_usuarios_alta={URL_usuarios} getApi_users={getApi_users} />}
+                      element={<UserEdit/>}
                     />
 
                     <Route

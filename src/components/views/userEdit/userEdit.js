@@ -5,7 +5,9 @@ import Swal from "sweetalert2";
 
 import axios from "../../../config/axiosInit"
 
-const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
+const UserEdit = ({ }) => {
+
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
   //State
   //const [user, setUser] = useState(false);
   const [userAdmin, setUserAdmin] = useState(false);
@@ -31,7 +33,7 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
     try { 
 
       //la peticion con Axios
-      const res = await axios.get(`${URL_usuarios_alta}/${id}`);
+      const res = await axios.get(`${URL}/${id}`);
       const userApi = res.data;
       //setUser(userApi)
       userApi.roles.includes('admin') && setUserAdmin(true);
@@ -87,12 +89,12 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
       if (result.isConfirmed) {
         try {
        
-          const res = await axios.put(`${URL_usuarios_alta}/${id}`, userUpdated, {
+          const res = await axios.put(`${URL}/${id}`, userUpdated, {
             headers: {
               "Content-Type": "application/json",
               "x-access-token": JSON.parse(localStorage.getItem("user-token"))
-                .token,
-            },
+                .token
+            }
           });
 
 
@@ -100,7 +102,7 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
 
           if (res.status === 200) {
             Swal.fire("Updated!", "Your file has been updated.", "success");
-            getApi_users();
+            //getApi_users();
             navigate("/user/table");
           }
         } catch (error) {

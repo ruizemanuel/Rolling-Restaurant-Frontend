@@ -9,7 +9,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 
-const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
+const UserCreate = ({ }) => {
+
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
 
   //One general state
   const [inputs, setInputs] = useState({});
@@ -62,7 +64,7 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
       if (result.isConfirmed) {
         try {
           //la petición con Axios
-          const res = await axios.post(`${URL_usuarios_alta}/register`, newUser);
+          const res = await axios.post(`${URL}/register`, newUser);
           console.log(res);
 
           if (res.status === 201) {
@@ -74,7 +76,7 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
             // resetear el formulario
             e.target.reset(); //el e.target en este caso por el submit es el form
             //recarga la tabla
-            getApi_users();
+            //getApi_users();
             //navega hasta la productsTable
             navigate("/user/table");
           }
