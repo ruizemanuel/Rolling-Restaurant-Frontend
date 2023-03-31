@@ -13,6 +13,7 @@ import axios from "../../../config/axiosInit"
 const ProductEdit = ({ URL, getApi }) => {
   //State
   const [product, setProduct] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   //Param
   const { id } = useParams();
   //References
@@ -44,9 +45,9 @@ const ProductEdit = ({ URL, getApi }) => {
     }
   };
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     //console.log(productNameRef.current.value);
     //valido los campos
     if (
@@ -75,6 +76,7 @@ const ProductEdit = ({ URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          setSpinnner(true)
           /* const res = await fetch(`${URL}/${id}`, {
             method: "PUT",
             headers: {
@@ -96,7 +98,7 @@ const ProductEdit = ({ URL, getApi }) => {
 
 
           console.log(res.data);
-          
+
           if (res.status === 200) {
             Swal.fire("Updated!", "Your file has been updated.", "success");
             getApi();
@@ -104,6 +106,9 @@ const ProductEdit = ({ URL, getApi }) => {
           }
         } catch (error) {
           console.log(error);
+        }
+        finally {
+          setSpinnner(false)
         }
       }
     });
@@ -121,20 +126,20 @@ const ProductEdit = ({ URL, getApi }) => {
         >
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Product name*</Form.Label>
-            <Form.Control 
-              type="text" 
+            <Form.Control
+              type="text"
               placeholder="Ej: burger"
-              defaultValue={product.productName} 
+              defaultValue={product.productName}
               ref={productNameRef}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Price*</Form.Label>
-            <Form.Control 
-               type="number" 
-               placeholder="Ej: 50" 
-               defaultValue={product.price}
-               ref={priceRef} 
+            <Form.Control
+              type="number"
+              placeholder="Ej: 50"
+              defaultValue={product.price}
+              ref={priceRef}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -142,15 +147,15 @@ const ProductEdit = ({ URL, getApi }) => {
             <Form.Control
               type="text"
               placeholder="Ej: https://media.istockphoto.com/photos/two-freshly-baked-french-id1277579771?k=20"
-              defaultValue={product.urlImg} 
-              ref={urlImgRef} 
+              defaultValue={product.urlImg}
+              ref={urlImgRef}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Label>Category*</Form.Label>
             <Form.Select
-             value={product.category}
-             onChange={({ target })=> setProduct({...product, category: target.value })}
+              value={product.category}
+              onChange={({ target }) => setProduct({ ...product, category: target.value })}
             >
               <option value="">Select an option</option>
               <option value="pizza">Pizza</option>
@@ -161,9 +166,28 @@ const ProductEdit = ({ URL, getApi }) => {
               <option value="postre">Postre</option>
             </Form.Select>
           </Form.Group>
-          <div className="text-end">
-            <button className="update-btn">Update</button>
+
+
+
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+            <button className="btn-primary">Actualizar</button>
           </div>
+
+          )}
+
+
+          
         </Form>
       </Container>
     </div>

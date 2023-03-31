@@ -146,8 +146,8 @@ const Register = ({ setLoggedUser }) => {
           {spinner ? (
 
             <div className="text-center">
-              <button class="btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm text-dark" role="status" aria-hidden="true"></span>
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
                 Loading...
               </button>
             </div>

@@ -14,6 +14,7 @@ const ProductCreate = ({ URL, getApi }) => {
 
   //One general state
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
   //useNavigate
@@ -51,8 +52,8 @@ const ProductCreate = ({ URL, getApi }) => {
       price: inputs.price,
       urlImg: inputs.urlImg,
       category: inputs.category,
-      description:inputs.description,
-      
+      description: inputs.description,
+
     };
 
     Swal.fire({
@@ -66,6 +67,7 @@ const ProductCreate = ({ URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          setSpinnner(true)
           const res = await axios.post(URL, newProduct, {
             headers: {
               "Content-Type": "application/json",
@@ -97,6 +99,9 @@ const ProductCreate = ({ URL, getApi }) => {
               setErrorMessage(error.msg)
             );
           setShow(true);
+        }
+        finally {
+          setSpinnner(false)
         }
       }
     });
@@ -155,9 +160,28 @@ const ProductCreate = ({ URL, getApi }) => {
               <option value="postre">Postre</option>
             </Form.Select>
           </Form.Group>
-          <div className="text-end">
-            <button className="btn-primary text-light">Save</button>
+
+
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+            <button className="btn-primary text-light">Guardar</button>
           </div>
+
+          )}
+
+
+
+          
         </Form>
         {show && (
           <Alert
