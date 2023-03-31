@@ -30,7 +30,7 @@ const Login = ({ setLoggedUser }) => {
 
     //Envio los datos
     try {
-      
+
       setSpinnner(true)
 
       const res = await axios.post(`${URL}/login`, {
@@ -102,8 +102,8 @@ const Login = ({ setLoggedUser }) => {
           {spinner ? (
 
             <div className="text-center">
-              <button class="btn btn-primary" type="button" disabled>
-                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              <button class="btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-dark" role="status" aria-hidden="true"></span>
                 Loading...
               </button>
             </div>
@@ -111,7 +111,7 @@ const Login = ({ setLoggedUser }) => {
           ) : (
 
             <div className="text-center">
-              <button className="btn-primary">Ingresar</button>
+              <button className="btn-primary">Iniciar sesión</button>
             </div>
 
           )}
