@@ -23,7 +23,6 @@ const Login = ({ setLoggedUser }) => {
   const navigate = useNavigate();
 
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputs);
@@ -31,13 +30,13 @@ const Login = ({ setLoggedUser }) => {
 
     //Envio los datos
     try {
+      
       setSpinnner(true)
+
       const res = await axios.post(`${URL}/login`, {
         email: inputs.email,
         password: inputs.password,
       });
-
-      
 
       if (res.status === 200) {
 

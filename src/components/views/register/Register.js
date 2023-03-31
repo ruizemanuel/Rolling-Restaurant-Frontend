@@ -8,6 +8,7 @@ import emailjs from '@emailjs/browser';
 
 const Register = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
@@ -20,7 +21,7 @@ const Register = ({ setLoggedUser }) => {
   //useNavigate
   const navigate = useNavigate();
 
-  
+
   const form = useRef();
 
   //Funcion para crear el producto
@@ -46,12 +47,13 @@ const Register = ({ setLoggedUser }) => {
             },
             body: JSON.stringify(newUser),
           }); */
+      setSpinnner(true)
       const res = await axios.post(`${URL}/register`, newUser);
       console.log(res);
       if (res.status === 201) {
         Swal.fire("Created!", "Your user has been created.", "success");
         // const data = await res.json(); // si es con fetch
-        const data = res.data 
+        const data = res.data
         console.log(data);
         localStorage.setItem("user-token", JSON.stringify(data));
         setLoggedUser(data);
@@ -62,12 +64,16 @@ const Register = ({ setLoggedUser }) => {
       setError(true);
       error.response.data?.message && setErrorMessage(error.response.data?.message)
     }
-    
+
+    finally {
+      setSpinnner(false)
+    }
+
     emailjs.sendForm('service_470nr1h', 'template_q5eze0c', form.current, 'SFzC0PALs3luZR9uq')
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
       }, (error) => {
-          console.log(error.text);
+        console.log(error.text);
       });
 
   };
@@ -83,7 +89,7 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="text"
               placeholder="Ej: John Doe"
-              minLength= '5'
+              minLength='5'
               maxLength='20'
               name="name"
               required
@@ -96,7 +102,7 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="text"
               placeholder="johndoe@gmail.com"
-              minLength= '5'
+              minLength='5'
               maxLength='30'
               name="email"
               required
@@ -109,7 +115,7 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="password"
               placeholder="Ej: Ingrese su password"
-              minLength= '5'
+              minLength='5'
               maxLength='18'
               name="password"
               required
@@ -123,7 +129,7 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="password"
               placeholder="Ej: Repeat your password"
-              minLength= '5'
+              minLength='5'
               maxLength='18'
               name="passwordrep"
               required
@@ -136,15 +142,33 @@ const Register = ({ setLoggedUser }) => {
           <Link to="/auth/login" className="btn btn-info text-decoration-none">
             Back to login
           </Link>
-          <div className="text-center">
-            <button className="btn-primary">Send</button>
-          </div>
+
+          {spinner ? (
+
+            <div className="text-center">
+              <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-center">
+              <button className="btn-primary">Send</button>
+            </div>
+
+          )}
+
+
+
+
         </Form>
         {error ? (
-        <Alert variant="danger" onClick={() => setError(false)} dismissible>
-          {errorMessage}
-        </Alert>
-      ) : null}
+          <Alert variant="danger" onClick={() => setError(false)} dismissible>
+            {errorMessage}
+          </Alert>
+        ) : null}
       </Container>
     </div>
   );
