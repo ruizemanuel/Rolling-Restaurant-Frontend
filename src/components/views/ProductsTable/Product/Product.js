@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../../config/axiosInit"
 
-const Product = ({ product, URL, getApi }) => {
-   
+const Product = ({ product, URL, getApi, getSpinner }) => {
+
+
   /* const url = process.env.REACT_APP_API_HAMBURGUESERIA;
   console.log(url);
  */
-  const handleDelete =  (id) => {
+
+  const handleDelete = (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -20,6 +22,7 @@ const Product = ({ product, URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          getSpinner(true)
           //consulta delete con fetch
           /* const res = await fetch(`${URL}/${id}`,{
             method: 'DELETE',
@@ -30,9 +33,9 @@ const Product = ({ product, URL, getApi }) => {
            */
           //consulta delete con axios
 
-          const res = await axios.delete(`${URL}/${id}`);
+          const res = await axios.delete(`${URL}/${id}/asdsad`);
 
-          if(res.status === 200) {
+          if (res.status === 200) {
             Swal.fire(
               'Deleted!',
               'Your file has been deleted.',
@@ -45,36 +48,50 @@ const Product = ({ product, URL, getApi }) => {
           console.log(error);
           //agregar cartel alert o modal al usuario con el error
         }
+        finally {
+          getSpinner(false)
+        }
       }
     })
   };
 
   return (
-    <tr>
-      <td>{product._id}</td>
-      <td>{product.productName}</td>
-      <td>${product.price}</td>
-      <td>
-        <p className="truncate-img-link m-0">{product.urlImg}</p>
-      </td>
-      <td>{product.category}</td>
-      <td className="w-25">
-        <div className="d-flex justify-content-center">
-          <Link
-            to={`/product/edit/${product._id}`}
-            className="update-btn mx-1 text-decoration-none text-center"
-          >
-            Update
-          </Link>
-          <button
-            className="delete-btn mx-1"
-            onClick={() => handleDelete(product._id)}
-          >
-            Delete
-          </button>
-        </div>
-      </td>
-    </tr>
+
+      <tr>
+        <td>{product._id}</td>
+        <td>{product.productName}</td>
+        <td>${product.price}</td>
+        <td>
+          <p className="truncate-img-link m-0">{product.urlImg}</p>
+        </td>
+        <td>{product.category}</td>
+        <td>{product.description}</td>
+        <td className="w-25">
+          <div className="d-flex justify-content-center">
+
+            <Link
+              to={`/product/edit/${product._id}`}
+              className="update-btn mx-1 text-decoration-none text-center"
+            >
+              Update
+            </Link>
+
+
+
+            <button
+              className="delete-btn mx-1"
+              onClick={() => handleDelete(product._id)}
+            >
+              Delete
+            </button>
+
+
+          </div>
+        </td>
+      </tr>
+    
+
+
   );
 };
 

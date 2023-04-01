@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Alert, Container, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../config/axiosInit";
+import emailjs from '@emailjs/browser';
+
 
 const Register = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
@@ -17,6 +20,9 @@ const Register = ({ setLoggedUser }) => {
   };
   //useNavigate
   const navigate = useNavigate();
+
+
+  const form = useRef();
 
   //Funcion para crear el producto
   const handleSubmit = async (e) => {
@@ -30,7 +36,7 @@ const Register = ({ setLoggedUser }) => {
       email: inputs.email,
       password: inputs.password,
       passwordrep: inputs.passwordrep,
-      roles: ['user','admin'],
+      roles: ['user'],
       activo: true
     };
     try {
@@ -41,12 +47,13 @@ const Register = ({ setLoggedUser }) => {
             },
             body: JSON.stringify(newUser),
           }); */
+      setSpinnner(true)
       const res = await axios.post(`${URL}/register`, newUser);
       console.log(res);
       if (res.status === 201) {
         Swal.fire("Created!", "Your user has been created.", "success");
         // const data = await res.json(); // si es con fetch
-        const data = res.data 
+        const data = res.data
         console.log(data);
         localStorage.setItem("user-token", JSON.stringify(data));
         setLoggedUser(data);
@@ -57,6 +64,18 @@ const Register = ({ setLoggedUser }) => {
       setError(true);
       error.response.data?.message && setErrorMessage(error.response.data?.message)
     }
+
+    finally {
+      setSpinnner(false)
+    }
+
+    emailjs.sendForm('service_470nr1h', 'template_q5eze0c', form.current, 'SFzC0PALs3luZR9uq')
+      .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+
   };
 
   return (
@@ -64,13 +83,16 @@ const Register = ({ setLoggedUser }) => {
       <Container className="py-5">
         <h1>Register</h1>
         <hr />
-        <Form className="my-5" onSubmit={handleSubmit}>
+        <Form className="my-5" onSubmit={handleSubmit} ref={form}>
           <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>User name*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: John Doe"
+              minLength='5'
+              maxLength='20'
               name="name"
+              required
               value={inputs.name || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -80,7 +102,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="text"
               placeholder="johndoe@gmail.com"
+              minLength='5'
+              maxLength='30'
               name="email"
+              required
               value={inputs.email || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -90,7 +115,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="password"
               placeholder="Ej: Ingrese su password"
+              minLength='5'
+              maxLength='18'
               name="password"
+              required
               value={inputs.password || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -101,7 +129,10 @@ const Register = ({ setLoggedUser }) => {
             <Form.Control
               type="password"
               placeholder="Ej: Repeat your password"
+              minLength='5'
+              maxLength='18'
               name="passwordrep"
+              required
               value={inputs.passwordrep || ""}
               onChange={(e) => handleChange(e)}
             />
@@ -111,15 +142,33 @@ const Register = ({ setLoggedUser }) => {
           <Link to="/auth/login" className="btn btn-info text-decoration-none">
             Back to login
           </Link>
-          <div className="text-center">
-            <button className="btn-primary">Send</button>
-          </div>
+
+          {spinner ? (
+
+            <div className="text-center">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-center">
+              <button className="btn-primary">Enviar</button>
+            </div>
+
+          )}
+
+
+
+
         </Form>
         {error ? (
-        <Alert variant="danger" onClick={() => setError(false)} dismissible>
-          {errorMessage}
-        </Alert>
-      ) : null}
+          <Alert variant="danger" onClick={() => setError(false)} dismissible>
+            {errorMessage}
+          </Alert>
+        ) : null}
       </Container>
     </div>
   );

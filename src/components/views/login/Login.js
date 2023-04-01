@@ -6,11 +6,13 @@ import axios from "../../../config/axiosInit";
 
 const Login = ({ setLoggedUser }) => {
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  
+
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO;
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -20,7 +22,6 @@ const Login = ({ setLoggedUser }) => {
   //useNavigate
   const navigate = useNavigate();
 
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,25 +30,26 @@ const Login = ({ setLoggedUser }) => {
 
     //Envio los datos
     try {
-      /* const res = await fetch(`${URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: inputs.email,
-          password: inputs.password,
-        }),
-      }); */
+
+      setSpinnner(true)
+
       const res = await axios.post(`${URL}/login`, {
         email: inputs.email,
         password: inputs.password,
       });
+
       if (res.status === 200) {
+
+
+
         Swal.fire("Logged!", "Your user has been logged.", "success");
         //const data = await res.json(); //si es con fetch
         const data = res.data;
         console.log(data);
+
+
+
+
         //guardar en localStorage el token
         localStorage.setItem("user-token", JSON.stringify(data));
         setLoggedUser(data);
@@ -59,11 +61,15 @@ const Login = ({ setLoggedUser }) => {
       error.response.data?.message &&
         setErrorMessage(error.response.data.message);
     }
+
+    finally {
+      setSpinnner(false)
+    }
   };
 
   return (
     <div>
-      <Container className="py-5">
+      <Container className="py-5 loginContainer">
         <h1>Login</h1>
         <hr />
         <Form className="my-5" onSubmit={handleSubmit}>
@@ -93,9 +99,24 @@ const Login = ({ setLoggedUser }) => {
           >
             Register new user
           </Link>
-          <div className="text-center">
-            <button className="btn-primary">Ingresar</button>
-          </div>
+          {spinner ? (
+
+            <div className="text-center">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-center">
+              <button className="btn-primary">Iniciar sesión</button>
+            </div>
+
+          )}
+
+
         </Form>
         {error ? (
           <Alert variant="danger" onClick={() => setError(false)} dismissible>

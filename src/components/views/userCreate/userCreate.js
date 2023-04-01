@@ -9,15 +9,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 
-const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
-  //States
-  /*  const [productName, setProductName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [urlImg, setUrlImg] = useState("");
-  const [category, setCategory] = useState(""); */
+const UserCreate = ({ }) => {
+
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
 
   //One general state
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
   //useNavigate
@@ -35,11 +33,6 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
 
     //validar los campos
     if (
-      /* !validateProductName(productName) ||
-      !validatePrice(price) ||
-      !validateUrl(urlImg) ||
-      !validateCategory(category)
-       */
 
       !validateProductName(inputs.name) ||
       !validateEmail(inputs.email) ||
@@ -56,7 +49,7 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
       email: inputs.email,
       password: inputs.password,
       passwordrep: inputs.passwordrep,
-      roles: ['user','admin'],
+      roles: ['user'],
       activo: true
     };
 
@@ -71,18 +64,9 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //la petición post con fetch
-          /* const res = await fetch(URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-access-token": JSON.parse(localStorage.getItem(("user-token"))).token
-            },
-            body: JSON.stringify(newProduct),
-          });
- */
+          setSpinnner(true)
           //la petición con Axios
-          const res = await axios.post(`${URL_usuarios_alta}/register`, newUser);
+          const res = await axios.post(`${URL}/register`, newUser);
           console.log(res);
 
           if (res.status === 201) {
@@ -94,7 +78,7 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
             // resetear el formulario
             e.target.reset(); //el e.target en este caso por el submit es el form
             //recarga la tabla
-            getApi_users();
+            //getApi_users();
             //navega hasta la productsTable
             navigate("/user/table");
           }
@@ -108,6 +92,9 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
             );
           setShow(true);
         }
+        finally {
+          setSpinnner(false)
+        }
       }
     });
   };
@@ -119,7 +106,7 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
         <hr />
         {/* Form Product */}
         <Form className="my-5" onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicUserName">
+          <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>User name*</Form.Label>
             <Form.Control
               type="text"
@@ -160,9 +147,24 @@ const UserCreate = ({ URL_usuarios_alta, getApi_users }) => {
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
-          <div className="text-end">
-            <button className="btn-yellow">Save</button>
-          </div>
+
+
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+              <button className="btn-primary text-light">Guardar</button>
+            </div>
+
+          )}
         </Form>
         {show && (
           <Alert

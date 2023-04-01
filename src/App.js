@@ -20,39 +20,29 @@ import UserEdit from "./components/views/userEdit/userEdit";
 import PedidosTable from "./components/views/PedidosTable/PedidosTable";
 import PedidosTableAdmin from "./components/views/PedidosTableAdmin/PedidosTableAdmin";
 import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit";
+// import { enviarmail } from "./components/helpers/enviarMail";
+
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [pedidos, setPedidos] = useState([]);
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem("user-token")) : {});
-  //const [roles, setRoles] = useState([]);
-  //uso de variable de entorno
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
-  const URL_usuarios = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
-  const URL_usuarios_alta = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
-  const URL_pedidos = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+  
+  
+  
 
-
-  //const URL_USUARIOS = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
 
   console.log('LOGGED DESDE APP', loggedUser)
 
 
   useEffect(() => {
     getApi();
-    getApi_users()
-    getApi_pedidos()
   }, []);
 
   const getApi = async () => {
     try {
-      /* const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi); */
-
-      const res = await axios.get(URL);
-      // console.log(res?.data);
+  
+     const res = await axios.get(URL);
       const productApi = res?.data;
 
       setProducts(productApi);
@@ -61,51 +51,12 @@ function App() {
     }
   };
 
-  const getApi_users = async () => {
-    try {
-      /* const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi); */
+ 
 
-      const res = await axios.get(URL_usuarios);
-      // console.log(res?.data);
-      const userApi = res?.data;
 
-      setUsers(userApi);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  const getApi_pedidos = async () => {
-    try {
-      /* const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi); */
+  
 
-      const res = await axios.get(URL_pedidos);
-      // console.log(res?.data);
-      const pedidoApi = res?.data;
-
-      setPedidos(pedidoApi);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // const getUsers = async () => {
-  //   try {
-
-  //     const response = await axios.get(URL_USUARIOS);
-  //     // console.log(res?.data);
-  //     const usersApi = response?.data; 
-  //     let elementoEncontrado = usersApi?.find(elemento => elemento._id === loggedUser.uid);
-  //     setRoles(elementoEncontrado.roles)
-
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <div>
@@ -147,35 +98,27 @@ function App() {
                       exact
                       path="/user/table"
                       element={
-                        <UsersTable
-                          users={users}
-                          URL_usuarios={URL_usuarios}
-                          getApi_users={getApi_users}
-                        />
+                        <UsersTable/>
                       }
                     />
 
                     <Route
                       exact
                       path="/user/create"
-                      element={<UserCreate URL_usuarios_alta={URL_usuarios_alta} getApi_users={getApi_users} />}
+                      element={<UserCreate/>}
                     />
 
                     <Route
                       exact
                       path="/user/edit/:id"
-                      element={<UserEdit URL_usuarios_alta={URL_usuarios} getApi_users={getApi_users} />}
+                      element={<UserEdit/>}
                     />
 
                     <Route
                       exact
                       path="/pedidos/table"
                       element={
-                        <PedidosTableAdmin
-                          pedidos={pedidos}
-                          URL={URL_pedidos}
-                          getApi={getApi_pedidos}
-                        />
+                        <PedidosTableAdmin/>
                       }
                     />
 
@@ -183,10 +126,7 @@ function App() {
                       exact
                       path="/pedido/edit/:id"
                       element={
-                        <PedidoAdminEdit
-                        URL={URL_pedidos}
-                        getApi={getApi_pedidos}
-                        />
+                        <PedidoAdminEdit/>
                       }
                     />
 
@@ -197,16 +137,12 @@ function App() {
             <Route
               exact
               path="/product/buy/:id"
-              element={<ProductDetails URL={URL} pedidos={pedidos} />}
+              element={<ProductDetails URL={URL} />}
             />
             <Route
               exact
               path="/pedidos"
-              element={<PedidosTable
-                pedidos={pedidos}
-                URL={URL_pedidos}
-                getApi={getApi_pedidos}
-              />}
+              element={<PedidosTable/>}
             />
             <Route
               exact
@@ -217,6 +153,7 @@ function App() {
             <Route exact path="*" element={<Error404 />} />
           </Routes>
         </main>
+        {/* <enviarmail/> */}
         <Footer />
       </BrowserRouter>
     </div>

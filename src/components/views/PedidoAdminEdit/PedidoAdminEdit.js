@@ -5,10 +5,14 @@ import Swal from "sweetalert2";
 
 import axios from "../../../config/axiosInit"
 
-const PedidoAdminEdit = ({ URL, getApi }) => {
+const PedidoAdminEdit = ({ }) => {
   //State
-  //const [user, setUser] = useState(false);
+
   const [isChecked, setIsChecked] = useState(false);
+  const [spinner, setSpinnner] = useState(false);
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+
+
 
   //Param
   const { id } = useParams();
@@ -32,29 +36,29 @@ const PedidoAdminEdit = ({ URL, getApi }) => {
       const res = await axios.get(`${URL}/${id}`);
       const pedidoApi = res.data;
       //setUser(userApi)
-      if(pedidoApi.estado === 'Pendiente'){
+      if (pedidoApi.estado === 'Pendiente') {
         setIsChecked(false)
-      } else{
+      } else {
         setIsChecked(true)
       }
-     
-      
+
+
 
     } catch (error) {
       console.log(error);
     }
   };
 
-  
+
   console.log('CHECKED', isChecked)
-  
+
   // if(user.roles.includes('admin')){
   //   rolesRef.current = true
   // }
 
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
-    
+
   };
 
   const handleSubmit = (e) => {
@@ -76,6 +80,7 @@ const PedidoAdminEdit = ({ URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          setSpinnner(true)
           /* const res = await fetch(`${URL}/${id}`, {
             method: "PUT",
             headers: {
@@ -90,11 +95,14 @@ const PedidoAdminEdit = ({ URL, getApi }) => {
 
           if (res.status === 200) {
             Swal.fire("Updated!", "Your pedido has been updated.", "success");
-            getApi();
+            //getApi();
             navigate("/pedidos/table");
           }
         } catch (error) {
           console.log(error);
+        }
+        finally {
+          setSpinnner(false)
         }
       }
     });
@@ -134,9 +142,22 @@ const PedidoAdminEdit = ({ URL, getApi }) => {
 
 
 
-          <div className="text-end">
-            <button className="update-btn">Update</button>
-          </div>
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+              <button className="btn-primary text-light">Guardar</button>
+            </div>
+
+          )}
         </Form>
       </Container>
     </div>

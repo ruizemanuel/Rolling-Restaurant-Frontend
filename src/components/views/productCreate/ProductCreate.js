@@ -11,14 +11,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 
 const ProductCreate = ({ URL, getApi }) => {
-  //States
-  /*  const [productName, setProductName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [urlImg, setUrlImg] = useState("");
-  const [category, setCategory] = useState(""); */
 
   //One general state
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
   //useNavigate
@@ -36,11 +32,6 @@ const ProductCreate = ({ URL, getApi }) => {
 
     //validar los campos
     if (
-      /* !validateProductName(productName) ||
-      !validatePrice(price) ||
-      !validateUrl(urlImg) ||
-      !validateCategory(category)
-       */
 
       !validateProductName(inputs.productName) ||
       !validatePrice(inputs.price) ||
@@ -61,6 +52,8 @@ const ProductCreate = ({ URL, getApi }) => {
       price: inputs.price,
       urlImg: inputs.urlImg,
       category: inputs.category,
+      description: inputs.description,
+
     };
 
     Swal.fire({
@@ -74,18 +67,7 @@ const ProductCreate = ({ URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //la petición post con fetch
-          /* const res = await fetch(URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-access-token": JSON.parse(localStorage.getItem(("user-token"))).token
-            },
-            body: JSON.stringify(newProduct),
-          });
- */
-          //la petición con Axios
-
+          setSpinnner(true)
           const res = await axios.post(URL, newProduct, {
             headers: {
               "Content-Type": "application/json",
@@ -118,6 +100,9 @@ const ProductCreate = ({ URL, getApi }) => {
             );
           setShow(true);
         }
+        finally {
+          setSpinnner(false)
+        }
       }
     });
   };
@@ -137,7 +122,6 @@ const ProductCreate = ({ URL, getApi }) => {
               name="productName"
               value={inputs.productName || ""}
               onChange={(e) => handleChange(e)}
-            // onChange={({ target }) => setProductName(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -148,7 +132,6 @@ const ProductCreate = ({ URL, getApi }) => {
               name="price"
               value={inputs.price || ""}
               onChange={(e) => handleChange(e)}
-            // onChange={({ target }) => setPrice(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -159,7 +142,6 @@ const ProductCreate = ({ URL, getApi }) => {
               value={inputs.urlImg || ""}
               placeholder="Ej: https://media.istockphoto.com/photos/two-freshly-baked-french-id1277579771?k=20"
               onChange={(e) => handleChange(e)}
-            //  onChange={({ target }) => setUrlImg(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -168,7 +150,6 @@ const ProductCreate = ({ URL, getApi }) => {
               name="category"
               value={inputs.category || ""}
               onChange={(e) => handleChange(e)}
-            //  onChange={({ target }) => setCategory(target.value)}
             >
               <option value="">Select an option</option>
               <option value="pizza">Pizza</option>
@@ -179,9 +160,28 @@ const ProductCreate = ({ URL, getApi }) => {
               <option value="postre">Postre</option>
             </Form.Select>
           </Form.Group>
-          <div className="text-end">
-            <button className="btn-primary text-light">Save</button>
+
+
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+            <button className="btn-primary text-light">Guardar</button>
           </div>
+
+          )}
+
+
+
+          
         </Form>
         {show && (
           <Alert

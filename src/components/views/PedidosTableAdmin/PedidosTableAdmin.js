@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PedidoAdmin from "./PedidoAdmin/PedidoAdmin";
+import axios from "../../../config/axiosInit"
 
-const PedidosTableAdmin = ({ pedidos, URL, getApi }) => {
+const PedidosTableAdmin = ({ }) => {
+
+  const [pedidos, setPedidos] = useState([]);
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
+
+//////////////////////////////////////
+useEffect(() => {
+  getApi()
+  
+}, []);
+/////////////////////////////////////
+
+const getApi = async () => {
+  ////////////////////////////////////////////////////////////////////////
+
+try {
+  //la peticion con fetch
+  /* const res = await fetch(`${URL}/${id}`);
+  const productApi = await res.json(); */
+
+  //la peticion con Axios
+  const res = await axios.get(URL);
+  const pedidoApi = res.data;
+  console.log('PROBANDO UN PEDIDO', pedidoApi)
+  //setProduct(productApi);
+  setPedidos(pedidoApi)
+
+} catch (error) {
+  console.log(error);
+}
+
+//////////////////////////////////////////////////////////////////////////
+};
+
   return (
     <div>
       <Container className="py-5">
@@ -18,7 +52,7 @@ const PedidosTableAdmin = ({ pedidos, URL, getApi }) => {
             <thead>
               <tr>
                 <th>Pedido ID</th>
-                <th>User ID</th>
+                <th>Email</th>
                 <th>Estado</th>
               </tr>
             </thead>

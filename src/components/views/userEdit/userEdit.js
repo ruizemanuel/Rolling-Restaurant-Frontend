@@ -5,10 +5,13 @@ import Swal from "sweetalert2";
 
 import axios from "../../../config/axiosInit"
 
-const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
+const UserEdit = ({ }) => {
+
+  const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
   //State
   //const [user, setUser] = useState(false);
   const [userAdmin, setUserAdmin] = useState(false);
+  const [spinner, setSpinnner] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   //References
   let rolesRef = [];
@@ -29,12 +32,9 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
 
   const getOne = async () => {
     try {
-      //la peticion con fetch
-      //  const res = await fetch(`${URL}/${id}`);
-      // const userApi = await res.json(); 
 
       //la peticion con Axios
-      const res = await axios.get(`${URL_usuarios_alta}/${id}`);
+      const res = await axios.get(`${URL}/${id}`);
       const userApi = res.data;
       //setUser(userApi)
       userApi.roles.includes('admin') && setUserAdmin(true);
@@ -46,34 +46,29 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
     }
   };
 
-  
+
   console.log('CHECKED', isChecked)
-  
-  // if(user.roles.includes('admin')){
-  //   rolesRef.current = true
-  // }
 
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
-    
+
   };
 
   const handleChangeAdmin = (event) => {
-    setUserAdmin(event.target.checked)   
+    setUserAdmin(event.target.checked)
   };
 
 
 
- 
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //console.log(productNameRef.current.value);
 
-    if(userAdmin){
+    if (userAdmin) {
       rolesRef = ["user", "admin"]
-    } else{
+    } else {
       rolesRef = ["user"]
     }
 
@@ -94,20 +89,13 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          /* const res = await fetch(`${URL}/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productUpdated),
-          }); */
-
-          const res = await axios.put(`${URL_usuarios_alta}/${id}`, userUpdated, {
+          setSpinnner(true)
+          const res = await axios.put(`${URL}/${id}`, userUpdated, {
             headers: {
               "Content-Type": "application/json",
               "x-access-token": JSON.parse(localStorage.getItem("user-token"))
-                .token,
-            },
+                .token
+            }
           });
 
 
@@ -115,11 +103,14 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
 
           if (res.status === 200) {
             Swal.fire("Updated!", "Your file has been updated.", "success");
-            getApi_users();
+            //getApi_users();
             navigate("/user/table");
           }
         } catch (error) {
           console.log(error);
+        }
+        finally {
+          setSpinnner(false)
         }
       }
     });
@@ -182,11 +173,23 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
           </div>
 
 
+          {spinner ? (
 
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
 
-          <div className="text-end">
-            <button className="update-btn">Update</button>
-          </div>
+          ) : (
+
+            <div className="text-end">
+              <button className="btn-primary text-light">Guardar</button>
+            </div>
+
+          )}
+
         </Form>
       </Container>
     </div>
@@ -194,23 +197,3 @@ const UserEdit = ({ URL_usuarios_alta, getApi_users }) => {
 };
 
 export default UserEdit;
-
-
-
-
-
-{/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Label>Category*</Form.Label>
-            <Form.Select
-             value={product.category}
-             onChange={({ target })=> setProduct({...product, category: target.value })}
-            >
-              <option value="">Select an option</option>
-              <option value="de-carne">de Carne</option>
-              <option value="de-cerdo">de Cerdo</option>
-              <option value="de-pollo">de Pollo</option>
-              <option value="veganas">Veganas</option>
-              <option value="bebidas">Bebidas</option>
-              <option value="postre">Postre</option>
-            </Form.Select>
-          </Form.Group> */}
