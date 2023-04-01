@@ -195,9 +195,7 @@ const Register = ({ setLoggedUser }) => {
             Back to login
           </Link>
           
-          <div className="text-center">
-            <button className="btn-primary">Send</button>
-          </div>
+          
         </Form>
         {error ? (
           <Alert variant="danger" onClick={() => setError(false)} dismissible>
