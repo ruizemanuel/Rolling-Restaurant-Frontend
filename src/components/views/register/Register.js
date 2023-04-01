@@ -72,7 +72,14 @@ const Register = ({ setLoggedUser }) => {
       const res = await axios.post(`${URL}/register`, newUser);
       console.log(res);
       if (res.status === 201) {
-        Swal.fire("Created!", "Your user has been created.", "success");
+        Swal.fire({
+          icon: 'success',
+          title: '¡Registro exitoso!',
+          text: '¡Bienvenido ' + inputs.name + '!',
+          confirmButtonText: 'Ok',
+          timer: 3000
+        });
+        
         // const data = await res.json(); // si es con fetch
         const data = res.data
         console.log(data);
