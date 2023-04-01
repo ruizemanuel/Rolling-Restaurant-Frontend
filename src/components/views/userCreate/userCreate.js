@@ -15,6 +15,7 @@ const UserCreate = ({ }) => {
 
   //One general state
   const [inputs, setInputs] = useState({});
+  const [spinner, setSpinnner] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
   //useNavigate
@@ -63,6 +64,7 @@ const UserCreate = ({ }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          setSpinnner(true)
           //la petición con Axios
           const res = await axios.post(`${URL}/register`, newUser);
           console.log(res);
@@ -90,6 +92,9 @@ const UserCreate = ({ }) => {
             );
           setShow(true);
         }
+        finally {
+          setSpinnner(false)
+        }
       }
     });
   };
@@ -101,7 +106,7 @@ const UserCreate = ({ }) => {
         <hr />
         {/* Form Product */}
         <Form className="my-5" onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicUserName">
+          <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>User name*</Form.Label>
             <Form.Control
               type="text"
@@ -142,9 +147,24 @@ const UserCreate = ({ }) => {
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
-          <div className="text-end">
-            <button className="btn-yellow">Save</button>
-          </div>
+
+
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+              <button className="btn-primary text-light">Guardar</button>
+            </div>
+
+          )}
         </Form>
         {show && (
           <Alert

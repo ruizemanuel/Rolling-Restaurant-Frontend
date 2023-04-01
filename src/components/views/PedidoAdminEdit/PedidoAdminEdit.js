@@ -7,8 +7,9 @@ import axios from "../../../config/axiosInit"
 
 const PedidoAdminEdit = ({ }) => {
   //State
-  
+
   const [isChecked, setIsChecked] = useState(false);
+  const [spinner, setSpinnner] = useState(false);
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
 
 
@@ -35,29 +36,29 @@ const PedidoAdminEdit = ({ }) => {
       const res = await axios.get(`${URL}/${id}`);
       const pedidoApi = res.data;
       //setUser(userApi)
-      if(pedidoApi.estado === 'Pendiente'){
+      if (pedidoApi.estado === 'Pendiente') {
         setIsChecked(false)
-      } else{
+      } else {
         setIsChecked(true)
       }
-     
-      
+
+
 
     } catch (error) {
       console.log(error);
     }
   };
 
-  
+
   console.log('CHECKED', isChecked)
-  
+
   // if(user.roles.includes('admin')){
   //   rolesRef.current = true
   // }
 
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
-    
+
   };
 
   const handleSubmit = (e) => {
@@ -79,6 +80,7 @@ const PedidoAdminEdit = ({ }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          setSpinnner(true)
           /* const res = await fetch(`${URL}/${id}`, {
             method: "PUT",
             headers: {
@@ -98,6 +100,9 @@ const PedidoAdminEdit = ({ }) => {
           }
         } catch (error) {
           console.log(error);
+        }
+        finally {
+          setSpinnner(false)
         }
       }
     });
@@ -137,9 +142,22 @@ const PedidoAdminEdit = ({ }) => {
 
 
 
-          <div className="text-end">
-            <button className="update-btn">Update</button>
-          </div>
+          {spinner ? (
+
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+
+          ) : (
+
+            <div className="text-end">
+              <button className="btn-primary text-light">Guardar</button>
+            </div>
+
+          )}
         </Form>
       </Container>
     </div>

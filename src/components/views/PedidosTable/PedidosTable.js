@@ -8,40 +8,41 @@ import Swal from "sweetalert2";
 const PedidosTable = ({ }) => {
 
   const [habilitado, setHabilitado] = useState(false);
+  const [spinner, setSpinnner] = useState(false);
   const [habilitadoDel, setHabilitadoDel] = useState(false);
   const [pedidoBuscado, setPedidoBuscado] = useState({});
-  
+
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
   const email = JSON.parse(localStorage.getItem("user-token")).email
 
 
   useEffect(() => {
     getApi_pedidos()
-    
+
   }, []);
 
   const getApi_pedidos = async () => {
     ////////////////////////////////////////////////////////////////////////
 
-  try {
-    //la peticion con fetch
-    /* const res = await fetch(`${URL}/${id}`);
-    const productApi = await res.json(); */
+    try {
+      //la peticion con fetch
+      /* const res = await fetch(`${URL}/${id}`);
+      const productApi = await res.json(); */
 
-    //la peticion con Axios
-    const res = await axios.post(`${URL}/pedido`,{
-      email
-    });
-    const pedidoApi = res.data;
-    console.log('PROBANDO UN PEDIDO', pedidoApi)
-    //setProduct(productApi);
-    setPedidoBuscado(pedidoApi)
+      //la peticion con Axios
+      const res = await axios.post(`${URL}/pedido`, {
+        email
+      });
+      const pedidoApi = res.data;
+      console.log('PROBANDO UN PEDIDO', pedidoApi)
+      //setProduct(productApi);
+      setPedidoBuscado(pedidoApi)
 
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
 
-  //////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
   };
 
 
@@ -73,8 +74,8 @@ const PedidosTable = ({ }) => {
 
   //const pedidoBuscado = pedidos.find((pedido) => pedido.uid === uid);
 
- // const total = pedidoBuscado?.pedido.reduce((acumulador, pedido) => acumulador + pedido.price, 0);
- //const total = "0"
+  // const total = pedidoBuscado?.pedido.reduce((acumulador, pedido) => acumulador + pedido.price, 0);
+  //const total = "0"
 
 
   const handleOrder = async () => {
@@ -88,6 +89,7 @@ const PedidosTable = ({ }) => {
     };
 
     try {
+      setSpinnner(true)
       const res = await axios.put(`${URL}/${pedidoBuscado._id}`, pedidoUpdated)
 
       console.log(res.data);
@@ -100,6 +102,9 @@ const PedidosTable = ({ }) => {
       }
     } catch (error) {
       console.log(error);
+    }
+    finally {
+      setSpinnner(false)
     }
 
   }
@@ -116,6 +121,7 @@ const PedidosTable = ({ }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
+          setSpinnner(true)
 
           const res = await axios.delete(`${URL}/${pedidoBuscado._id}`);
 
@@ -132,6 +138,9 @@ const PedidosTable = ({ }) => {
         } catch (error) {
           console.log(error);
         }
+        finally {
+          setSpinnner(false)
+        }
       }
     })
   };
@@ -143,12 +152,28 @@ const PedidosTable = ({ }) => {
           <h1>Pedidos Table</h1>
 
           {pedidoBuscado !== null ?
-            <button
+            
+            
+            spinner ? (
+
+              <div className="text-end">
+                <button class="delete-btn text-light" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
+              </div>
+
+            ) : (
+
+              <button
               className="delete-btn mx-1" disabled={habilitadoDel}
               onClick={() => handleDelete()}
             >
               Vaciar Carrito
-            </button> :
+            </button> 
+
+            ) :
+            
             <div>
 
             </div>
@@ -185,12 +210,30 @@ const PedidosTable = ({ }) => {
               <h5>TOTAL: ${pedidoBuscado.total}</h5>
               <h5>Estado: {pedidoBuscado.estado}</h5>
 
-              <button
-                className="btn-primary mx-1" disabled={habilitado}
-                onClick={() => handleOrder()}
-              >
-                Enviar
-              </button>
+
+              {spinner ? (
+
+                <div className="text-end">
+                  <button class="btn-primary text-light" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+                </div>
+
+              ) : (
+
+                <div className="text-end">
+                  <button
+                    className="btn-primary mx-1 text-light" disabled={habilitado}
+                    onClick={() => handleOrder()}
+                  >
+                    Enviar
+                  </button>
+                </div>
+
+              )}
+
+
             </div>
 
           </>

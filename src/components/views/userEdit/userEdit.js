@@ -11,6 +11,7 @@ const UserEdit = ({ }) => {
   //State
   //const [user, setUser] = useState(false);
   const [userAdmin, setUserAdmin] = useState(false);
+  const [spinner, setSpinnner] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   //References
   let rolesRef = [];
@@ -30,7 +31,7 @@ const UserEdit = ({ }) => {
   }, []);
 
   const getOne = async () => {
-    try { 
+    try {
 
       //la peticion con Axios
       const res = await axios.get(`${URL}/${id}`);
@@ -45,29 +46,29 @@ const UserEdit = ({ }) => {
     }
   };
 
-  
+
   console.log('CHECKED', isChecked)
-  
+
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
-    
+
   };
 
   const handleChangeAdmin = (event) => {
-    setUserAdmin(event.target.checked)   
+    setUserAdmin(event.target.checked)
   };
 
 
 
- 
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
 
-    if(userAdmin){
+    if (userAdmin) {
       rolesRef = ["user", "admin"]
-    } else{
+    } else {
       rolesRef = ["user"]
     }
 
@@ -88,7 +89,7 @@ const UserEdit = ({ }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-       
+          setSpinnner(true)
           const res = await axios.put(`${URL}/${id}`, userUpdated, {
             headers: {
               "Content-Type": "application/json",
@@ -107,6 +108,9 @@ const UserEdit = ({ }) => {
           }
         } catch (error) {
           console.log(error);
+        }
+        finally {
+          setSpinnner(false)
         }
       }
     });
@@ -169,11 +173,23 @@ const UserEdit = ({ }) => {
           </div>
 
 
+          {spinner ? (
 
+            <div className="text-end">
+              <button class="btn-primary text-light" type="button" disabled>
+                <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
 
-          <div className="text-end">
-            <button className="update-btn">Update</button>
-          </div>
+          ) : (
+
+            <div className="text-end">
+              <button className="btn-primary text-light">Guardar</button>
+            </div>
+
+          )}
+
         </Form>
       </Container>
     </div>
