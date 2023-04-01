@@ -96,9 +96,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                   <Link className="nav-link" to="/auth/login">
                     Login
                   </Link>
-                  <Link className="nav-link" to="/auth/register">
-                    Register
-                  </Link>
+                  
                 </>
 
               )}
