@@ -33,7 +33,8 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
            */
           //consulta delete con axios
 
-          const res = await axios.delete(`${URL}/${id}/asdsad`);
+          const res = await axios.delete(`${URL}/${id}`);
+
 
           if (res.status === 200) {
             Swal.fire(
