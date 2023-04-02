@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../../config/axiosInit"
 
-const Pedido = ({ pedido, pedidoBuscado, URL, getApi, getSpinner }) => {
+const Pedido = ({ habilitado, pedido, pedidoBuscado, URL, getApi, getSpinner, handleError }) => {
 
 
   console.log("DESDE PEDIDO", pedido)
@@ -32,8 +32,8 @@ const Pedido = ({ pedido, pedidoBuscado, URL, getApi, getSpinner }) => {
           //consulta delete con axios
 
           //const res = await axios.delete(`${URL}/pedido/${id}`);
-          const res = await axios.delete(`${URL}/pedido/${pedidoBuscado._id}`, 
-          { data: { id, newTotal: pedidoBuscado.total - pedido.price } });
+          const res = await axios.delete(`${URL}/pedido/${pedidoBuscado._id}`,
+            { data: { id, newTotal: pedidoBuscado.total - pedido.price } });
 
           if (res.status === 200) {
             Swal.fire(
@@ -67,12 +67,25 @@ const Pedido = ({ pedido, pedidoBuscado, URL, getApi, getSpinner }) => {
       <td className="w-25">
         <div className="d-flex justify-content-center">
 
-          <button
-            className="delete-btn mx-1"
-          onClick={() => handleDelete(pedido._id)}
-          >
-            Eliminar
-          </button>
+          {habilitado ?
+
+            (
+              <button
+                className="delete-btn mx-1"
+                onClick={() => handleError()}
+              >
+                Eliminar
+              </button>
+
+            ) : (
+              <button
+                className="delete-btn mx-1"
+                onClick={() => handleDelete(pedido._id)}
+              >
+                Eliminar
+              </button>
+
+            )}
 
 
         </div>

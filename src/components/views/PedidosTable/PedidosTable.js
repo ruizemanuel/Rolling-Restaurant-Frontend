@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 const PedidosTable = ({ }) => {
 
   const [habilitado, setHabilitado] = useState(false);
-  //const [habilitadoDel, setHabilitadoDel] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [spinner, setSpinnner] = useState(false);
@@ -18,10 +17,6 @@ const PedidosTable = ({ }) => {
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
   const email = JSON.parse(localStorage.getItem("user-token")).email
-
-  function timeout(delay) {
-    return new Promise(res => setTimeout(res, delay));
-  }
 
   const getSpinner = (spinner) => {
     setSpinnnerBody(spinner)
@@ -33,25 +28,21 @@ const PedidosTable = ({ }) => {
 
   }, []);
 
-  console.log('PEDIDO BUSCADO', pedidoBuscado)
+
 
   const getApi_pedidos = async () => {
-    ////////////////////////////////////////////////////////////////////////
+
 
     try {
 
-      //la peticion con fetch
-      /* const res = await fetch(`${URL}/${id}`);
-      const productApi = await res.json(); */
 
-      //la peticion con Axios
       const res = await axios.post(`${URL}/pedido`, {
         email
       });
       const pedidoApi = res.data;
-      //setProduct(productApi);
 
-      if (pedidoApi?.estado === 'Pendiente') {
+
+      if (pedidoApi?.estado === 'Pendiente' || pedidoApi?.estado === 'Realizado') {
         setHabilitado(true)
       }
 
@@ -63,46 +54,20 @@ const PedidosTable = ({ }) => {
       console.log(error);
     }
 
-    //////////////////////////////////////////////////////////////////////////
+
   };
 
-
-  const navigate = useNavigate()
-
-  //////////////////////////////////////
-  // const [pedidos, setPedidos] = useState([]);
-  // const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
-
-  // useEffect(() => {
-  //   console.log('HOLA DESDE PEDIDOSSSSSS')
-  //   getApi_pedidos()
-  // }, []);
-
-  // const getApi_pedidos = async () => {
-  //   try {
-
-  //     const res = await axios.get(URL);
-  //     const pedidoApi = res?.data;
-
-  //     setPedidos(pedidoApi);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  //const pedidoBuscado = JSON.parse(localStorage.getItem("pedido"))
-
-  /////////////////////////////////////
-
-  //const pedidoBuscado = pedidos.find((pedido) => pedido.uid === uid);
-
-  // const total = pedidoBuscado?.pedido.reduce((acumulador, pedido) => acumulador + pedido.price, 0);
-  //const total = "0"
 
 
   const handleError = async () => {
 
     setError(true)
-    setErrorMessage("Por favor espere, estamos procesando su pedido")
+    if (pedidoBuscado.estado === 'Realizado') {
+      setErrorMessage("Por favor vacie el carrito para realizar un nuevo pedido")
+    } else {
+      setErrorMessage("Por favor espere, estamos procesando su pedido")
+    }
+
 
   }
 
@@ -111,10 +76,6 @@ const PedidosTable = ({ }) => {
 
   const handleOrder = async () => {
 
-    /////////////////////////////////////////////////
-
-
-
     const pedidoUpdated = {
       estado: "Pendiente"
     };
@@ -122,7 +83,7 @@ const PedidosTable = ({ }) => {
     try {
       setSpinnnerEnviar(true)
       setHabilitado(true)
-      await timeout(5000);
+
       const res = await axios.put(`${URL}/${pedidoBuscado._id}`, pedidoUpdated)
 
       console.log(res.data);
@@ -155,7 +116,7 @@ const PedidosTable = ({ }) => {
       if (result.isConfirmed) {
         try {
           setSpinnner(true)
-          await timeout(5000);
+
           const res = await axios.delete(`${URL}/${pedidoBuscado._id}`);
 
           if (res.status === 200) {
@@ -197,12 +158,26 @@ const PedidosTable = ({ }) => {
 
             ) : (
 
-              <button
-                className="delete-btn mx-1" disabled={spinnerEnviar}
-                onClick={() => handleDelete()}
-              >
-                Vaciar Carrito
-              </button>
+              habilitado && pedidoBuscado.estado !== 'Realizado' ? (
+                <button
+                  className="delete-btn mx-1" disabled={spinnerEnviar}
+                  onClick={() => handleError()}
+                >
+                  Vaciar Carrito
+                </button>
+
+              ) :
+
+                (
+                  <button
+                    className="delete-btn mx-1" disabled={spinnerEnviar}
+                    onClick={() => handleDelete()}
+                  >
+                    Vaciar Carrito
+                  </button>
+
+                )
+
 
             ) :
 
@@ -242,11 +217,13 @@ const PedidosTable = ({ }) => {
                   {pedidoBuscado.pedido?.map((pedido) => (
                     <Pedido
                       key={pedido._id}
+                      habilitado={habilitado}
                       pedido={pedido}
                       pedidoBuscado={pedidoBuscado}
                       URL={URL}
                       getApi={getApi_pedidos}
                       getSpinner={getSpinner}
+                      handleError={handleError}
                     />
                   ))}
                 </tbody>
