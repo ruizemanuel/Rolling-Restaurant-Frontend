@@ -1,0 +1,54 @@
+/* LOGIN */
+.loginContainer {
+    margin: 8rem auto;
+    box-shadow: -4px -1px 19px -2px rgba(0, 0, 0, 0.72);
+    -webkit-box-shadow: -4px -1px 19px -2px rgba(0, 0, 0, 0.72);
+    -moz-box-shadow: -4px -1px 19px -2px rgba(0, 0, 0, 0.72);
+    border-radius: 15px;
+    width: 65rem;
+    max-width: 90vw;
+}
+
+.logoLogin {
+    width: 6rem;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.btn-login {
+    background-color: #FF6347;
+    border: none;
+    border-radius: 15px;
+    padding: 1rem;
+    color: aliceblue;
+}
+
+.registerLink{
+    font-weight: 500;
+}
+
+.imgLogin {
+    background-image: url(https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+
+    background-position: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+@media screen and (max-width:990px) {
+    .imgLogin {
+        display: none;
+    }
+    
+    .loginContainer{
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .loginContainer{
+        width: 100vw;
+    }
+}

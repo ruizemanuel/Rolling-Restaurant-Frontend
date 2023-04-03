@@ -64,6 +64,7 @@ function App() {
         <Navigation loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
         <main>
           <Routes>
+            <Route exact path="*" element={<Error404 />} />
             <Route exact path="/" element={<Home products={products} />} />
             <Route
               exact
