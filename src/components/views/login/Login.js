@@ -66,7 +66,7 @@ const Login = ({ setLoggedUser }) => {
       console.log(error);
       setError(true);
       error.response.data?.message &&
-        setErrorMessage(error.response.data.message);
+        setErrorMessage(error.response.data?.message);
     }
 
     finally {

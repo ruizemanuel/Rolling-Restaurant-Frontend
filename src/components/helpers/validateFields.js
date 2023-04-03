@@ -1,6 +1,7 @@
 // Reg expressions
 const regExpProductName = /^[A-Za-z\s?]+$/;
 const regExpPrice = /[0-9]+$/;
+const regExpDescription = /^[A-Za-z\s?]+$/;
 const regExpUrl = /^https?:\/\/[\w]+(\.[\w]+)+[/#?]?.*$/;
 const regExpCategory = /^[A-Za-z\-\s?]+$/;
 const regExpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,6 +29,14 @@ export const validatePrice = (field) => {
   }
 };
 
+export const validateDescription = (field) => {
+  if (regExpDescription.test(field) && field.trim() !== "") {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const validateUrl = (field) => {
   if (regExpUrl.test(field) && field.trim() !== "") {
     return true;
@@ -39,7 +48,7 @@ export const validateUrl = (field) => {
 export const validateCategory = (field) => {
   if (
     regExpCategory.test(field) &&
-    field.trim() !== "" &&
+    field?.trim() !== "" &&
     (field === "pizza" ||
       field === "hamburguesa" ||
       field === "taco" ||

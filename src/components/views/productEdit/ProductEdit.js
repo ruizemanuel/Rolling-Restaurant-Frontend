@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   validateCategory,
+  validateDescription,
   validatePrice,
   validateProductName,
   validateUrl,
@@ -19,6 +20,7 @@ const ProductEdit = ({ URL, getApi }) => {
   //References
   const productNameRef = useRef('');
   const priceRef = useRef('');
+  const descriptionRef = useRef('');
   const urlImgRef = useRef('');
   //Navigate
   const navigate = useNavigate();
@@ -53,6 +55,7 @@ const ProductEdit = ({ URL, getApi }) => {
     if (
       !validateProductName(productNameRef.current.value) ||
       !validatePrice(priceRef.current.value) ||
+      !validateDescription(descriptionRef.current.value) ||
       !validateUrl(urlImgRef.current.value) ||
       !validateCategory(product.category)
     ) {
@@ -63,6 +66,7 @@ const ProductEdit = ({ URL, getApi }) => {
     const productUpdated = {
       productName: productNameRef.current.value,
       price: priceRef.current.value,
+      description: descriptionRef.current.value,
       urlImg: urlImgRef.current.value,
       category: product.category,
     };
@@ -140,6 +144,15 @@ const ProductEdit = ({ URL, getApi }) => {
               placeholder="Ej: 50"
               defaultValue={product.price}
               ref={priceRef}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicDescription">
+            <Form.Label>Description*</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ej: Inserte la descripción del producto"
+              defaultValue={product.description}
+              ref={descriptionRef}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">

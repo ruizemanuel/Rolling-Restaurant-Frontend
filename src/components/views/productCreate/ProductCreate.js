@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import {
   validateProductName,
   validatePrice,
+  validateDescription,
   validateUrl,
   validateCategory,
 } from "../../helpers/validateFields";
@@ -35,6 +36,7 @@ const ProductCreate = ({ URL, getApi }) => {
 
       !validateProductName(inputs.productName) ||
       !validatePrice(inputs.price) ||
+      !validateDescription(inputs.description) ||
       !validateUrl(inputs.urlImg) ||
       !validateCategory(inputs.category)
     ) {
@@ -50,6 +52,7 @@ const ProductCreate = ({ URL, getApi }) => {
       category, */
       productName: inputs.productName,
       price: inputs.price,
+      description: inputs.description,
       urlImg: inputs.urlImg,
       category: inputs.category,
       description: inputs.description,
@@ -91,10 +94,10 @@ const ProductCreate = ({ URL, getApi }) => {
             navigate("/product/table");
           }
         } catch (error) {
-          console.log(error.response.data.errors);
+          console.log(error.response.data.message);
           error.response.data?.message &&
             setErrorMessage(error.response.data?.message);
-          error.response.data.errors.length > 0 &&
+          error.response.data.errors?.length > 0 &&
             error.response.data.errors?.map((error) =>
               setErrorMessage(error.msg)
             );
@@ -131,6 +134,16 @@ const ProductCreate = ({ URL, getApi }) => {
               placeholder="Ej: 50"
               name="price"
               value={inputs.price || ""}
+              onChange={(e) => handleChange(e)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicDescription">
+            <Form.Label>Description*</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ej: Inserte la descripción del producto"
+              name="description"
+              value={inputs.description || ""}
               onChange={(e) => handleChange(e)}
             />
           </Form.Group>
