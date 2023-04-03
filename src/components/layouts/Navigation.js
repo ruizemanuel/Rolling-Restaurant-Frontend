@@ -60,15 +60,15 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                 <>
                   {roles?.includes('admin') ? (
                     <>
-                      <Link className="nav-link text-center" to="/product/table">
+                      <Link className="nav-link d-flex flex-column justify-content-center" to="/product/table">
                         Manage Products
                       </Link>
 
-                      <Link className="nav-link text-center" to="/user/table">
+                      <Link className="nav-link d-flex flex-column justify-content-center" to="/user/table">
                         Manage Users
                       </Link>
 
-                      <Link className="nav-link text-center" to="/pedidos/table">
+                      <Link className="nav-link d-flex flex-column justify-content-center" to="/pedidos/table">
                         Manage Pedidos
                       </Link>
                     </>
