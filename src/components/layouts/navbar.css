@@ -1,16 +1,27 @@
 *{
     box-sizing: border-box;
 }
+.navContainer{
+    display: flex;
+    align-items: baseline !important;
+}
 .navbar{
     background-color: #FF6347;
-    display: flex;
-    justify-content: space-between !important;
-    
+    display: flex; 
 }
 .logo{
     width: 7rem;
 }
 .nav-link{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.logout{
+    color: aliceblue;
+}
+#dropdown{
+    background-color: #FF6347;
+    border: none;
     font-size: 1.1rem;
     font-weight: 500;
 }

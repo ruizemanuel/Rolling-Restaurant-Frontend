@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/axiosInit";
 import logo from "./LogoRolling.png"
 import "./navbar.css"
+import { Dropdown } from "react-bootstrap";
 // import SearchComponent from "../helpers/SearchComponent";
 
 
@@ -20,9 +21,9 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
   }, [loggedUser]);
 
   const getUsers = async () => {
-  
-      setRoles(loggedUser.roles)
-    
+
+    setRoles(loggedUser.roles)
+
   };
 
   roles?.includes('admin') && localStorage.setItem("is-authorized", JSON.stringify('true'));
@@ -39,20 +40,20 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
 
   return (
     <div>
-      <Navbar className="bg-red" expand="lg">
-        <Container>
+      <Navbar className="bg-" expand="lg">
+        <Container className="navContainer">
           <Navbar.Brand className="logo" href="/">
-          <img src={logo} alt="logo" className="logo"></img>
+            <img src={logo} alt="logo" className="logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto color-nav">
-            <form class="d-flex mx-5">
-          <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search"/>
-          <button class="btn btn-light" type="submit">Buscar</button>
-          {/* <SearchComponent />  */}
-           </form>
-         
+              <form class="d-flex mx-5">
+                <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search" />
+                <button class="btn btn-light" type="submit">Buscar</button>
+                {/* <SearchComponent />  */}
+              </form>
+
               <Link className="nav-link" to="/">
                 Home
               </Link>
@@ -60,17 +61,28 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                 <>
                   {roles?.includes('admin') ? (
                     <>
-                      <Link className="nav-link" to="/product/table">
-                        Manage Products
-                      </Link>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="info" className="nav-link" id="dropdown">
+                          Manage
+                        </Dropdown.Toggle>
 
-                      <Link className="nav-link" to="/user/table">
-                        Manage Users
-                      </Link>
+                        <Dropdown.Menu>
+                          <Dropdown.Item href="#/action-1"> <Link className="nav-link" to="/product/table">
+                            Products
+                          </Link></Dropdown.Item>
+                          <Dropdown.Item href="#/action-2"> <Link className="nav-link" to="/user/table">
+                            Users
+                          </Link></Dropdown.Item>
+                          <Dropdown.Item href="#/action-3"><Link className="nav-link" to="/pedidos/table">
+                            Pedidos
+                          </Link></Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
 
-                      <Link className="nav-link" to="/pedidos/table">
-                        Manage Pedidos
-                      </Link>
+
+
+
+
                     </>
 
                   ) : (
@@ -83,9 +95,9 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                       Pedidos
                     </Link>
 
-                    <Button variant="dark" onClick={logout}>
+                    <Link className="nav-link logout" onClick={logout}>
                       Logout
-                    </Button>
+                    </Link>
                   </>
 
 
@@ -96,7 +108,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                   <Link className="nav-link" to="/auth/login">
                     Login
                   </Link>
-                  
+
                 </>
 
               )}
