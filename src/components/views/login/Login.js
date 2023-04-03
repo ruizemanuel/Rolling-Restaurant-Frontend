@@ -47,12 +47,19 @@ const Login = ({ setLoggedUser }) => {
         const data = res.data;
         console.log(data);
 
-
-
-
         //guardar en localStorage el token
-        localStorage.setItem("user-token", JSON.stringify(data));
-        setLoggedUser(data);
+        if(data.roles.includes('admin')){
+          localStorage.setItem("user-token", JSON.stringify(data));
+          setLoggedUser(data); 
+        } else{
+          delete data['token'];
+          localStorage.setItem("user-token", JSON.stringify(data));
+          setLoggedUser(data);
+        }
+
+
+        
+        
         navigate("/");
       }
     } catch (error) {

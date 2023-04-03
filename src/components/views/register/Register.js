@@ -55,9 +55,9 @@ const Register = ({ setLoggedUser }) => {
         // const data = await res.json(); // si es con fetch
         const data = res.data
         console.log(data);
-        localStorage.setItem("user-token", JSON.stringify(data));
-        setLoggedUser(data);
-        navigate("/");
+        //localStorage.setItem("user-token", JSON.stringify(data));
+        //setLoggedUser(data);
+        navigate("/auth/login");
       }
     } catch (error) {
       console.log(error);

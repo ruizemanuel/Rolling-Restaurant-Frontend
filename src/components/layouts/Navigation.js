@@ -53,22 +53,22 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
           {/* <SearchComponent />  */}
            </form>
          
-              <Link className="nav-link" to="/">
+              <Link className="nav-link d-flex flex-column justify-content-center" to="/">
                 Home
               </Link>
-              {loggedUser.token ? (
+              {loggedUser.email ? (
                 <>
                   {roles?.includes('admin') ? (
                     <>
-                      <Link className="nav-link" to="/product/table">
+                      <Link className="nav-link text-center" to="/product/table">
                         Manage Products
                       </Link>
 
-                      <Link className="nav-link" to="/user/table">
+                      <Link className="nav-link text-center" to="/user/table">
                         Manage Users
                       </Link>
 
-                      <Link className="nav-link" to="/pedidos/table">
+                      <Link className="nav-link text-center" to="/pedidos/table">
                         Manage Pedidos
                       </Link>
                     </>
@@ -79,7 +79,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                   }
 
                   <>
-                    <Link className="nav-link" to="/pedidos">
+                    <Link className="nav-link d-flex flex-column justify-content-center" to="/pedidos">
                       Pedidos
                     </Link>
 
@@ -93,10 +93,10 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                 </>
               ) : (
                 <>
-                  <Link className="nav-link" to="/auth/login">
+                  <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/login">
                     Login
                   </Link>
-                  <Link className="nav-link" to="/auth/register">
+                  <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/register">
                     Register
                   </Link>
                 </>
