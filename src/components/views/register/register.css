@@ -1,0 +1,34 @@
+/* LOGIN */
+.registerContainer {
+    margin: 8rem auto;
+    box-shadow: -4px -1px 19px -2px rgba(0, 0, 0, 0.72);
+    -webkit-box-shadow: -4px -1px 19px -2px rgba(0, 0, 0, 0.72);
+    -moz-box-shadow: -4px -1px 19px -2px rgba(0, 0, 0, 0.72);
+    border-radius: 15px;
+    width: 45rem;
+    max-width: 90vw;
+    background-color: #faeeeb;
+}
+
+.registerContainer h1 {
+    text-shadow: 1px 1px 2px #FF6347;
+}
+
+.btnRegister {
+    background-color: #FF6347;
+    border: none;
+    border-radius: 15px;
+    padding: 1rem;
+    color: aliceblue;
+}
+
+.btnRegister:hover {
+    transform: scale(1.1);
+    transition: all 0.25s ease;
+    background-color: #ff4b2c;
+}
+
+.backHomeLink {
+    font-weight: 500;
+    color: #3763f3;
+}

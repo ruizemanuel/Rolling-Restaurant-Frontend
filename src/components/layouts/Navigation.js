@@ -96,9 +96,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                   <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/login">
                     Login
                   </Link>
-                  <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/register">
-                    Register
-                  </Link>
+               
                 </>
 
               )}
