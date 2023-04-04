@@ -1,50 +1,101 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import CardProduct from "./cardProduct/CardProduct";
-import AboutUs from "./AboutUs/AboutUs"
-import Testimonials from "./Testimonials/Testimonial"
+import AboutUs from "./AboutUs/AboutUs";
+import Testimonials from "./Testimonials/Testimonial";
 import CarouselHome from "./carouselHome/CarouselHome";
-import ContactUs from "./ContactUs.js/ContactUs"
+import ContactUs from "./ContactUs.js/ContactUs";
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = ({ products }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const handleClick = (event) => {
+    event.preventDefault()
+    setCurrentPage(Number(event.target.id));
+  };
+
+  const renderPageNumbers = pageNumbers.map((number) => {
+    return (
+      <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
+        <a href="/" className="page-link" id={number} onClick={handleClick}>
+          {number}
+        </a>
+      </li>
+    );
+  });
+    
+
   return (
     <div>
       <CarouselHome />
       <AboutUs />
 
-      <Container className="py-5">
+      <Container className="py-5 ">
         <h1>Products</h1>
         <hr />
-        {products?.length !== 0 ?
+        <ul className="pagination justify-content-center">
+          <li
+            className={`page-item ${currentPage === 1 ? "disabled" : ""}`}
+          >
+            <a
+              href="/"
+              className="page-link"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentPage(currentPage - 1);
+              }}
+            >
+              Previous
+            </a>
+          </li>
+          {renderPageNumbers}
+          <li
+            className={`page-item ${currentPage === Math.ceil(products.length / itemsPerPage)
+              ? "disabled"
+              : ""
+              }`}
+          >
+            <a
+              href="/"
+              className="page-link"
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentPage(currentPage + 1);
+              }}
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+
+        {currentItems?.length !== 0 ? (
           <Row>
-            {products?.map((product, index) => (
-              <Col key={index} xl={3} lg={4} md={6}>
+            {currentItems?.map((product, index) => (
+              <Col key={index} sm={4} xl={3} lg={4} md={6}>
                 <CardProduct product={product} />
               </Col>
             ))}
           </Row>
-          :
+        ) : (
           <div className="no-products-found d-flex align-items-center justify-content-center">
             <h1>🍕 No products found 🍕</h1>
           </div>
-        }
+        )}
       </Container>
-      <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="/" tabindex="-1" aria-disabled="true">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="/Error404">1</a></li>
-    <li class="page-item"><a class="page-link" href="/Error404">2</a></li>
-    <li class="page-item"><a class="page-link" href="/Error404">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="/Error404">Next</a>
-    </li>
-  </ul>
-</nav>
       <Testimonials />
-      <ContactUs/>
-      
+      <ContactUs />
     </div>
   );
 };
