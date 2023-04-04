@@ -198,7 +198,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
-  /* o el ancho que consideres adecuado */
 }
 
 .product-description {
@@ -206,7 +205,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
-  /* o el mismo ancho que hayas definido arriba */
 }
 
 .containerTable,
@@ -214,4 +212,21 @@
 .pedidosContainerAdm,
 .pedidosContainer {
   margin-bottom: 23vw;
+}
+
+.pagination a:hover {
+  background-color: #FF5757;
+  color: #f1faee;
+  text-decoration: none;
+}
+
+.pagination a {
+  color: #ff8979;
+  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.pagination a:focus{
+  background-color: #f54a4a;
+  color: #f0e1e1;
 }
