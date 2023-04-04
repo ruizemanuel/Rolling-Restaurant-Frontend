@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -28,18 +28,14 @@ const Home = ({ products }) => {
 
   const renderPageNumbers = pageNumbers.map((number) => {
     return (
-      <li key={number} className="page-item">
-        <a
-          href="/"
-          className="page-link"
-          id={number}
-          onClick={handleClick}
-        >
+      <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
+        <a href="/" className="page-link" id={number} onClick={handleClick}>
           {number}
         </a>
       </li>
     );
   });
+    
 
   return (
     <div>

@@ -227,6 +227,13 @@
 }
 
 .pagination a:focus{
-  background-color: #f54a4a;
-  color: #f0e1e1;
+  background-color: #fff;
+  color: #000;
 }
+
+.page-item.active .page-link {
+  background-color: #f54a4a;
+  color: #fff;
+  border: none;
+}
+
