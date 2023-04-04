@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Alert, Container, Form } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
@@ -15,6 +15,8 @@ const ProductEdit = ({ URL, getApi }) => {
   //State
   const [product, setProduct] = useState({});
   const [spinner, setSpinnner] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [show, setShow] = useState(false);
   //Param
   const { id } = useParams();
   //References
@@ -60,6 +62,7 @@ const ProductEdit = ({ URL, getApi }) => {
       !validateCategory(product.category)
     ) {
       Swal.fire("Ops!", "Some data is invalid.", "error");
+      console.log(validateDescription(descriptionRef.current.value))
       return;
     }
     //guardar el objeto
@@ -109,7 +112,14 @@ const ProductEdit = ({ URL, getApi }) => {
             navigate("/product/table");
           }
         } catch (error) {
-          console.log(error);
+          console.log(error.response.data.message);
+          error.response.data?.message &&
+            setErrorMessage(error.response.data?.message);
+          error.response.data.errors?.length > 0 &&
+            error.response.data.errors?.map((error) =>
+              setErrorMessage(error.msg)
+            );
+          setShow(true);
         }
         finally {
           setSpinnner(false)
@@ -202,6 +212,16 @@ const ProductEdit = ({ URL, getApi }) => {
 
           
         </Form>
+        {show && (
+          <Alert
+            key={errorMessage}
+            variant="danger"
+            onClose={() => setShow(false)}
+            dismissible
+          >
+            {errorMessage}
+          </Alert>
+        )}
       </Container>
     </div>
   );
