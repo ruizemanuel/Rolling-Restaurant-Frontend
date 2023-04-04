@@ -29,7 +29,7 @@ const UsersTable = ({ }) => {
 
   return (
     <div>
-      <Container className="py-5">
+      <Container className="py-5 userContainer">
         <div className="d-flex align-items-center justify-content-between">
           <h1>Users Table</h1>
           <Link

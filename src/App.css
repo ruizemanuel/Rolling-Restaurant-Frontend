@@ -190,3 +190,28 @@
 .pedidosContainer {
   margin-bottom: 18.5rem;
 }
+
+/* Tablas */
+
+.align-middle td:nth-child(6) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  /* o el ancho que consideres adecuado */
+}
+
+.product-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  /* o el mismo ancho que hayas definido arriba */
+}
+
+.containerTable,
+.userContainer,
+.pedidosContainerAdm,
+.pedidosContainer {
+  margin-bottom: 23vw;
+}

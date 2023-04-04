@@ -16,7 +16,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
 
   return (
     <div>
-      <Container className="py-5">
+      <Container className="py-5 containerTable">
         <div className="d-flex align-items-center justify-content-between">
           <h1>Products Table</h1>
 
@@ -44,7 +44,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
 
           spinner ? (
 
-            <div class="text-center" >
+            <div class="text-center " >
               <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
               </div>
@@ -52,7 +52,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
 
           ) : (
 
-            <Table bordered hover responsive className="align-middle mt-3">
+            <Table bordered hover responsive className="align-middle mt-3 ">
               <thead>
                 <tr>
                   <th>N.</th>
@@ -60,7 +60,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
                   <th>Price</th>
                   <th>Image url</th>
                   <th>Category</th>
-                  <th>Description</th>
+                  <th className="product-description">Description</th>
                   <th>Actions</th>
                 </tr>
               </thead>

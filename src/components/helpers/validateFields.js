@@ -1,7 +1,7 @@
 // Reg expressions
 const regExpProductName = /^[A-Za-z\s?]+$/;
 const regExpPrice = /[0-9]+$/;
-const regExpDescription = /^[A-Za-z\s?]+$/;
+const regExpDescription = /^[a-zA-Z.,\s]+$/;
 const regExpUrl = /^https?:\/\/[\w]+(\.[\w]+)+[/#?]?.*$/;
 const regExpCategory = /^[A-Za-z\-\s?]+$/;
 const regExpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

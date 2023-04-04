@@ -40,7 +40,7 @@ try {
 
   return (
     <div>
-      <Container className="py-5">
+      <Container className="py-5 pedidosContainerAdm">
         <div className="d-flex align-items-center justify-content-between">
           <h1>Pedidos Table</h1>
 

@@ -22,3 +22,13 @@
 .productTitle{
     color: rgb(22, 21, 21);
 }
+.card {
+    max-height: 650px;
+    overflow: hidden;
+  }
+  
+  .card-text {
+    height: 50px; /* ajusta la altura del contenido de la card según tus necesidades */
+    overflow: hidden;
+  }
+  
