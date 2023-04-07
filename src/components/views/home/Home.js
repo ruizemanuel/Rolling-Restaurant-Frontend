@@ -52,7 +52,7 @@ const Home = ({ products, spinner }) => {
       <CarouselHome />
       <AboutUs />
 
-      {!spinner ? (
+      {spinner ? (
         <div className="text-center fw-bold fs-4 d-flex justify-content-center align-items-center" style={{"padding": "150px 150px"}}>
         <div className="spinner-border me-2" role="status">
           <span className="sr-only">Loading...</span>
