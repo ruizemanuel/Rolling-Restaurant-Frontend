@@ -26,6 +26,7 @@ import CreditCardValidator from "./components/views/creditCardValidator/creditCa
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [spinner, setSpinnner] = useState(false);
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token') ? JSON.parse(localStorage.getItem("user-token")) : {});
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
 
@@ -42,13 +43,16 @@ function App() {
 
   const getApi = async () => {
     try {
-
+      setSpinnner(true)
       const res = await axios.get(URL);
       const productApi = res?.data;
 
       setProducts(productApi);
     } catch (error) {
       console.log(error);
+    }
+    finally{
+      setSpinnner(false)
     }
   };
 
@@ -60,7 +64,7 @@ function App() {
         <Navigation loggedUser={loggedUser} setLoggedUser={setLoggedUser} products={products} />
         <main>
           <Routes>
-            <Route exact path="/" element={<Home products={products} />} />
+            <Route exact path="/" element={<Home products={products}  spinner={spinner}/>} />
             <Route
               exact
               path="/product/table"
