@@ -237,3 +237,14 @@
   border: none;
 }
 
+/* DROPDOWN CATEGORIAS HOME */
+#dropdowCategories{
+  background-color: #003049;
+  color: #fffeff;
+  border: none;
+}
+#dropdowCategories:hover{
+  background-color: #28a5e9;
+  color: #fffeff;
+  border: none;
+}
