@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Container, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import {
-  validateProductName,
+  validateUserName,
   validateEmail,
   validatePassword
 } from "../../helpers/validateFields";
@@ -31,17 +31,25 @@ const UserCreate = ({ }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //validar los campos
-    if (
 
-      !validateProductName(inputs.name) ||
-      !validateEmail(inputs.email) ||
-      !validatePassword(inputs.password) ||
-      !validatePassword(inputs.passwordrep)
-    ) {
-      Swal.fire("Error", "Some data is invalid", "error");
+    //validar los campos
+
+    if (validateUserName(inputs.name) !== 'ok') {
+      Swal.fire("Error!", `${validateUserName(inputs.name)}`, "error");
+      return;
+    } else if (validateEmail(inputs.email) !== 'ok') {
+      Swal.fire("Error!", `${validateEmail(inputs.email)}`, "error");
+      return;
+    } else if (validatePassword(inputs.password) !== 'ok') {
+      Swal.fire("Error!", `${validatePassword(inputs.password)}`, "error");
+      return;
+    } else if (validatePassword(inputs.passwordrep) !== 'ok') {
+      Swal.fire("Error!", `${validatePassword(inputs.passwordrep)}`, "error");
       return;
     }
+
+
+
 
     //Enviar los datos
     const newUser = {
@@ -86,7 +94,7 @@ const UserCreate = ({ }) => {
           console.log(error.response.data.errors);
           error.response.data?.message &&
             setErrorMessage(error.response.data?.message);
-          error.response.data.errors.length > 0 &&
+          error.response.data.errors?.length > 0 &&
             error.response.data.errors?.map((error) =>
               setErrorMessage(error.msg)
             );

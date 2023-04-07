@@ -32,17 +32,26 @@ const ProductCreate = ({ URL, getApi }) => {
     e.preventDefault();
 
     //validar los campos
-    if (
 
-      !validateProductName(inputs.productName) ||
-      !validatePrice(inputs.price) ||
-      !validateDescription(inputs.description) ||
-      !validateUrl(inputs.urlImg) ||
-      !validateCategory(inputs.category)
-    ) {
-      Swal.fire("Oops!", "Some data is invalid", "error");
+    if (validateProductName(inputs.productName) !== 'ok') {
+      Swal.fire("Error!", `${validateProductName(inputs.productName)}`, "error");
+      return;
+    } else if(validatePrice(inputs.price) !== 'ok'){
+      Swal.fire("Error!", `${validatePrice(inputs.price)}`, "error");
+      return;
+    } else if(validateDescription(inputs.description) !== 'ok'){
+      Swal.fire("Error!", `${validateDescription(inputs.description)}`, "error");
+      return;
+    } else if(validateUrl(inputs.urlImg) !== 'ok'){
+      Swal.fire("Error!", `${validateUrl(inputs.urlImg)}`, "error");
+      return;
+    } else if(validateCategory(inputs.category) !== 'ok'){
+      Swal.fire("Error!", `${validateCategory(inputs.category)}`, "error");
       return;
     }
+
+
+    
 
     //Enviar los datos
     const newProduct = {

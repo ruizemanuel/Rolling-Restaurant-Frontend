@@ -54,17 +54,26 @@ const ProductEdit = ({ URL, getApi }) => {
 
     //console.log(productNameRef.current.value);
     //valido los campos
-    if (
-      !validateProductName(productNameRef.current.value) ||
-      !validatePrice(priceRef.current.value) ||
-      !validateDescription(descriptionRef.current.value) ||
-      !validateUrl(urlImgRef.current.value) ||
-      !validateCategory(product.category)
-    ) {
-      Swal.fire("Ops!", "Some data is invalid.", "error");
-      console.log(validateDescription(descriptionRef.current.value))
+
+
+
+    if (validateProductName(productNameRef.current.value) !== 'ok') {
+      Swal.fire("Error!", `${validateProductName(productNameRef.current.value)}`, "error");
+      return;
+    } else if(validatePrice(priceRef.current.value) !== 'ok'){
+      Swal.fire("Error!", `${validatePrice(priceRef.current.value)}`, "error");
+      return;
+    } else if(validateDescription(descriptionRef.current.value) !== 'ok'){
+      Swal.fire("Error!", `${validateDescription(descriptionRef.current.value)}`, "error");
+      return;
+    } else if(validateUrl(urlImgRef.current.value)  !== 'ok'){
+      Swal.fire("Error!", `${validateUrl(urlImgRef.current.value) }`, "error");
+      return;
+    } else if(validateCategory(product.category) !== 'ok'){
+      Swal.fire("Error!", `${validateCategory(product.category)}`, "error");
       return;
     }
+
     //guardar el objeto
     const productUpdated = {
       productName: productNameRef.current.value,
