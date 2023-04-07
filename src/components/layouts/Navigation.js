@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "../../config/axiosInit";
 import logo from "./LogoRolling.png"
 import "./navbar.css"
+import SearchBar from "./SearchBar";
 // import SearchComponent from "../helpers/SearchComponent";
 
 
-const Navigation = ({ loggedUser, setLoggedUser }) => {
+const Navigation = ({ loggedUser, setLoggedUser, products }) => {
 
   const [roles, setRoles] = useState(loggedUser.roles);
 
@@ -20,9 +21,9 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
   }, [loggedUser]);
 
   const getUsers = async () => {
-  
-      setRoles(loggedUser.roles)
-    
+
+    setRoles(loggedUser.roles)
+
   };
 
   roles?.includes('admin') && localStorage.setItem("is-authorized", JSON.stringify('true'));
@@ -42,17 +43,20 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
       <Navbar className="bg-red" expand="lg">
         <Container>
           <Navbar.Brand className="logo" href="/">
-          <img src={logo} alt="logo" className="logo"></img>
+            <img src={logo} alt="logo" className="logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto color-nav">
-            <form class="d-flex mx-5">
-          <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search"/>
-          <button class="btn btn-light" type="submit">Buscar</button>
-          {/* <SearchComponent />  */}
-           </form>
-         
+              <form class="d-flex mx-5">
+                {/* <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search"/>
+          <button class="btn btn-light" type="submit">Buscar</button> */}
+                {/* <SearchComponent />  */}
+                <div className="d-flex flex-column justify-content-center">
+                  <SearchBar placeholder="Enter a Product Name..." data={products} />
+                </div>
+              </form>
+
               <Link className="nav-link d-flex flex-column justify-content-center" to="/">
                 Home
               </Link>
@@ -83,9 +87,12 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                       Pedidos
                     </Link>
 
+                    <div className="d-flex flex-column justify-content-center">
                     <Button variant="dark" onClick={logout}>
                       Logout
                     </Button>
+                    </div>
+                    
                   </>
 
 
@@ -96,7 +103,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                   <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/login">
                     Login
                   </Link>
-               
+
                 </>
 
               )}

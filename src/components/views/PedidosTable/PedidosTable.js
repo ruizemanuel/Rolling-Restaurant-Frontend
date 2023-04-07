@@ -9,11 +9,16 @@ const PedidosTable = ({ }) => {
 
   const [habilitado, setHabilitado] = useState(false);
   const [error, setError] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedEfectivo, setIsCheckedEfectivo] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [spinner, setSpinnner] = useState(false);
   const [spinnerEnviar, setSpinnnerEnviar] = useState(false);
   const [pedidoBuscado, setPedidoBuscado] = useState({});
   const [spinnerBody, setSpinnnerBody] = useState(false);
+  const [pago, setPago] = useState('')
+
+  const navigate = useNavigate();
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
   const email = JSON.parse(localStorage.getItem("user-token")).email
@@ -58,6 +63,12 @@ const PedidosTable = ({ }) => {
   };
 
 
+  const handleChange = (event) => {
+    //setIsChecked(event.target.checked);
+    console.log('PAGO', event.target.getAttribute('value'))
+    setPago(event.target.getAttribute('value'))
+
+  };
 
   const handleError = async () => {
 
@@ -76,6 +87,13 @@ const PedidosTable = ({ }) => {
 
   const handleOrder = async () => {
 
+   if (pago.length === 0){
+    setError(true)
+    setErrorMessage('Por favor seleccione un medio de pago')
+    return
+   }
+
+   if(pago === 'efectivo'){
     const pedidoUpdated = {
       estado: "Pendiente"
     };
@@ -92,7 +110,7 @@ const PedidosTable = ({ }) => {
         Swal.fire("Updated!", "Your pedido has been delivered.", "success");
         getApi_pedidos();
         //setHabilitado(true)
-        //navigate("/pedidos");
+        //navigate("/pedidos/tarjeta");
       }
     } catch (error) {
       console.log(error);
@@ -100,6 +118,11 @@ const PedidosTable = ({ }) => {
     finally {
       setSpinnnerEnviar(false)
     }
+   } else{
+    navigate(`/pedidos/tarjeta/${pedidoBuscado._id}`);
+   }
+
+    
 
   }
 
@@ -234,6 +257,47 @@ const PedidosTable = ({ }) => {
                 <h5>Estado: {pedidoBuscado.estado}</h5>
 
 
+
+
+
+              </div>
+
+              <div className="d-flex justify-content-between mt-5">
+
+
+                {pedidoBuscado.estado === '-' ? (
+
+                  <div>
+
+                    <h5>Medio de pago:</h5>
+
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="pago" id="defaultCheck1" value="tarjeta"
+                        onChange={(e) => handleChange(e)} />
+                      <label className="form-check-label" htmlFor="defaultCheck1">
+                        Tarjeta
+                      </label>
+
+                    </div>
+
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="pago" id="defaultCheck2" value="efectivo"
+                        onChange={(e) => handleChange(e)} />
+                      <label className="form-check-label" htmlFor="defaultCheck2">
+                        Efectivo
+                      </label>
+
+                    </div>
+                  </div>
+                ) : (
+
+                  <div></div>
+                )}
+
+
+
+
+
                 {spinnerEnviar ? (
 
                   <div className="text-end">
@@ -269,9 +333,8 @@ const PedidosTable = ({ }) => {
                   )
 
                 )}
-
-
               </div>
+
 
             </>
           )

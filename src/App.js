@@ -20,6 +20,7 @@ import UserEdit from "./components/views/userEdit/userEdit";
 import PedidosTable from "./components/views/PedidosTable/PedidosTable";
 import PedidosTableAdmin from "./components/views/PedidosTableAdmin/PedidosTableAdmin";
 import PedidoAdminEdit from "./components/views/PedidoAdminEdit/PedidoAdminEdit";
+import CreditCardValidator from "./components/views/creditCardValidator/creditCardValidator";
 // import { enviarmail } from "./components/helpers/enviarMail";
 
 
@@ -56,7 +57,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Navigation loggedUser={loggedUser} setLoggedUser={setLoggedUser} />
+        <Navigation loggedUser={loggedUser} setLoggedUser={setLoggedUser} products={products} />
         <main>
           <Routes>
             <Route exact path="/" element={<Home products={products} />} />
@@ -155,6 +156,11 @@ function App() {
               exact
               path="/pedidos"
               element={<PedidosTable />}
+            />
+            <Route
+              exact
+              path="/pedidos/tarjeta/:id"
+              element={<CreditCardValidator />}
             />
             <Route
               exact
