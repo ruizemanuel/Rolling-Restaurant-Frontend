@@ -133,9 +133,10 @@ const Error404 = () => {
         </svg>
       </div>
       <div className="text-center">
-        <h2>¡Parece que hubo un error ☹ de vuelta a la pagina principal!!</h2>
+        <h2>Parece que hubo un error😢</h2>
+        <h2>Pulsa el boton Inicio para regresar a la página principal</h2>
         <br></br>
-        <Link to='/' className="delete-btn my-4 text-decoration-none text-center">Home</Link>
+        <Link to='/' className="delete-btn my-4 text-decoration-none text-center">Inicio</Link>
       </div>
       <br></br>
     </div>
