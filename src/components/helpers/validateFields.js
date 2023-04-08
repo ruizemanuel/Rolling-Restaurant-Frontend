@@ -21,11 +21,11 @@ export const validatePrice = (field) => {
     regExpPrice.test(field) &&
     field.trim() !== "" &&
     field.trim() > 0 &&
-    field.trim() < 2000
+    field.trim() < 10000
   ) {
     return 'ok';
   } else {
-    return 'El precio solo puede contener numeros menores a 2000';
+    return 'El precio solo puede contener numeros menores a 10000';
   }
 };
 

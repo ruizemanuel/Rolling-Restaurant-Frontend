@@ -108,6 +108,8 @@ const Login = ({ setLoggedUser }) => {
                   name="password"
                   value={inputs.password || ""}
                   onChange={(e) => handleChange(e)}
+                  required
+                  maxLength={20}
                 />
               </Form.Group>
               <div className="text-center py-3">

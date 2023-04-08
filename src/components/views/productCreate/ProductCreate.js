@@ -134,6 +134,8 @@ const ProductCreate = ({ URL, getApi }) => {
               name="productName"
               value={inputs.productName || ""}
               onChange={(e) => handleChange(e)}
+              required
+              maxLength={100}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -144,6 +146,8 @@ const ProductCreate = ({ URL, getApi }) => {
               name="price"
               value={inputs.price || ""}
               onChange={(e) => handleChange(e)}
+              required
+              maxLength={6}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicDescription">
@@ -154,6 +158,8 @@ const ProductCreate = ({ URL, getApi }) => {
               name="description"
               value={inputs.description || ""}
               onChange={(e) => handleChange(e)}
+              required
+              maxLength={200}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -164,6 +170,7 @@ const ProductCreate = ({ URL, getApi }) => {
               value={inputs.urlImg || ""}
               placeholder="Ej: https://media.istockphoto.com/photos/two-freshly-baked-french-id1277579771?k=20"
               onChange={(e) => handleChange(e)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">

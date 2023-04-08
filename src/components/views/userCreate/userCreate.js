@@ -122,6 +122,9 @@ const UserCreate = ({ }) => {
               name="name"
               value={inputs.name || ""}
               onChange={(e) => handleChange(e)}
+              required
+              minLength='5'
+              maxLength="100"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -132,6 +135,9 @@ const UserCreate = ({ }) => {
               name="email"
               value={inputs.email || ""}
               onChange={(e) => handleChange(e)}
+              required
+              minLength='5'
+              maxLength="100"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -142,6 +148,9 @@ const UserCreate = ({ }) => {
               name="password"
               value={inputs.password || ""}
               onChange={(e) => handleChange(e)}
+              required
+              minLength='8'
+              maxLength='20'
             // onChange={({ target }) => setPrice(target.value)}
             />
           </Form.Group>
@@ -153,6 +162,9 @@ const UserCreate = ({ }) => {
               name="passwordrep"
               value={inputs.passwordrep || ""}
               onChange={(e) => handleChange(e)}
+              required
+              minLength='8'
+              maxLength='20'
             />
           </Form.Group>
 

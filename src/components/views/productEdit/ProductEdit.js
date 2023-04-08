@@ -154,6 +154,8 @@ const ProductEdit = ({ URL, getApi }) => {
               placeholder="Ej: burger"
               defaultValue={product.productName}
               ref={productNameRef}
+              required
+              maxLength={100}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -163,6 +165,8 @@ const ProductEdit = ({ URL, getApi }) => {
               placeholder="Ej: 50"
               defaultValue={product.price}
               ref={priceRef}
+              required
+              maxLength={6}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicDescription">
@@ -172,6 +176,8 @@ const ProductEdit = ({ URL, getApi }) => {
               placeholder="Ej: Inserte la descripción del producto"
               defaultValue={product.description}
               ref={descriptionRef}
+              required
+              maxLength={200}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -181,6 +187,7 @@ const ProductEdit = ({ URL, getApi }) => {
               placeholder="Ej: https://media.istockphoto.com/photos/two-freshly-baked-french-id1277579771?k=20"
               defaultValue={product.urlImg}
               ref={urlImgRef}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
