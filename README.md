@@ -8,6 +8,8 @@ con efectivo o tarjeta
 
 En este proyecto se utilizan herramientas como React Router para manejar las rutas que nos permitan navegar entre las distintas páginas, MongoDB para almacenar los productos, usuarios y pedidos y Axios para hacer peticiones a nuestro backend.
 
+URL del proyecto: https://rolling-restaurant.netlify.app/
+
 ---
 
 ## Comandos
