@@ -31,6 +31,9 @@ https://github.com/ruizemanuel/Rolling-Restaurant-Backend
 Esta app utiliza las siguientes variables de entorno:
 
 REACT_APP_API_HAMBURGUESERIA
+
 REACT_APP_API_HAMBURGUESERIA_USUARIO
+
 REACT_APP_API_HAMBURGUESERIA_USERS
+
 REACT_APP_API_HAMBURGUESERIA_PEDIDOS
