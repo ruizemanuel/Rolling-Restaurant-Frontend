@@ -41,6 +41,9 @@ REACT_APP_API_HAMBURGUESERIA_PEDIDOS
 ## Autores
 
 👤 **Ruiz, Jose Emanuel**
+
 👤 **Diaz, Mariano**
+
 👤 **Valdez, Miguel**
+
 👤 **Sale, Ezequiel**
