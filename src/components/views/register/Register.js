@@ -81,7 +81,7 @@ const Register = ({ setLoggedUser }) => {
       const res = await axios.post(`${URL}/register`, newUser);
       console.log(res);
       if (res.status === 201) {
-        Swal.fire("Created!", "Your user has been created.", "success");
+        Swal.fire("Excelente!", "Ya puede iniciar sesión con tu email y contraseña.", "success");
         // const data = await res.json(); // si es con fetch
         const data = res.data
         console.log(data);
@@ -110,11 +110,11 @@ const Register = ({ setLoggedUser }) => {
   return (
     <div>
       <Container className="registerContainer py-5">
-        <h1 className="text-center">Register</h1>
+        <h1 className="text-center">Registro</h1>
         <hr />
         <Form className="my-5" onSubmit={handleSubmit} ref={form}>
           <Form.Group controlId="formBasicUserName">
-            <Form.Label>User name <span>*</span></Form.Label>
+            <Form.Label>Nombre de usuario <span>*</span></Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: Jose Paz"
@@ -144,10 +144,10 @@ const Register = ({ setLoggedUser }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password*</Form.Label>
+            <Form.Label>Contraseña*</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Ej: Ingrese su password"
+              placeholder="Ej: Ingrese su contraseña"
               minLength='5'
               maxLength='18'
               name="password"
@@ -158,10 +158,10 @@ const Register = ({ setLoggedUser }) => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPasswordRep">
-            <Form.Label>Repeat Password*</Form.Label>
+            <Form.Label>Repetir Contraseña*</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Ej: Repeat your password"
+              placeholder="Ej: Repita su contraseña"
               minLength='5'
               maxLength='18'
               name="passwordrep"
@@ -182,7 +182,7 @@ const Register = ({ setLoggedUser }) => {
             <div className="text-center">
               <button class="btn-primary text-light" type="button" disabled>
                 <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                Loading...
+                Cargando...
               </button>
             </div>
 
@@ -192,7 +192,7 @@ const Register = ({ setLoggedUser }) => {
           </div>
           )}
           <Link to="/auth/login" className="backHomeLink">
-            Back to login
+            Ir a Inciar sesión
           </Link>
           
           

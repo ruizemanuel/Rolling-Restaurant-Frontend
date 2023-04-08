@@ -12,13 +12,13 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estas seguro?',
+      text: "No podrás revertir los cambios!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete'
+      confirmButtonText: 'Borrar'
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -38,8 +38,8 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
 
           if (res.status === 200) {
             Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              'Eliminado!',
+              'Plato eliminado con éxito.',
               'success'
             )
             //volvemos a recargar la tabla
@@ -74,7 +74,7 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
               to={`/product/edit/${product._id}`}
               className="update-btn mx-1 text-decoration-none text-center"
             >
-              Update
+              Modificar
             </Link>
 
 
@@ -83,7 +83,7 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
               className="delete-btn mx-1"
               onClick={() => handleDelete(product._id)}
             >
-              Delete
+              Borrar
             </button>
 
 

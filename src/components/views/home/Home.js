@@ -11,10 +11,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Home = ({ products, spinner }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Todas");
 
 
-  const filteredProducts = selectedCategory === "All"
+  const filteredProducts = selectedCategory === "Todas"
     ? products
     : products.filter(product => product.category === selectedCategory);
 
@@ -69,8 +69,8 @@ const Home = ({ products, spinner }) => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item className={` ${selectedCategory === "All" ? 'active' : ''}`}
-                onClick={() => handleCategoryChange("All")}>
+              <Dropdown.Item className={` ${selectedCategory === "Todas" ? 'active' : ''}`}
+                onClick={() => handleCategoryChange("Todas")}>
                 Todas
               </Dropdown.Item>
               <Dropdown.Item className={` ${selectedCategory === "bebidas" ? 'active' : ''}`}

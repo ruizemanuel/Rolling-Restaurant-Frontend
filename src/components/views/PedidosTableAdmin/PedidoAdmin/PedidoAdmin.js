@@ -7,39 +7,6 @@ import axios from "../../../../config/axiosInit"
 const PedidoAdmin = ({ pedido, URL, getApi }) => {
 
 
-  /* const url = process.env.REACT_APP_API_HAMBURGUESERIA;
-  console.log(url);
- */
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete'
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const res = await axios.delete(`${URL}/${id}`);
-
-          if (res.status === 200) {
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-            //volvemos a recargar la tabla
-            getApi();
-          }
-        } catch (error) {
-          console.log(error);
-          //agregar cartel alert o modal al usuario con el error
-        }
-      }
-    })
-  };
 
   return (
     <tr>
@@ -56,7 +23,7 @@ const PedidoAdmin = ({ pedido, URL, getApi }) => {
                 to={`/pedido/edit/${pedido._id}`}
                 className="update-btn mx-1 text-decoration-none text-center"
               >
-                Update
+                Modificar
               </Link>
             ) : (
               <div className="update-btn mx-1 text-decoration-none text-center">

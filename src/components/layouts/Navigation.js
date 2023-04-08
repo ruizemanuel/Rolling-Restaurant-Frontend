@@ -48,29 +48,29 @@ const Navigation = ({ loggedUser, setLoggedUser, products }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto color-nav">
-             
-                <div className="mx-5 d-lg-flex flex-lg-column justify-content-lg-center d-sm-flex justify-content-sm-center d-flex justify-content-center">
-                  <SearchBar placeholder="Enter a Product Name..." data={products} />
-                </div>
-              
+
+              <div className="mx-5 d-lg-flex flex-lg-column justify-content-lg-center d-sm-flex justify-content-sm-center d-flex justify-content-center">
+                <SearchBar placeholder="Buscar..." data={products} />
+              </div>
+
 
               <Link className="nav-link d-flex flex-column justify-content-center" to="/">
-                Home
+                Inicio
               </Link>
               {loggedUser.email ? (
                 <>
                   {roles?.includes('admin') ? (
                     <>
                       <Link className="nav-link d-flex flex-column justify-content-center" to="/product/table">
-                        Manage Products
+                        Administrar Menú
                       </Link>
 
                       <Link className="nav-link d-flex flex-column justify-content-center" to="/user/table">
-                        Manage Users
+                        Administrar Usuarios
                       </Link>
 
                       <Link className="nav-link d-flex flex-column justify-content-center" to="/pedidos/table">
-                        Manage Pedidos
+                        Administrar Pedidos
                       </Link>
                     </>
 
@@ -85,11 +85,11 @@ const Navigation = ({ loggedUser, setLoggedUser, products }) => {
                     </Link>
 
                     <div className="d-flex flex-column justify-content-center">
-                    <Button variant="dark" onClick={logout}>
-                      Logout
-                    </Button>
+                      <Button variant="dark" onClick={logout}>
+                        Cerrar sesión
+                      </Button>
                     </div>
-                    
+
                   </>
 
 
@@ -98,7 +98,7 @@ const Navigation = ({ loggedUser, setLoggedUser, products }) => {
               ) : (
                 <>
                   <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/login">
-                    Login
+                    Inciar sesión
                   </Link>
 
                 </>

@@ -18,12 +18,12 @@ const ProductsTable = ({ products, URL, getApi }) => {
     <div>
       <Container className="py-5 containerTable">
         <div className="d-flex align-items-center justify-content-between">
-          <h1>Products Table</h1>
+          <h1>Administrar Menú</h1>
 
           {spinner ? (
 
             <div className="btn-primary text-decoration-none text-center text-light">
-              Add Product
+              Agregar un Menú
             </div>
 
           ) : (
@@ -31,7 +31,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
               to="/product/create"
               className="btn-primary text-decoration-none text-center text-light"
             >
-              Add Product
+              Agregar un Menú
             </Link>
 
           )}
@@ -55,13 +55,13 @@ const ProductsTable = ({ products, URL, getApi }) => {
             <Table bordered hover responsive className="align-middle mt-3 ">
               <thead>
                 <tr>
-                  <th>N.</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Image url</th>
-                  <th>Category</th>
-                  <th className="product-description">Description</th>
-                  <th>Actions</th>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>URL de la imagen</th>
+                  <th>Categoría</th>
+                  <th className="product-description">Descripción</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>

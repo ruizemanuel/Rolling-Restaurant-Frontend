@@ -24,7 +24,7 @@ const CardProduct = ({ product }) => {
               to={`/product/buy/${product._id}`}
               className="buy-btn text-decoration-none text-center"
             >
-              Buy
+              Comprar
             </Link>
           </div>
         </Card.Body>

@@ -18,7 +18,7 @@ function ContactUs() {
         <div className="container-fluid bg-light p-5">
             <Row>
                 <Col className="text-center">
-                    <h1> <span>Contact</span> Us</h1>
+                    <h1> <span>Comunicate</span> con nosotros</h1>
                     <p className="lead">¿Como podemos ayudarte?</p>
                 </Col>
             </Row>

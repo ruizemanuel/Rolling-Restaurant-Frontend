@@ -107,7 +107,7 @@ const PedidosTable = ({ }) => {
       console.log(res.data);
 
       if (res.status === 200) {
-        Swal.fire("Updated!", "Your pedido has been delivered.", "success");
+        Swal.fire("Excelente!", "Estamos preparando tu pedido.", "success");
         getApi_pedidos();
         //setHabilitado(true)
         //navigate("/pedidos/tarjeta");
@@ -128,13 +128,13 @@ const PedidosTable = ({ }) => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estas seguro?',
+      text: "No podrás revertir los cambios!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete'
+      confirmButtonText: 'Borrar'
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -144,8 +144,8 @@ const PedidosTable = ({ }) => {
 
           if (res.status === 200) {
             Swal.fire(
-              'Deleted!',
-              'Your pedido has been deleted.',
+              'Eliminado!',
+              'Has eliminado tu pedido',
               'success'
             )
             //volvemos a recargar la tabla
@@ -165,7 +165,7 @@ const PedidosTable = ({ }) => {
     <div>
       <Container className="py-5 pedidosContainer">
         <div className="d-flex align-items-center justify-content-between">
-          <h1>Pedidos Table</h1>
+          <h1>Mis pedidos</h1>
 
           {pedidoBuscado !== null ?
 
@@ -175,7 +175,7 @@ const PedidosTable = ({ }) => {
               <div className="text-end">
                 <button class="delete-btn text-light" type="button" disabled>
                   <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                  Loading...
+                  Cargando...
                 </button>
               </div>
 
@@ -303,7 +303,7 @@ const PedidosTable = ({ }) => {
                   <div className="text-end">
                     <button class="btn-primary text-light" type="button" disabled>
                       <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                      Loading...
+                      Cargando...
                     </button>
                   </div>
 

@@ -10,13 +10,13 @@ const Pedido = ({ habilitado, pedido, pedidoBuscado, URL, getApi, getSpinner, ha
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estas seguro?',
+      text: "No podrás revertir los cambios!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete'
+      confirmButtonText: 'Borrar'
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -37,8 +37,8 @@ const Pedido = ({ habilitado, pedido, pedidoBuscado, URL, getApi, getSpinner, ha
 
           if (res.status === 200) {
             Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              'Eliminado!',
+              'Has eliminado el producto de tu carrito',
               'success'
             )
             //volvemos a recargar la tabla

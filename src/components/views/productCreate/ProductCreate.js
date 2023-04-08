@@ -69,13 +69,13 @@ const ProductCreate = ({ URL, getApi }) => {
     };
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estas seguro?",
+      text: "No podrás revertir los cambios!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Save",
+      confirmButtonText: "Guardar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -91,8 +91,8 @@ const ProductCreate = ({ URL, getApi }) => {
 
           if (res.status === 201) {
             Swal.fire(
-              "Created",
-              "Your product has been created successfully",
+              "Agregado",
+              "Plato creado exitosamente",
               "success"
             );
             // resetear el formulario
@@ -122,12 +122,12 @@ const ProductCreate = ({ URL, getApi }) => {
   return (
     <div>
       <Container className="py-5">
-        <h1>Add Product</h1>
+        <h1>Agregar Plato</h1>
         <hr />
         {/* Form Product */}
         <Form className="my-5" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Product name*</Form.Label>
+            <Form.Label>Nombre*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: Café"
@@ -137,7 +137,7 @@ const ProductCreate = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Price*</Form.Label>
+            <Form.Label>Precio*</Form.Label>
             <Form.Control
               type="number"
               placeholder="Ej: 50"
@@ -147,7 +147,7 @@ const ProductCreate = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicDescription">
-            <Form.Label>Description*</Form.Label>
+            <Form.Label>Descripción*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: Inserte la descripción del producto"
@@ -157,7 +157,7 @@ const ProductCreate = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Image URL*</Form.Label>
+            <Form.Label>URL de la imagen*</Form.Label>
             <Form.Control
               type="text"
               name="urlImg"
@@ -167,13 +167,13 @@ const ProductCreate = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Label>Category*</Form.Label>
+            <Form.Label>Categoría*</Form.Label>
             <Form.Select
               name="category"
               value={inputs.category || ""}
               onChange={(e) => handleChange(e)}
             >
-              <option value="">Select an option</option>
+              <option value="">Selecciona una categoría</option>
               <option value="pizza">Pizza</option>
               <option value="hamburguesa">Hamburguesa</option>
               <option value="taco">Tacos</option>
@@ -189,7 +189,7 @@ const ProductCreate = ({ URL, getApi }) => {
             <div className="text-end">
               <button class="btn-primary text-light" type="button" disabled>
                 <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                Loading...
+                Cargando...
               </button>
             </div>
 

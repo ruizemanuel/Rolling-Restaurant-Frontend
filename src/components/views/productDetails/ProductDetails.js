@@ -72,7 +72,7 @@ const ProductDetails = ({ URL }) => {
           const res = await axios.post(URL_PEDIDOS, newPedido);
           console.log(res);
           if (res.status === 201) {
-            Swal.fire("Listo!", "Estamos preparando tu pedido.", "success");
+            Swal.fire("Listo!", "Revisa la sección Pedidos.", "success");
             // const data = await res.json(); // si es con fetch
             const data = res.data
             console.log('DESDE PRODUCT DETAIL', data);
@@ -101,7 +101,7 @@ const ProductDetails = ({ URL }) => {
           console.log(res.data);
 
           if (res.status === 200) {
-            Swal.fire("Updated!", "Your pedido has been updated.", "success");
+            Swal.fire("Actualizado!", "Tu carrito ha sido actualizado.", "success");
             //getApi();
             localStorage.setItem("pedido", JSON.stringify(pedidoUpdated));
             navigate("/");
@@ -146,7 +146,7 @@ const ProductDetails = ({ URL }) => {
                 <p className="mb-0 ms-4 fs-4 ">${product.price}</p>
 
                 <Button className="btn-gray text-decoration-none text-center" onClick={handlePedido}>
-                  Buy
+                  Comprar
                 </Button>
 
 

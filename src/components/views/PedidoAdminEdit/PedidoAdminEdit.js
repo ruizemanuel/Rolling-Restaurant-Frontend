@@ -72,11 +72,11 @@ const PedidoAdminEdit = ({ }) => {
     };
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estas seguro?",
+      text: "No podrás revertir los cambios!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Update",
+      confirmButtonText: "Modificar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -94,7 +94,7 @@ const PedidoAdminEdit = ({ }) => {
           console.log(res.data);
 
           if (res.status === 200) {
-            Swal.fire("Updated!", "Your pedido has been updated.", "success");
+            Swal.fire("Excelente!", "Pedido actualizado.", "success");
             //getApi();
             navigate("/pedidos/table");
           }
@@ -111,7 +111,7 @@ const PedidoAdminEdit = ({ }) => {
   return (
     <div>
       <Container className="py-5">
-        <h1>Edit Pedido</h1>
+        <h1>Modificar Pedido</h1>
         <hr />
         {/* Form Product */}
         <Form
@@ -147,7 +147,7 @@ const PedidoAdminEdit = ({ }) => {
             <div className="text-end">
               <button class="btn-primary text-light" type="button" disabled>
                 <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                Loading...
+                Cargando...
               </button>
             </div>
 

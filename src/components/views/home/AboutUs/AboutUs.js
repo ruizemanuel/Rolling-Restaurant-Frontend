@@ -6,7 +6,7 @@ function AboutUs() {
     return (
         <section id="about-us" className="py-5">
             <Container>
-                        <h1 className='text-center'> <span>About</span> Us</h1>
+                        <h1 className='text-center'> <span>Sobre</span> Nosotros</h1>
                 <Row id='rowAbout'>
                     <Col md={6}>
                         <Image className='imageRestaurant' src="https://images.pexels.com/photos/4913313/pexels-photo-4913313.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Rolling Restaurant" fluid rounded />

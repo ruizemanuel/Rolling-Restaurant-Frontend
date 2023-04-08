@@ -45,7 +45,7 @@ const Login = ({ setLoggedUser }) => {
 
 
 
-        Swal.fire("Logged!", "Your user has been logged.", "success");
+        Swal.fire("Bienvenido!", "Inicio de sesión exitoso.", "success");
         //const data = await res.json(); //si es con fetch
         const data = res.data;
         console.log(data);
@@ -85,7 +85,7 @@ const Login = ({ setLoggedUser }) => {
           </Col>
           <Col className="formLogin py-5">
             <div ><img src={logo} className="logoLogin pt-3"></img></div>
-            <h1 className="text-center">Login</h1>
+            <h1 className="text-center">Iniciar sesión</h1>
             <hr />
             <Form className="my-5" onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -101,7 +101,7 @@ const Login = ({ setLoggedUser }) => {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password*</Form.Label>
+                <Form.Label>Contraseña*</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="*****"

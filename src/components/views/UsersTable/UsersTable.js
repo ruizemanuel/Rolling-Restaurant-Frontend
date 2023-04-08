@@ -31,12 +31,12 @@ const UsersTable = ({ }) => {
     <div>
       <Container className="py-5 userContainer">
         <div className="d-flex align-items-center justify-content-between">
-          <h1>Users Table</h1>
+          <h1>Administrar usuarios</h1>
           <Link
             to="/user/create"
             className="delete-btn text-decoration-none text-center"
           >
-            Add User
+            Agregar usuario
           </Link>
         </div>
         <hr />
@@ -44,8 +44,8 @@ const UsersTable = ({ }) => {
         <Table bordered hover responsive className="align-middle mt-3">
           <thead>
             <tr>
-              <th>N.</th>
-              <th>Name</th>
+              <th>ID</th>
+              <th>Nombre</th>
               <th>Email</th>
               <th>Estado</th>
             </tr>

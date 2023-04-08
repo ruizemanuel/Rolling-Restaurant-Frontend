@@ -12,8 +12,8 @@ const CarouselHome = () => {
             alt="hamburguesa"
           />
           <Carousel.Caption className="text-danger">
-            <h3>The best burger!</h3>
-            <p>Enjoy an unforgettable taste.</p>
+            <h3>La mejor hamburguesa!</h3>
+            <p>Disfruta un sabor inigualable.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>

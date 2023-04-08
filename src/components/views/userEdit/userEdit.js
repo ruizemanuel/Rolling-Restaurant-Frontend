@@ -81,11 +81,11 @@ const UserEdit = ({ }) => {
     console.log('ROLESREF', userUpdated)
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estas seguro?",
+      text: "No podrás revertir los cambios!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Update",
+      confirmButtonText: "Modificar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -102,7 +102,7 @@ const UserEdit = ({ }) => {
           console.log(res.data);
 
           if (res.status === 200) {
-            Swal.fire("Updated!", "Your file has been updated.", "success");
+            Swal.fire("Modificado!", "Usuario modificado con éxito", "success");
             //getApi_users();
             navigate("/user/table");
           }
@@ -119,7 +119,7 @@ const UserEdit = ({ }) => {
   return (
     <div>
       <Container className="py-5">
-        <h1>Edit User</h1>
+        <h1>Modificar usuario</h1>
         <hr />
         {/* Form Product */}
         <Form
@@ -178,7 +178,7 @@ const UserEdit = ({ }) => {
             <div className="text-end">
               <button class="btn-primary text-light" type="button" disabled>
                 <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                Loading...
+                Cargando...
               </button>
             </div>
 

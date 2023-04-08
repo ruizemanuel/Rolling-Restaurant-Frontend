@@ -62,13 +62,13 @@ const UserCreate = ({ }) => {
     };
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estas seguro?",
+      text: "No podrás revertir los cambios!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Save",
+      confirmButtonText: "Guardar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -79,8 +79,8 @@ const UserCreate = ({ }) => {
 
           if (res.status === 201) {
             Swal.fire(
-              "Created",
-              "Your product has been created successfully",
+              "Excelente!",
+              "Usuario creado con éxito",
               "success"
             );
             // resetear el formulario
@@ -110,12 +110,12 @@ const UserCreate = ({ }) => {
   return (
     <div>
       <Container className="py-5">
-        <h1>Add User</h1>
+        <h1>Agregar usuario</h1>
         <hr />
         {/* Form Product */}
         <Form className="my-5" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicUserName">
-            <Form.Label>User name*</Form.Label>
+            <Form.Label>Nombre de usuario*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: John Doe"
@@ -135,10 +135,10 @@ const UserCreate = ({ }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password*</Form.Label>
+            <Form.Label>Contraseña*</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Ej: Ingrese su password"
+              placeholder="Ej: Ingrese su contraseña"
               name="password"
               value={inputs.password || ""}
               onChange={(e) => handleChange(e)}
@@ -146,10 +146,10 @@ const UserCreate = ({ }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPasswordRep">
-            <Form.Label>Repeat Password*</Form.Label>
+            <Form.Label>Repetir Contraseña*</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Ej: Repeat your password"
+              placeholder="Ej: Repita su contraseña"
               name="passwordrep"
               value={inputs.passwordrep || ""}
               onChange={(e) => handleChange(e)}
@@ -162,7 +162,7 @@ const UserCreate = ({ }) => {
             <div className="text-end">
               <button class="btn-primary text-light" type="button" disabled>
                 <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                Loading...
+                Cargando...
               </button>
             </div>
 

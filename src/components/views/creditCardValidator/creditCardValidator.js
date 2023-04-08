@@ -65,7 +65,7 @@ const CreditCardValidator = ({ }) => {
       console.log(res.data);
 
       if (res.status === 200) {
-        Swal.fire("Updated!", "Your pedido has been delivered.", "success");
+        Swal.fire("Excelente!", "Estamos preparando tu pedido", "success");
         //getApi_pedidos();
         //setHabilitado(true)
         navigate("/pedidos");

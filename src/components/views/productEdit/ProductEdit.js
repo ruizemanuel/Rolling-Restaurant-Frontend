@@ -84,11 +84,11 @@ const ProductEdit = ({ URL, getApi }) => {
     };
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "¿Estas seguro?",
+      text: "No podrás revertir los cambios!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Update",
+      confirmButtonText: "Modificar",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -116,7 +116,7 @@ const ProductEdit = ({ URL, getApi }) => {
           console.log(res.data);
 
           if (res.status === 200) {
-            Swal.fire("Updated!", "Your file has been updated.", "success");
+            Swal.fire("Excelente!", "Plato actualizado", "success");
             getApi();
             navigate("/product/table");
           }
@@ -140,7 +140,7 @@ const ProductEdit = ({ URL, getApi }) => {
   return (
     <div>
       <Container className="py-5">
-        <h1>Edit Product</h1>
+        <h1>Modificar Plato</h1>
         <hr />
         {/* Form Product */}
         <Form
@@ -148,7 +148,7 @@ const ProductEdit = ({ URL, getApi }) => {
           onSubmit={handleSubmit}
         >
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Product name*</Form.Label>
+            <Form.Label>Nombre*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: burger"
@@ -157,7 +157,7 @@ const ProductEdit = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Price*</Form.Label>
+            <Form.Label>Precio*</Form.Label>
             <Form.Control
               type="number"
               placeholder="Ej: 50"
@@ -166,7 +166,7 @@ const ProductEdit = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicDescription">
-            <Form.Label>Description*</Form.Label>
+            <Form.Label>Descripción*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: Inserte la descripción del producto"
@@ -175,7 +175,7 @@ const ProductEdit = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Image URL*</Form.Label>
+            <Form.Label>URL de la imagen*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Ej: https://media.istockphoto.com/photos/two-freshly-baked-french-id1277579771?k=20"
@@ -184,12 +184,12 @@ const ProductEdit = ({ URL, getApi }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Label>Category*</Form.Label>
+            <Form.Label>Categoría*</Form.Label>
             <Form.Select
               value={product.category}
               onChange={({ target }) => setProduct({ ...product, category: target.value })}
             >
-              <option value="">Select an option</option>
+              <option value="">Selecciona una categoría</option>
               <option value="pizza">Pizza</option>
               <option value="hamburguesa">Hamburguesa</option>
               <option value="taco">Tacos</option>
@@ -206,14 +206,14 @@ const ProductEdit = ({ URL, getApi }) => {
             <div className="text-end">
               <button class="btn-primary text-light" type="button" disabled>
                 <span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                Loading...
+                Cargando...
               </button>
             </div>
 
           ) : (
 
             <div className="text-end">
-            <button className="btn-primary">Actualizar</button>
+            <button className="btn-primary text-light">Actualizar</button>
           </div>
 
           )}
