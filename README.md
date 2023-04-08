@@ -22,7 +22,7 @@ npm i
 ### Para ejecutar nuestra app de react
 npm start
 
-### Para ejecutar nuestra base de datos descargar el backend desde:
+### Descargar el backend desde:
 https://github.com/ruizemanuel/Rolling-Restaurant-Backend
 
 ---
