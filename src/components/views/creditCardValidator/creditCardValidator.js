@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
 
-const CreditCardValidator = ({ }) => {
+const CreditCardValidator = () => {
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
 
@@ -30,13 +30,10 @@ const CreditCardValidator = ({ }) => {
   const [focus, setFocus] = useState('');
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  //const [habilitado, setHabilitado] = useState(false);
   const [spinnerEnviar, setSpinnnerEnviar] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log('ERROR', erroredInputs.cardNumber)
 
     if (erroredInputs.cardNumber) {
       setError(true)
@@ -58,16 +55,11 @@ const CreditCardValidator = ({ }) => {
 
     try {
       setSpinnnerEnviar(true)
-      //setHabilitado(true)
 
       const res = await axios.put(`${URL}/${id}`, pedidoUpdated)
 
-      console.log(res.data);
-
       if (res.status === 200) {
         Swal.fire("Excelente!", "Estamos preparando tu pedido", "success");
-        //getApi_pedidos();
-        //setHabilitado(true)
         navigate("/pedidos");
       }
     } catch (error) {

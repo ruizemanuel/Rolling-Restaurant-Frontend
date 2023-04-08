@@ -44,7 +44,6 @@ const Register = ({ setLoggedUser }) => {
   //Funcion para crear el producto
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
 
     //validar los campos usando las validaciones de Bootstrap
     const isValidForm = form.current.checkValidity();
@@ -70,23 +69,13 @@ const Register = ({ setLoggedUser }) => {
       activo: true
     };
     try {
-      /* const res = await fetch(`${URL}/register`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newUser),
-          }); */
+
       setSpinnner(true)
       const res = await axios.post(`${URL}/register`, newUser);
-      console.log(res);
+
       if (res.status === 201) {
-        Swal.fire("Excelente!", "Ya puede iniciar sesión con tu email y contraseña.", "success");
-        // const data = await res.json(); // si es con fetch
-        const data = res.data
-        console.log(data);
-        //localStorage.setItem("user-token", JSON.stringify(data));
-        //setLoggedUser(data);
+        Swal.fire("Excelente!", "Ya puedes iniciar sesión con tu email y contraseña.", "success");
+
         navigate("/auth/login");
       }
     } catch (error) {
@@ -187,15 +176,19 @@ const Register = ({ setLoggedUser }) => {
             </div>
 
           ) : (
-          <div className="text-center">
-            <button className="btnRegister">Registrarse</button>
-          </div>
+            <div className="text-center">
+              <button className="btnRegister">Registrarse</button>
+            </div>
           )}
-          <Link to="/auth/login" className="backHomeLink">
-            Ir a Inciar sesión
-          </Link>
-          
-          
+
+          {spinner ? (
+            <div></div>
+          ) : (
+            <Link to="/auth/login" className="backHomeLink">
+              Ir a Inciar sesión
+            </Link>
+          )}
+
         </Form>
         {error ? (
           <Alert variant="danger" onClick={() => setError(false)} dismissible>

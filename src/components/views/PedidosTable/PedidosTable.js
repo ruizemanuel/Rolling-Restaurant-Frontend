@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Container, Table } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Pedido from "./Pedido/Pedido";
 import axios from "../../../config/axiosInit"
 import Swal from "sweetalert2";
 
-const PedidosTable = ({ }) => {
+const PedidosTable = () => {
 
   const [habilitado, setHabilitado] = useState(false);
   const [error, setError] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [isCheckedEfectivo, setIsCheckedEfectivo] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [spinner, setSpinnner] = useState(false);
   const [spinnerEnviar, setSpinnnerEnviar] = useState(false);
@@ -64,10 +62,7 @@ const PedidosTable = ({ }) => {
 
 
   const handleChange = (event) => {
-    //setIsChecked(event.target.checked);
-    console.log('PAGO', event.target.getAttribute('value'))
     setPago(event.target.getAttribute('value'))
-
   };
 
   const handleError = async () => {
@@ -104,13 +99,9 @@ const PedidosTable = ({ }) => {
 
       const res = await axios.put(`${URL}/${pedidoBuscado._id}`, pedidoUpdated)
 
-      console.log(res.data);
-
       if (res.status === 200) {
         Swal.fire("Excelente!", "Estamos preparando tu pedido.", "success");
         getApi_pedidos();
-        //setHabilitado(true)
-        //navigate("/pedidos/tarjeta");
       }
     } catch (error) {
       console.log(error);

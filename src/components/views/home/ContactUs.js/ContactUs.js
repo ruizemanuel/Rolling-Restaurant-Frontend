@@ -2,7 +2,6 @@ import React from "react";
 import "./contact-us.css";
 import { Row, Col, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import {
@@ -13,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function ContactUs() {
-    const position = [-26.8241, -65.2226]; // San Miguel de Tucumán
+    
     return (
         <div className="container-fluid bg-light p-5">
             <Row>

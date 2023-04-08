@@ -5,12 +5,10 @@ import AboutUs from "./AboutUs/AboutUs";
 import Testimonials from "./Testimonials/Testimonial";
 import CarouselHome from "./carouselHome/CarouselHome";
 import ContactUs from "./ContactUs.js/ContactUs";
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = ({ products, spinner }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const itemsPerPage = 4
   const [selectedCategory, setSelectedCategory] = useState("Todas");
 
 

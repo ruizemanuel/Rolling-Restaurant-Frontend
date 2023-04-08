@@ -10,7 +10,6 @@ function SearchBar({ placeholder, data }) {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
         const newFilter = data.filter((value) => {
-            console.log('EL VALUE', value.productName.toLowerCase())
             return value.productName.toLowerCase().includes(searchWord.toLowerCase());
         });
 

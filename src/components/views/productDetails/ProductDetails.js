@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 import Swal from "sweetalert2";
 import "./productDetail.css"
@@ -45,18 +45,12 @@ const ProductDetails = ({ URL }) => {
 
   const handlePedido = async (e) => {
     e.preventDefault();
-
-    console.log('EMAIL', email)
     if (email === undefined) {
       Swal.fire("Error!", "Inicia sesion para hacer un pedido", "error");
       navigate("/auth/login");
     } else {
 
       const pedidoBuscado = await getApi_pedidos()
-
-
-      //const pedidoBuscado = pedidos?.find((pedido) => pedido.uid === uid);
-      console.log('HOLA DESDE DETALLE', pedidoBuscado);
 
       if (pedidoBuscado === null) {
         const newPedido = {
@@ -66,16 +60,10 @@ const ProductDetails = ({ URL }) => {
           total: product.price
         };
 
-        console.log("DESDE PEDIDO", newPedido)
-
         try {
           const res = await axios.post(URL_PEDIDOS, newPedido);
-          console.log(res);
           if (res.status === 201) {
             Swal.fire("Listo!", "Revisa la sección Pedidos.", "success");
-            // const data = await res.json(); // si es con fetch
-            const data = res.data
-            console.log('DESDE PRODUCT DETAIL', data);
             localStorage.setItem("pedido", JSON.stringify(newPedido));
             navigate("/");
           }
@@ -98,11 +86,8 @@ const ProductDetails = ({ URL }) => {
 
           const res = await axios.put(`${URL_PEDIDOS}/${pedidoBuscado._id}`, pedidoUpdated)
 
-          console.log(res.data);
-
           if (res.status === 200) {
             Swal.fire("Actualizado!", "Tu carrito ha sido actualizado.", "success");
-            //getApi();
             localStorage.setItem("pedido", JSON.stringify(pedidoUpdated));
             navigate("/");
           }

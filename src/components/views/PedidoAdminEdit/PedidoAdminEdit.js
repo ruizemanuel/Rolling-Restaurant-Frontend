@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import axios from "../../../config/axiosInit"
 
-const PedidoAdminEdit = ({ }) => {
+const PedidoAdminEdit = () => {
   //State
 
   const [isChecked, setIsChecked] = useState(false);
@@ -20,7 +20,7 @@ const PedidoAdminEdit = ({ }) => {
   //Navigate
   const navigate = useNavigate();
 
-  //llamado a la Api para obtener el usuario por su id
+
 
   useEffect(() => {
     getOne();
@@ -28,14 +28,11 @@ const PedidoAdminEdit = ({ }) => {
 
   const getOne = async () => {
     try {
-      //la peticion con fetch
-      //  const res = await fetch(`${URL}/${id}`);
-      // const userApi = await res.json(); 
+      
 
       //la peticion con Axios
       const res = await axios.get(`${URL}/${id}`);
       const pedidoApi = res.data;
-      //setUser(userApi)
       if (pedidoApi.estado === 'Pendiente') {
         setIsChecked(false)
       } else {
@@ -50,12 +47,6 @@ const PedidoAdminEdit = ({ }) => {
   };
 
 
-  console.log('CHECKED', isChecked)
-
-  // if(user.roles.includes('admin')){
-  //   rolesRef.current = true
-  // }
-
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
 
@@ -63,8 +54,6 @@ const PedidoAdminEdit = ({ }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    //console.log(productNameRef.current.value);
 
     //guardar el objeto
     const pedidoUpdated = {
@@ -81,21 +70,11 @@ const PedidoAdminEdit = ({ }) => {
       if (result.isConfirmed) {
         try {
           setSpinnner(true)
-          /* const res = await fetch(`${URL}/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productUpdated),
-          }); */
-
+ 
           const res = await axios.put(`${URL}/${id}`, pedidoUpdated);
-
-          console.log(res.data);
 
           if (res.status === 200) {
             Swal.fire("Excelente!", "Pedido actualizado.", "success");
-            //getApi();
             navigate("/pedidos/table");
           }
         } catch (error) {
@@ -165,23 +144,3 @@ const PedidoAdminEdit = ({ }) => {
 };
 
 export default PedidoAdminEdit;
-
-
-
-
-
-{/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Label>Category*</Form.Label>
-            <Form.Select
-             value={product.category}
-             onChange={({ target })=> setProduct({...product, category: target.value })}
-            >
-              <option value="">Select an option</option>
-              <option value="de-carne">de Carne</option>
-              <option value="de-cerdo">de Cerdo</option>
-              <option value="de-pollo">de Pollo</option>
-              <option value="veganas">Veganas</option>
-              <option value="bebidas">Bebidas</option>
-              <option value="postre">Postre</option>
-            </Form.Select>
-          </Form.Group> */}

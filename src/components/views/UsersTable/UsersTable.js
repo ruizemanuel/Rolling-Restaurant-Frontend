@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import User from "./User/User";
 import axios from '../../../config/axiosInit'
 
-const UsersTable = ({ }) => {
+const UsersTable = () => {
 
   const [users, setUsers] = useState([]);
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;

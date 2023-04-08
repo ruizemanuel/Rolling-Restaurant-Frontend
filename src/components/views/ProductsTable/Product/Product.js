@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../../config/axiosInit"
 
 const Product = ({ product, URL, getApi, getSpinner }) => {
-
-
-  /* const url = process.env.REACT_APP_API_HAMBURGUESERIA;
-  console.log(url);
- */
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -23,14 +18,6 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
       if (result.isConfirmed) {
         try {
           getSpinner(true)
-          //consulta delete con fetch
-          /* const res = await fetch(`${URL}/${id}`,{
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          });
-           */
           //consulta delete con axios
 
           const res = await axios.delete(`${URL}/${id}`);

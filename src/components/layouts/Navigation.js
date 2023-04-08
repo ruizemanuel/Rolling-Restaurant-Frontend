@@ -2,11 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../../config/axiosInit";
 import logo from "./LogoRolling.png"
 import "./navbar.css"
 import SearchBar from "./SearchBar";
-// import SearchComponent from "../helpers/SearchComponent";
 
 
 const Navigation = ({ loggedUser, setLoggedUser, products }) => {
@@ -14,7 +12,6 @@ const Navigation = ({ loggedUser, setLoggedUser, products }) => {
   const [roles, setRoles] = useState(loggedUser.roles);
 
   const navigate = useNavigate()
-  console.log('LOGGED', loggedUser)
 
   useEffect(() => {
     getUsers();

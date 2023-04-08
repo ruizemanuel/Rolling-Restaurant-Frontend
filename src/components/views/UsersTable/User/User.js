@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import axios from "../../../../config/axiosInit"
 
 
 const User = ({ user, URL_usuarios, getApi_users }) => {
 
   const email = JSON.parse(localStorage.getItem("user-token")).email
-
-  console.log('DESDE USER', email)
-
 
   return (
     <tr>

@@ -28,7 +28,7 @@
   }
   
   .card-text {
-    height: 50px; /* ajusta la altura del contenido de la card según tus necesidades */
+    height: 50px; 
     overflow: hidden;
   }
   

@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import axios from "../../../../config/axiosInit"
 
 
 const PedidoAdmin = ({ pedido, URL, getApi }) => {

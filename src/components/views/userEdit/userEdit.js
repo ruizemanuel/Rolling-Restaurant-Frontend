@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import axios from "../../../config/axiosInit"
 
-const UserEdit = ({ }) => {
+const UserEdit = () => {
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USERS;
   //State
@@ -36,7 +36,6 @@ const UserEdit = ({ }) => {
       //la peticion con Axios
       const res = await axios.get(`${URL}/${id}`);
       const userApi = res.data;
-      //setUser(userApi)
       userApi.roles.includes('admin') && setUserAdmin(true);
       setIsChecked(userApi.activo)
       rolesRef = userApi.roles
@@ -45,9 +44,6 @@ const UserEdit = ({ }) => {
       console.log(error);
     }
   };
-
-
-  console.log('CHECKED', isChecked)
 
   const handleChange = (event) => {
     setIsChecked(event.target.checked);
@@ -78,8 +74,6 @@ const UserEdit = ({ }) => {
       roles: rolesRef,
     };
 
-    console.log('ROLESREF', userUpdated)
-
     Swal.fire({
       title: "¿Estas seguro?",
       text: "No podrás revertir los cambios!",
@@ -98,12 +92,8 @@ const UserEdit = ({ }) => {
             }
           });
 
-
-          console.log(res.data);
-
           if (res.status === 200) {
             Swal.fire("Modificado!", "Usuario modificado con éxito", "success");
-            //getApi_users();
             navigate("/user/table");
           }
         } catch (error) {

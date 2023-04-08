@@ -55,16 +55,11 @@ const ProductCreate = ({ URL, getApi }) => {
 
     //Enviar los datos
     const newProduct = {
-      /*productName,
-      price,
-      urlImg,
-      category, */
       productName: inputs.productName,
       price: inputs.price,
       description: inputs.description,
       urlImg: inputs.urlImg,
       category: inputs.category,
-      description: inputs.description,
 
     };
 
@@ -87,7 +82,6 @@ const ProductCreate = ({ URL, getApi }) => {
                 .token,
             },
           });
-          console.log(res);
 
           if (res.status === 201) {
             Swal.fire(
@@ -96,7 +90,7 @@ const ProductCreate = ({ URL, getApi }) => {
               "success"
             );
             // resetear el formulario
-            e.target.reset(); //el e.target en este caso por el submit es el form
+            e.target.reset();
             //recarga la tabla
             getApi();
             //navega hasta la productsTable

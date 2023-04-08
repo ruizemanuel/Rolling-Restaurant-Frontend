@@ -24,11 +24,10 @@ const Login = ({ setLoggedUser }) => {
   //useNavigate
   const navigate = useNavigate();
 
- 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
     //Valido los campos
 
     //Envio los datos
@@ -46,23 +45,21 @@ const Login = ({ setLoggedUser }) => {
 
 
         Swal.fire("Bienvenido!", "Inicio de sesión exitoso.", "success");
-        //const data = await res.json(); //si es con fetch
         const data = res.data;
-        console.log(data);
 
         //guardar en localStorage el token
-        if(data.roles.includes('admin')){
+        if (data.roles.includes('admin')) {
           localStorage.setItem("user-token", JSON.stringify(data));
-          setLoggedUser(data); 
-        } else{
+          setLoggedUser(data);
+        } else {
           delete data['token'];
           localStorage.setItem("user-token", JSON.stringify(data));
           setLoggedUser(data);
         }
 
 
-        
-        
+
+
         navigate("/");
       }
     } catch (error) {
@@ -84,7 +81,7 @@ const Login = ({ setLoggedUser }) => {
           <Col className="imgLogin">
           </Col>
           <Col className="formLogin py-5">
-            <div ><img src={logo} className="logoLogin pt-3"></img></div>
+            <div ><img src={logo} alt="logo" className="logoLogin pt-3"></img></div>
             <h1 className="text-center">Iniciar sesión</h1>
             <hr />
             <Form className="my-5" onSubmit={handleSubmit}>
@@ -112,15 +109,32 @@ const Login = ({ setLoggedUser }) => {
                   maxLength={20}
                 />
               </Form.Group>
-              <div className="text-center py-3">
-                <button className="btn-login">Ingresar</button>
-              </div>
-              <div className="text-center"> <p>No tienes cuenta? <Link
-                to="/auth/register"
-                className="btn-register">
-                <span className="registerLink">Registrate</span>
+              {spinner ? (
+                <div class="text-center">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-3">
+                  <button className="btn-login">Ingresar</button>
+                </div>
+              )
+              }
 
-              </Link> </p></div>
+              {spinner ? (
+                <div></div>
+              ) : (
+                <div className="text-center"> <p>No tienes cuenta? <Link
+                  to="/auth/register"
+                  className="btn-register">
+                  <span className="registerLink">Registrate</span>
+
+                </Link>
+                </p>
+                </div>
+              )
+              }
 
             </Form>
             {error ? (

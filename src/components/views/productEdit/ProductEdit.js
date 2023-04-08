@@ -35,10 +35,6 @@ const ProductEdit = ({ URL, getApi }) => {
 
   const getOne = async () => {
     try {
-      //la peticion con fetch
-      /* const res = await fetch(`${URL}/${id}`);
-      const productApi = await res.json(); */
-
       //la peticion con Axios
       const res = await axios.get(`${URL}/${id}`);
       const productApi = res.data;
@@ -52,11 +48,7 @@ const ProductEdit = ({ URL, getApi }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //console.log(productNameRef.current.value);
     //valido los campos
-
-
-
     if (validateProductName(productNameRef.current.value) !== 'ok') {
       Swal.fire("Error!", `${validateProductName(productNameRef.current.value)}`, "error");
       return;
@@ -93,16 +85,6 @@ const ProductEdit = ({ URL, getApi }) => {
       if (result.isConfirmed) {
         try {
           setSpinnner(true)
-          /* const res = await fetch(`${URL}/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(productUpdated),
-          }); */
-
-          //const res = await axios.put(`${URL}/${id}`,productUpdated);
-
           const res = await axios.put(`${URL}/${id}`, productUpdated, {
             headers: {
               "Content-Type": "application/json",
@@ -110,10 +92,6 @@ const ProductEdit = ({ URL, getApi }) => {
                 .token,
             },
           });
-
-
-
-          console.log(res.data);
 
           if (res.status === 200) {
             Swal.fire("Excelente!", "Plato actualizado", "success");

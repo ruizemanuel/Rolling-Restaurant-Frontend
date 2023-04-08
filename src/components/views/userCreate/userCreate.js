@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 
-const UserCreate = ({ }) => {
+const UserCreate = () => {
 
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
 
@@ -75,7 +75,6 @@ const UserCreate = ({ }) => {
           setSpinnner(true)
           //la petición con Axios
           const res = await axios.post(`${URL}/register`, newUser);
-          console.log(res);
 
           if (res.status === 201) {
             Swal.fire(
@@ -84,9 +83,8 @@ const UserCreate = ({ }) => {
               "success"
             );
             // resetear el formulario
-            e.target.reset(); //el e.target en este caso por el submit es el form
-            //recarga la tabla
-            //getApi_users();
+            e.target.reset();
+          
             //navega hasta la productsTable
             navigate("/user/table");
           }
@@ -151,7 +149,6 @@ const UserCreate = ({ }) => {
               required
               minLength='8'
               maxLength='20'
-            // onChange={({ target }) => setPrice(target.value)}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPasswordRep">
