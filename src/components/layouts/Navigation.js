@@ -48,14 +48,11 @@ const Navigation = ({ loggedUser, setLoggedUser, products }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto color-nav">
-              <form class="d-flex mx-5">
-                {/* <input class="form-control me-2" type="search" placeholder="Buscar Menu" aria-label="Search"/>
-          <button class="btn btn-light" type="submit">Buscar</button> */}
-                {/* <SearchComponent />  */}
-                <div className="d-flex flex-column justify-content-center">
+             
+                <div className="mx-5 d-lg-flex flex-lg-column justify-content-lg-center d-sm-flex justify-content-sm-center d-flex justify-content-center">
                   <SearchBar placeholder="Enter a Product Name..." data={products} />
                 </div>
-              </form>
+              
 
               <Link className="nav-link d-flex flex-column justify-content-center" to="/">
                 Home
