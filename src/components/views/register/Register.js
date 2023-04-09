@@ -4,10 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "../../../config/axiosInit";
 import emailjs from '@emailjs/browser';
+import {
+  validateUserName,
+  validateEmail,
+  validatePassword
+} from "../../helpers/validateFields";
 import "./register.css"
 
 
-const Register = ({ setLoggedUser }) => {
+const Register = () => {
   const [inputs, setInputs] = useState({});
   const [spinner, setSpinnner] = useState(false);
   const [error, setError] = useState(false);
@@ -15,22 +20,9 @@ const Register = ({ setLoggedUser }) => {
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA_USUARIO
 
 
-  const handleResetValidation = () => {
-    form.current.classList.remove('was-validated');
-  };
-
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-
-    handleResetValidation();
-
-    if (name === "name" && /[^a-zA-Z\s]/.test(value)) {
-      setErrorMessage("No se permiten números o símbolos como nombre de usuario");
-    } else {
-      setErrorMessage("");
-    }
 
     setInputs((values) => ({ ...values, [name]: value }));
   };
@@ -45,19 +37,20 @@ const Register = ({ setLoggedUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //validar los campos usando las validaciones de Bootstrap
-    const isValidForm = form.current.checkValidity();
-    form.current.classList.add('was-validated');
-
-    if (!isValidForm) {
+    if (validateUserName(inputs.name) !== 'ok') {
+      Swal.fire("Error!", `${validateUserName(inputs.name)}`, "error");
       return;
-
-    }
-    if (inputs.password !== inputs.passwordrep) {
-      setErrorMessage("Las contraseñas no coinciden");
-      setError(true);
+    } else if (validateEmail(inputs.email) !== 'ok') {
+      Swal.fire("Error!", `${validateEmail(inputs.email)}`, "error");
+      return;
+    } else if (validatePassword(inputs.password) !== 'ok') {
+      Swal.fire("Error!", `${validatePassword(inputs.password)}`, "error");
+      return;
+    } else if (validatePassword(inputs.passwordrep) !== 'ok') {
+      Swal.fire("Error!", `${validatePassword(inputs.passwordrep)}`, "error");
       return;
     }
+
 
     //Envio los datos para guardarlos
     const newUser = {
@@ -113,7 +106,7 @@ const Register = ({ setLoggedUser }) => {
               required
               value={inputs.name || ""}
               onChange={(e) => handleChange(e)}
-              isInvalid={inputs.name && /[^a-zA-Z\s]/.test(inputs.name)}
+              isInvalid={inputs.name && !/^[A-Za-z\s?]+$/.test(inputs.name)}
             />
             <Form.Control.Feedback type="invalid">
               No se permiten números o simbolos como nombre de usuario
