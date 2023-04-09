@@ -6,7 +6,7 @@ de los pedidos hechos por los usuarios de pendiente a realizado
 El usuario que no es administrador puede seleccionar productos de la pagina, agregarlos a un carrito, eliminarlos, vaciar el carrito y pagar su compra
 con efectivo o tarjeta
 
-En este proyecto se utilizan herramientas como React Router para manejar las rutas que nos permitan navegar entre las distintas páginas, MongoDB para almacenar los productos, usuarios y pedidos y Axios para hacer peticiones a nuestro backend.
+En este proyecto se utilizan herramientas como React Router para manejar las rutas que nos permitan navegar entre las distintas páginas, MongoDB para almacenar los productos, usuarios y pedidos, emailjs para enviar un mail al usuario informando de su registro en la pagina y Axios para hacer peticiones a nuestro backend.
 
 URL del proyecto: https://rolling-restaurant.netlify.app/
 

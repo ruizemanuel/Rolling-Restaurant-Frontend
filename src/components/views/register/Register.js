@@ -185,7 +185,7 @@ const Register = ({ setLoggedUser }) => {
             <div></div>
           ) : (
             <Link to="/auth/login" className="backHomeLink">
-              Ir a Inciar sesión
+              Ir a Iniciar sesión
             </Link>
           )}
 

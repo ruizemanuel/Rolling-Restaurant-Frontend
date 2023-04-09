@@ -50,6 +50,7 @@ function SearchBar({ placeholder, data }) {
                         return (
                             <Link
                                 to={`/product/buy/${value._id}`}
+                                state={{ borrar: clearInput }}
                                 className="dataItem"
                             >
                                 {value.productName}

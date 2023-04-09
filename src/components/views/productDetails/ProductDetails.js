@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row, Col, Container, Button } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "../../../config/axiosInit";
 import Swal from "sweetalert2";
 import "./productDetail.css"
@@ -10,6 +10,8 @@ const ProductDetails = ({ URL }) => {
   const { id } = useParams();
   const URL_PEDIDOS = process.env.REACT_APP_API_HAMBURGUESERIA_PEDIDOS
   const email = JSON.parse(localStorage.getItem("user-token"))?.email
+  const location = useLocation()
+  const { borrar } = location.state
 
 
 
@@ -64,6 +66,7 @@ const ProductDetails = ({ URL }) => {
           const res = await axios.post(URL_PEDIDOS, newPedido);
           if (res.status === 201) {
             Swal.fire("Listo!", "Revisa la sección Pedidos.", "success");
+            borrar()
             localStorage.setItem("pedido", JSON.stringify(newPedido));
             navigate("/");
           }
@@ -88,6 +91,7 @@ const ProductDetails = ({ URL }) => {
 
           if (res.status === 200) {
             Swal.fire("Actualizado!", "Tu carrito ha sido actualizado.", "success");
+            borrar()
             localStorage.setItem("pedido", JSON.stringify(pedidoUpdated));
             navigate("/");
           }

@@ -95,7 +95,7 @@ const Navigation = ({ loggedUser, setLoggedUser, products }) => {
               ) : (
                 <>
                   <Link className="nav-link d-flex flex-column justify-content-center" to="/auth/login">
-                    Inciar sesión
+                    Iniciar sesión
                   </Link>
 
                 </>

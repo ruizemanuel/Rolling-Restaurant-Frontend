@@ -88,7 +88,7 @@ const ProductsTable = ({ products, URL, getApi }) => {
           :
           <div className="no-products-found d-flex align-items-center justify-content-center">
             {/* No products found message */}
-            <h1>🍕 No products found 🍕</h1>
+            <h1>🍕 No hay productos disponibles 🍕</h1>
           </div>
         }
       </Container >
