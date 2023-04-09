@@ -222,8 +222,8 @@ const PedidosTable = () => {
                 <thead>
                   <tr>
 
-                    <th>Name</th>
-                    <th>Price</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
