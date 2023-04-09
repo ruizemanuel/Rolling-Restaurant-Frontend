@@ -17,7 +17,7 @@
   font-size: 16px;
   padding: 12px 20px;
   height: 36px;
-  width: 300px;
+  width: 100%;
 }
 
 .search input:focus {
@@ -26,11 +26,11 @@
 
 .searchIcon {
   height: 36px;
-  width: 36px;
+  width: 45px;
   background-color: #F6F6F6;
   display: grid;
   place-items: center;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
 }
 
