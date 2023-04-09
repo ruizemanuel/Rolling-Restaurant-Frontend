@@ -67,6 +67,17 @@ const Register = () => {
       const res = await axios.post(`${URL}/register`, newUser);
 
       if (res.status === 201) {
+        const templateParams = {
+          user_name: inputs.name,
+          destinatario: inputs.email
+        };
+
+        emailjs.send('service_r0td7ag', 'template_21lr24a', templateParams, '_Dh8QUgAk-H_cjr0m')
+          .then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+          }, function (error) {
+            console.log('FAILED...', error);
+          });
         Swal.fire("Excelente!", "Ya puedes iniciar sesión con tu email y contraseña.", "success");
 
         navigate("/auth/login");
@@ -79,13 +90,6 @@ const Register = () => {
     finally {
       setSpinnner(false)
     }
-
-    emailjs.sendForm('service_470nr1h', 'template_q5eze0c', form.current, 'SFzC0PALs3luZR9uq')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });
 
   };
 
