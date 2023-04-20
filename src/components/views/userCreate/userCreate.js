@@ -62,8 +62,8 @@ const UserCreate = () => {
     };
 
     Swal.fire({
-      title: "¿Estas seguro?",
-      text: "No podrás revertir los cambios!",
+      title: "Estas por crear un nuevo usuario",
+      text: "¿Desea guardar los cambios?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
