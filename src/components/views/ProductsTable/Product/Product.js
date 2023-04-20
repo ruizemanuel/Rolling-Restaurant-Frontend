@@ -20,7 +20,13 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
           getSpinner(true)
           //consulta delete con axios
 
-          const res = await axios.delete(`${URL}/${id}`);
+          const res = await axios.delete(`${URL}/${id}`,{
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": JSON.parse(localStorage.getItem("user-token"))
+                .token,
+            },
+          });
 
 
           if (res.status === 200) {
