@@ -44,7 +44,6 @@ const UsersTable = () => {
         <Table bordered hover responsive className="align-middle mt-3">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Nombre</th>
               <th>Email</th>
               <th>Estado</th>

@@ -43,7 +43,6 @@ try {
           <Table bordered hover responsive className="align-middle mt-3">
             <thead>
               <tr>
-                <th>Pedido ID</th>
                 <th>Email</th>
                 <th>Estado</th>
               </tr>

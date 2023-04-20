@@ -55,7 +55,6 @@ const ProductsTable = ({ products, URL, getApi }) => {
             <Table bordered hover responsive className="align-middle mt-3 ">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Nombre</th>
                   <th>Precio</th>
                   <th>URL de la imagen</th>
