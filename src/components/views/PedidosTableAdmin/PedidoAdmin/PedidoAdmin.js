@@ -8,7 +8,7 @@ const PedidoAdmin = ({ pedido, URL, getApi }) => {
 
   return (
     <tr>
-      <td>{pedido._id}</td>
+      <td className="d-none">{pedido._id}</td>
       <td>{pedido.email}</td>
       <td>{pedido.estado}</td>
 

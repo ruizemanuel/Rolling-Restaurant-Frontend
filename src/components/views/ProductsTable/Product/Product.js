@@ -46,7 +46,7 @@ const Product = ({ product, URL, getApi, getSpinner }) => {
   return (
 
       <tr>
-        <td>{product._id}</td>
+        <td className="d-none">{product._id}</td>
         <td>{product.productName}</td>
         <td>${product.price}</td>
         <td>

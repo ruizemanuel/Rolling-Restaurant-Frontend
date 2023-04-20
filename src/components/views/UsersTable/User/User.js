@@ -8,7 +8,7 @@ const User = ({ user, URL_usuarios, getApi_users }) => {
 
   return (
     <tr>
-      <td>{user._id}</td>
+      <td className="d-none">{user._id}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>{user.activo ? 'activo' : 'inactivo'}</td>
